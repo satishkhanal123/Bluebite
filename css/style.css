@@ -1,63 +1,45 @@
-/* ===== BlueBite Base Styles ===== */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    background:#05070d;
-    font-family:Arial, Helvetica, sans-serif;
-    display:flex;
-    justify-content:center;
-    padding:14px;
-    color:white;
+
+background:#05070d;
+
+font-family:"Manrope",sans-serif;
+
+display:flex;
+justify-content:center;
+
+padding:14px;
+
+color:white;
+
 }
 
 .app{
-    width:390px;
-    min-height:100vh;
-    background:#060b16;
-    border-radius:34px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 0 45px rgba(21,101,255,.18);
+
+width:390px;
+
+min-height:100vh;
+
+background:#050912;
+
+border-radius:34px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.06);
+
+box-shadow:
+0 0 40px rgba(0,90,255,.12);
+
 }
 
-/* ===== Hero ===== */
+.hero-placeholder{
 
-.hero{
-    padding:24px 18px 32px;
-}
+height:140px;
 
-.hero h1{
-    display:flex;
-    flex-direction:column;
-    font-size:56px;
-    line-height:.95;
-    font-weight:800;
-    margin-bottom:18px;
-}
-
-.blue{
-    color:#1565ff;
-}
-
-.hero p{
-    color:#9ca3af;
-    font-size:17px;
-    line-height:1.5;
-    margin-bottom:24px;
-}
-
-.order-btn{
-    background:linear-gradient(90deg,#0d5bff,#3b82f6);
-    color:white;
-    border:none;
-    border-radius:999px;
-    padding:16px 30px;
-    font-size:18px;
-    font-weight:700;
-    box-shadow:0 8px 24px rgba(21,101,255,.35);
-}
+} 
