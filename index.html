@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlueBite</title>
-<style>
-body{
-  margin:0;
-  background:#0B0F19;
-  color:white;
-  font-family:Arial,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-}
-h1{
-  color:#3B82F6;
-  font-size:42px;
-}
-p{
-  color:#cbd5e1;
-}
-button{
-  background:#3B82F6;
-  color:white;
-  border:none;
-  padding:14px 24px;
-  border-radius:30px;
-  font-size:18px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueBite</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
 </head>
+
 <body>
-  <div>
+
+  <div class="app">
+
+    <header class="navbar">
+
+      <button class="icon-btn menu-btn">
+        ☰
+      </button>
+
+      <div class="logo">
+        <div class="logo-circle">🍴</div>
+        <span>Blue<span class="blue">Bite</span></span>
+      </div>
+
+      <div class="nav-right">
+
+        <button class="icon-btn">🔍</button>
+
+        <button class="icon-btn cart-btn">
+          🛒
+          <span class="badge">3</span>
+        </button>
+
+        <img
+          src="assets/images/users/profile.jpg"
+          alt="Profile"
+          class="profile">
+
+      </div>
+
+    </header>
+
+  </div>
+
+</body>
+</html>  <div>
     <h1>BlueBite</h1>
     <p>Fresh Food Delivered Fast</p>
     <button>Order Now</button>
