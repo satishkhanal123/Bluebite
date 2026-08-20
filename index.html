@@ -1,1 +1,368 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bluebite Instant Seller</title><meta name="description" content="Premium WhatsApp food ordering website."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div class="app"><header class="hero"><div class="top-bar glass-card"><div class="logo">Bluebite</div><div class="theme-switch"><span class="dot red"></span><span class="dot gold active"></span><span class="dot green"></span></div><button id="cartBtn" class="cart-pill">ðŸ›’ <span id="cartCount">0</span> â€¢ â‚¹<span id="cartTotal">0</span></button></div><div class="hero-image"><div class="gold-glow"></div><div class="image-placeholder">Hero Momo Image</div></div><div class="hero-content"><h1>Crafted with Love.<br>Served with Style.</h1><p>Premium Mo:Mo and street food experience.</p><button class="btn-gold">Order Now</button></div></header><main class="container"><div class="search-wrap glass-card"><input id="searchInput" placeholder="Search food..."></div><section id="categories" class="categories"></section><section id="menu" class="menu-grid"></section><div id="pagination" class="pagination"></div></main></div><div id="cartDrawer" class="cart-drawer hidden"><div class="cart-header"><h2>Cart</h2><button id="closeCart">âœ•</button></div><div id="cartItems"></div><div class="bill glass-card"><div><span>Delivery</span><span>â‚¹100</span></div><div><strong>Total</strong><strong id="grandTotal">â‚¹100</strong></div><button id="nextBtn" class="btn-gold" disabled>Next</button></div></div><div id="checkout" class="checkout hidden"><div class="glass-card form-card"><h2>Customer Details</h2><input id="name" placeholder="Name*" required><input id="landmark" placeholder="Landmark"><textarea id="address" placeholder="Address*" required></textarea><input id="mobile" placeholder="Mobile*" maxlength="10"><input id="email" placeholder="Email (optional)"><textarea id="notes" placeholder="Delivery Notes"></textarea><button id="waBtn" class="btn-gold">Send via WhatsApp</button><button id="copyBtn" class="btn-secondary">Copy Message</button></div></div><nav class="bottom-nav"><button>ðŸ <small>Home</small></button><button>ðŸ½ï¸<small>Menu</small></button><button id="navCart">ðŸ›’<small>Cart</small></button></nav><script src="supabase.js"></script><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+
+  <!-- SEO -->
+  <title>Bluebite | Instant Seller - Premium Food Delivery</title>
+  <meta name="description" content="Order delicious Mo:Mo, Noodles, Chowmein, Snacks and Beverages from Bluebite. Premium WhatsApp food ordering experience.">
+  <meta name="keywords" content="Bluebite, Momo, Chowmein, Noodles, Food Delivery, WhatsApp Order, Sikkim, Gangtok">
+  <meta name="author" content="Bluebite">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bluebite Instant Seller">
+  <meta property="og:description" content="Premium WhatsApp food ordering experience.">
+  <meta property="og:image" content="assets/backgrounds/og-cover.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================
+     HERO
+====================================== -->
+
+<header id="home" class="hero">
+
+  <!-- Top Bar -->
+
+  <div class="top-bar glass-card">
+
+    <div class="logo">
+      Bluebite
+    </div>
+
+    <div class="theme-switch" aria-label="Theme Selector">
+
+      <button class="dot red" aria-label="Bold Theme"></button>
+
+      <button class="dot gold active" aria-label="Dark Theme"></button>
+
+      <button class="dot green" aria-label="Rustic Theme"></button>
+
+    </div>
+
+    <button id="cartBtn" class="cart-pill" aria-label="Open Cart">
+
+      🛒 <span id="cartCount">0</span>
+
+      • ₹<span id="cartTotal">0</span>
+
+    </button>
+
+  </div>
+
+  <!-- Hero Image -->
+
+  <div class="hero-image">
+
+    <div class="gold-glow"></div>
+
+    <img
+      src="assets/food/hero-momo.png"
+      alt="Premium steaming Buff Momo"
+      loading="eager">
+
+  </div>
+
+  <!-- Hero Text -->
+
+  <div class="hero-content">
+
+    <h1>
+
+      Crafted with Love.
+
+      <br>
+
+      Served with Style.
+
+    </h1>
+
+    <p>
+
+      Premium Mo:Mo and street food experience.
+
+    </p>
+
+    <a href="#menu" class="btn-gold">
+
+      Order Now
+
+    </a>
+
+  </div>
+
+</header>
+
+<!-- =====================================
+     MAIN
+====================================== -->
+
+<main class="container">
+
+  <!-- Search -->
+
+  <section class="search-section">
+
+    <div class="search-wrap glass-card">
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search food..."
+        aria-label="Search Menu">
+
+    </div>
+
+  </section>
+
+  <!-- Categories -->
+
+  <section id="categories" class="categories">
+
+    <!-- JS -->
+
+  </section>
+
+  <!-- Menu -->
+
+  <section id="menu">
+
+    <div id="menuGrid" class="menu-grid">
+
+      <!-- JS -->
+
+    </div>
+
+    <div id="pagination" class="pagination"></div>
+
+  </section>
+
+</main>
+
+<!-- =====================================
+     CART DRAWER
+====================================== -->
+
+<aside id="cartDrawer" class="cart-drawer hidden">
+
+  <div class="cart-header">
+
+    <h2>Cart</h2>
+
+    <button id="closeCart" aria-label="Close Cart">
+
+      ✕
+
+    </button>
+
+  </div>
+
+  <div id="cartItems" class="cart-items">
+
+    <!-- JS -->
+
+  </div>
+
+  <div class="bill glass-card">
+
+    <div class="bill-row">
+
+      <span>Delivery</span>
+
+      <span>₹100</span>
+
+    </div>
+
+    <div class="bill-row total-row">
+
+      <strong>Total</strong>
+
+      <strong id="grandTotal">₹100</strong>
+
+    </div>
+
+    <button id="nextBtn" class="btn-gold" disabled>
+
+      Next →
+
+    </button>
+
+  </div>
+
+</aside>
+
+<!-- =====================================
+     CHECKOUT
+====================================== -->
+
+<section id="checkout" class="checkout hidden">
+
+  <div class="glass-card form-card">
+
+    <h2>Customer Details</h2>
+
+    <form id="checkoutForm">
+
+      <input
+        id="name"
+        type="text"
+        placeholder="Name *"
+        required>
+
+      <input
+        id="landmark"
+        type="text"
+        placeholder="Landmark">
+
+      <textarea
+        id="address"
+        placeholder="Address *"
+        required></textarea>
+
+      <input
+        id="mobile"
+        type="tel"
+        maxlength="10"
+        pattern="[0-9]{10}"
+        placeholder="Mobile *"
+        required>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="Email (Optional)">
+
+      <textarea
+        id="notes"
+        placeholder="Delivery Notes"></textarea>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     WHATSAPP PREVIEW
+====================================== -->
+
+<section id="previewSection" class="container hidden">
+
+  <div class="glass-card preview-card">
+
+    <h2>WhatsApp Preview</h2>
+
+    <pre id="messagePreview"></pre>
+
+    <button id="waBtn" class="btn-gold">
+
+      📲 Send via WhatsApp
+
+    </button>
+
+    <button id="copyBtn" class="btn-secondary">
+
+      📋 Copy Message
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- =====================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
+
+  <div class="footer-content">
+
+    <h3>Bluebite</h3>
+
+    <p>Crafted with Love. Served with Style.</p>
+
+    <div class="socials">
+
+      <a href="#" aria-label="Instagram">Instagram</a>
+
+      <a href="#" aria-label="Facebook">Facebook</a>
+
+      <a href="#" aria-label="WhatsApp">WhatsApp</a>
+
+    </div>
+
+    <div class="map-placeholder glass-card">
+
+      <p>📍 Location Map (Coming Soon)</p>
+
+    </div>
+
+    <small>
+
+      © 2026 Bluebite. All Rights Reserved.
+
+    </small>
+
+  </div>
+
+</footer>
+
+<!-- =====================================
+     BOTTOM NAVIGATION
+====================================== -->
+
+<nav class="bottom-nav">
+
+  <a href="#home" class="nav-item active">
+
+    <span>🏠</span>
+
+    <small>Home</small>
+
+  </a>
+
+  <a href="#menu" class="nav-item">
+
+    <span>🍽️</span>
+
+    <small>Menu</small>
+
+  </a>
+
+  <button id="navCart" class="nav-item">
+
+    <span>🛒</span>
+
+    <small>Cart</small>
+
+  </button>
+
+</nav>
+
+<!-- =====================================
+     SCRIPTS
+====================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
