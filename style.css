@@ -1,0 +1,92 @@
+:root{
+
+  --bg:#050505;
+  --surface:#0D0D0D;
+  --gold:#F5B82E;
+  --red:#E6392F;
+  --green:#22C55E;
+  --white:#F5F5F5;
+  --muted:#A0A0A0;
+
+  --radius:22px;
+  --button-radius:16px;
+
+  --shadow:0 8px 30px rgba(245,184,46,.15);
+
+}
+
+*{
+
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+}
+
+html{
+
+  scroll-behavior:smooth;
+
+}
+
+body{
+
+  background:var(--bg);
+  color:var(--white);
+
+  font-family:"Lato",sans-serif;
+
+  min-height:100vh;
+
+}
+
+h1,h2,h3{
+
+  font-family:"Poppins",sans-serif;
+
+}
+
+.foundation{
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:24px;
+
+}
+
+.foundation h1{
+
+  font-size:48px;
+  color:var(--gold);
+
+}
+
+.foundation p{
+
+  margin-top:12px;
+  color:var(--muted);
+
+}
+
+.glass-card{
+
+  background:rgba(13,13,13,.9);
+
+  border:1px solid rgba(245,184,46,.15);
+
+  border-radius:22px;
+
+  backdrop-filter:blur(14px);
+
+  box-shadow:var(--shadow);
+
+}
