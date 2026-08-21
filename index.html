@@ -2,1652 +2,1797 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bluebite – Premium Food Ordering</title>
-    <meta name="description" content="Bluebite delivers ultra-premium Mo:Mo, noodles, chowmein, snacks, and beverages. Order now for a cinematic dining experience." />
-    <meta name="keywords" content="Bluebite, food ordering, Mo:Mo, noodles, chowmein, premium food, delivery" />
-    <link rel="canonical" href="https://yourusername.github.io/bluebite/" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Bluebite – Premium Food Ordering" />
-    <meta property="og:description" content="Ultra-premium Mo:Mo, noodles, and more. Cinematic dining delivered." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourusername.github.io/bluebite/" />
-    <meta property="og:image" content="https://yourusername.github.io/bluebite/assets/og-image.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>BlueBite Nepal — Restaurant Discovery</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
 
-    <!-- Font Awesome for icons (lightweight) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Custom Tailwind configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0b1120',
+                            indigo: '#1a2a4a',
+                            gold: '#d4a853',
+                            goldLight: '#f0d68a',
+                            cream: '#faf6ef',
+                            slate: '#8a9bb5',
+                        },
+                        primary: '#d4a853',
+                        secondary: '#0b1120',
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'xl': '1.25rem',
+                        '2xl': '1.75rem',
+                        '3xl': '2.25rem',
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 60px rgba(11, 17, 32, 0.15), 0 8px 24px rgba(0,0,0,0.05)',
+                        'premium-lg': '0 30px 80px rgba(11, 17, 32, 0.20), 0 12px 32px rgba(0,0,0,0.07)',
+                        'glow': '0 0 40px rgba(212, 168, 83, 0.15)',
+                        'inner-glow': 'inset 0 0 40px rgba(212, 168, 83, 0.05)',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-premium': 'linear-gradient(145deg, #0b1120 0%, #1a2a4a 100%)',
+                        'gradient-gold': 'linear-gradient(135deg, #d4a853 0%, #f0d68a 50%, #d4a853 100%)',
+                    },
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* ============================================================
-                   CSS — Bluebite Ultra-Premium Theme
-                   ============================================================ */
-
-        /* ---------- Reset & Base ---------- */
-        *,
-        *::before,
-        *::after {
+        /* ── Reset & Base ── */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --color-deep: #0a1628;
-            --color-navy: #1a2a4a;
-            --color-navy-light: #2a3f66;
-            --color-gold: #c9a84c;
-            --color-gold-light: #f0d080;
-            --color-gold-glow: rgba(201, 168, 76, 0.35);
-            --color-warm: #f5f0e8;
-            --color-warm-dark: #e8e0d5;
-            --color-text-light: #f5f0e8;
-            --color-text-dark: #1a1a1a;
-            --font-serif: 'Playfair Display', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --shadow-premium: 0 20px 60px rgba(10, 22, 40, 0.45);
-            --shadow-soft: 0 8px 32px rgba(10, 22, 40, 0.20);
-            --radius: 16px;
-            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --max-width: 1200px;
-            --section-padding: 4rem 1.5rem;
-        }
-
-        html {
-            scroll-behavior: smooth;
             -webkit-tap-highlight-color: transparent;
         }
-
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         body {
-            font-family: var(--font-sans);
-            background: var(--color-warm);
-            color: var(--color-text-dark);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: #faf6ef;
+            color: #0b1120;
             overflow-x: hidden;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        /* ── Custom Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
+        ::-webkit-scrollbar-track {
+            background: transparent;
         }
-        ul {
-            list-style: none;
-        }
-
-        /* ---------- Typography ---------- */
-        .serif {
-            font-family: var(--font-serif);
-        }
-        .gold {
-            color: var(--color-gold);
-        }
-        .gold-light {
-            color: var(--color-gold-light);
+        ::-webkit-scrollbar-thumb {
+            background: #d4a853;
+            border-radius: 20px;
         }
 
-        h1,
-        h2,
-        h3 {
-            font-family: var(--font-serif);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
+        /* ── Glassmorphism ── */
+        .glass {
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+        }
+        .glass-dark {
+            background: rgba(11, 17, 32, 0.75);
+            backdrop-filter: blur(24px) saturate(1.6);
+            -webkit-backdrop-filter: blur(24px) saturate(1.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 0.5rem;
-        }
-        h2 .gold {
-            font-style: italic;
+        /* ── Gold Gradient Text ── */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #d4a853 0%, #f0d68a 40%, #d4a853 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .section-label {
-            display: inline-block;
-            font-size: 0.8rem;
+        /* ── Button Premium ── */
+        .btn-premium {
+            background: linear-gradient(135deg, #d4a853 0%, #e8c97a 50%, #d4a853 100%);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+            color: #0b1120;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-gold);
-            background: rgba(201, 168, 76, 0.12);
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            margin-bottom: 0.75rem;
-            border: 1px solid rgba(201, 168, 76, 0.20);
-        }
-
-        /* ---------- Container ---------- */
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* ---------- Header / Navigation ---------- */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 22, 40, 0.88);
-            backdrop-filter: blur(14px) saturate(1.2);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-            padding: 0.75rem 0;
-            transition: var(--transition);
-        }
-
-        .site-header.scrolled {
-            background: rgba(10, 22, 40, 0.96);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--color-text-light);
-            letter-spacing: -0.02em;
-        }
-        .logo span {
-            color: var(--color-gold);
-        }
-        .logo i {
-            font-size: 1.8rem;
-            color: var(--color-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-        }
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: rgba(245, 240, 232, 0.7);
-            transition: var(--transition);
-            letter-spacing: 0.03em;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-gold);
-            transition: var(--transition);
-        }
-        .nav-links a:hover {
-            color: #fff;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .nav-links a.cta-nav {
-            background: var(--color-gold);
-            color: var(--color-deep);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        .nav-links a.cta-nav:hover {
-            background: var(--color-gold-light);
-            transform: scale(1.03);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
             border: none;
-            color: var(--color-text-light);
-            font-size: 1.6rem;
-            cursor: pointer;
-            padding: 0.25rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 20px rgba(212, 168, 83, 0.30);
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(212, 168, 83, 0.45);
+        }
+        .btn-premium:active {
+            transform: scale(0.97);
+        }
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
-        /* ---------- Hero ---------- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 7rem 1.5rem 4rem;
-            background: linear-gradient(160deg, var(--color-deep) 0%, var(--color-navy) 60%, #0d1f3c 100%);
+        /* ── Card Hover ── */
+        .restaurant-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        .restaurant-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 24px 64px rgba(11, 17, 32, 0.12);
+        }
+
+        /* ── Rating Stars ── */
+        .star-filled {
+            color: #d4a853;
+        }
+        .star-empty {
+            color: #d1d5db;
+        }
+
+        /* ── Featured Badge ── */
+        .badge-featured {
+            background: linear-gradient(135deg, #d4a853, #f0d68a);
+            color: #0b1120;
+            font-weight: 700;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            box-shadow: 0 2px 12px rgba(212, 168, 83, 0.35);
+            text-transform: uppercase;
+        }
+
+        /* ── Ad Card ── */
+        .ad-card {
+            background: linear-gradient(145deg, #1a2a4a, #0b1120);
+            border: 1px solid rgba(212, 168, 83, 0.15);
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
+        .ad-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, rgba(212, 168, 83, 0.06), transparent 70%);
             pointer-events: none;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 820px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(201, 168, 76, 0.12);
-            border: 1px solid rgba(201, 168, 76, 0.25);
-            color: var(--color-gold-light);
-            font-size: 0.75rem;
+        .ad-tag {
+            background: rgba(212, 168, 83, 0.15);
+            color: #d4a853;
+            font-size: 0.55rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            padding: 0.4rem 1.4rem;
+            letter-spacing: 0.06em;
+            padding: 0.15rem 0.6rem;
             border-radius: 40px;
-            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 168, 83, 0.15);
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 5.6rem);
-            color: #fff;
-            margin-bottom: 0.5rem;
-            line-height: 1.05;
+        /* ── Modal Overlay ── */
+        .modal-overlay {
+            background: rgba(11, 17, 32, 0.70);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: fadeIn 0.25s ease-out;
         }
-        .hero h1 .gold {
-            font-style: italic;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: rgba(245, 240, 232, 0.75);
-            max-width: 520px;
-            margin: 0.75rem auto 2rem;
-            font-weight: 300;
-            letter-spacing: 0.01em;
+        .modal-slide {
+            animation: slideUp 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2.2rem;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-sans);
-            text-decoration: none;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
-        .btn-primary {
-            background: var(--color-gold);
-            color: var(--color-deep);
-            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.30);
+        /* ── Skeleton ── */
+        .skeleton {
+            background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+            background-size: 200% 100%;
+            animation: shimmer-skeleton 1.5s infinite;
+            border-radius: 0.75rem;
         }
-        .btn-primary:hover {
-            background: var(--color-gold-light);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.45);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #fff;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-        }
-        .btn-outline:hover {
-            border-color: var(--color-gold);
-            color: var(--color-gold-light);
-            transform: translateY(-2px);
-        }
-
-        .btn i {
-            font-size: 1.1rem;
-        }
-
-        /* floating gold particles (creative tweak) */
-        .hero-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
-            top: -10%;
-            right: -10%;
-            pointer-events: none;
-            animation: floatGlow 12s ease-in-out infinite alternate;
-        }
-        .hero-glow-2 {
-            bottom: -20%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            animation-delay: 4s;
-        }
-
-        @keyframes floatGlow {
+        @keyframes shimmer-skeleton {
             0% {
-                transform: translate(0, 0) scale(1);
+                background-position: 200% 0;
             }
             100% {
-                transform: translate(30px, -30px) scale(1.15);
+                background-position: -200% 0;
             }
         }
 
-        /* ---------- Sections common ---------- */
-        section {
-            padding: var(--section-padding);
+        /* ── Search Bar Premium ── */
+        .search-premium {
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.50);
+            box-shadow: 0 4px 24px rgba(11, 17, 32, 0.06);
+            transition: all 0.3s ease;
+        }
+        .search-premium:focus-within {
+            box-shadow: 0 8px 40px rgba(212, 168, 83, 0.15);
+            border-color: #d4a853;
+            background: rgba(255, 255, 255, 0.92);
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-title h2 {
-            font-size: 2.8rem;
-        }
-        .section-title p {
-            color: rgba(26, 26, 26, 0.6);
-            font-size: 1.05rem;
-            max-width: 520px;
-            margin: 0.25rem auto 0;
-        }
-
-        /* ---------- Categories ---------- */
-        .categories {
-            background: #fff;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .category-card {
-            background: var(--color-warm);
-            border-radius: var(--radius);
-            padding: 1.8rem 1rem;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid transparent;
-            cursor: pointer;
-            position: relative;
-        }
-        .category-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--color-gold);
-            box-shadow: var(--shadow-soft);
-        }
-        .category-card .icon {
-            font-size: 2.8rem;
-            color: var(--color-gold);
-            margin-bottom: 0.5rem;
-            display: block;
-            transition: var(--transition);
-        }
-        .category-card:hover .icon {
-            transform: scale(1.12) rotate(-4deg);
-            text-shadow: 0 0 30px var(--color-gold-glow);
-        }
-        .category-card h3 {
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--color-deep);
-        }
-        .category-card p {
-            font-size: 0.8rem;
-            color: rgba(26, 26, 26, 0.5);
-            margin-top: 0.2rem;
-        }
-
-        /* ---------- Menu / Food Selector ---------- */
-        .menu-section {
-            background: var(--color-warm-dark);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-        }
-
-        .menu-item {
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 1.8rem;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            border: 1px solid rgba(201, 168, 76, 0.08);
-            display: flex;
-            flex-direction: column;
-        }
-        .menu-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(10, 22, 40, 0.12);
-        }
-        .menu-item .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
-        }
-        .menu-item .item-name {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        .menu-item .item-price {
-            font-weight: 700;
-            color: var(--color-gold);
-            font-size: 1.2rem;
-        }
-        .menu-item .item-desc {
-            font-size: 0.9rem;
-            color: rgba(26, 26, 26, 0.6);
-            margin: 0.25rem 0 1rem;
-            flex: 1;
-        }
-
-        .menu-item .options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.75rem 0 1.25rem;
-        }
-        .menu-item .options .opt {
-            background: var(--color-warm);
-            padding: 0.3rem 0.9rem;
+        /* ── Category Pills ── */
+        .cat-pill {
+            padding: 0.4rem 1.2rem;
             border-radius: 40px;
             font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--color-navy);
-            border: 1px solid transparent;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        .menu-item .options .opt.active {
-            border-color: var(--color-gold);
-            background: rgba(201, 168, 76, 0.10);
-            color: var(--color-gold);
-        }
-        .menu-item .options .opt:hover {
-            border-color: var(--color-gold);
-        }
-
-        .menu-item .btn-add {
-            width: 100%;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 60px;
-            background: var(--color-deep);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            cursor: pointer;
-            font-family: var(--font-sans);
-        }
-        .menu-item .btn-add:hover {
-            background: var(--color-navy-light);
-            transform: scale(1.01);
-        }
-        .menu-item .btn-add i {
-            margin-right: 0.5rem;
-        }
-
-        /* ---------- Order Form ---------- */
-        .order-section {
-            background: #fff;
-        }
-
-        .order-form-wrap {
-            max-width: 620px;
-            margin: 0 auto;
-            background: var(--color-warm);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .order-form-wrap .form-group {
-            margin-bottom: 1.25rem;
-        }
-        .order-form-wrap label {
-            display: block;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.35rem;
-            color: var(--color-deep);
-        }
-        .order-form-wrap input,
-        .order-form-wrap select,
-        .order-form-wrap textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1.5px solid rgba(26, 26, 26, 0.10);
-            border-radius: 12px;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            transition: var(--transition);
-            background: #fff;
-        }
-        .order-form-wrap input:focus,
-        .order-form-wrap select:focus,
-        .order-form-wrap textarea:focus {
-            outline: none;
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12);
-        }
-        .order-form-wrap textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .order-form-wrap .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 60px;
-            background: var(--color-gold);
-            color: var(--color-deep);
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-sans);
-        }
-        .order-form-wrap .btn-submit:hover {
-            background: var(--color-gold-light);
-            transform: scale(1.01);
-        }
-        .order-form-wrap .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .form-feedback {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
             font-weight: 500;
-            display: none;
-        }
-        .form-feedback.success {
-            display: block;
-            background: rgba(46, 204, 113, 0.12);
-            color: #1a7a4a;
-            border: 1px solid rgba(46, 204, 113, 0.25);
-        }
-        .form-feedback.error {
-            display: block;
-            background: rgba(231, 76, 60, 0.10);
-            color: #b03a2e;
-            border: 1px solid rgba(231, 76, 60, 0.20);
-        }
-
-        /* ---------- Testimonials ---------- */
-        .testimonials {
-            background: var(--color-deep);
-            color: var(--color-text-light);
-        }
-        .testimonials .section-title h2 {
-            color: #fff;
-        }
-        .testimonials .section-title p {
-            color: rgba(245, 240, 232, 0.5);
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(4px);
-            padding: 1.8rem;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-        }
-        .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-4px);
-        }
-        .testimonial-card .stars {
-            color: var(--color-gold);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .testimonial-card blockquote {
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: rgba(245, 240, 232, 0.85);
-        }
-        .testimonial-card .author {
-            margin-top: 1rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--color-gold-light);
-        }
-        .testimonial-card .author span {
-            font-weight: 400;
-            color: rgba(245, 240, 232, 0.4);
-            font-size: 0.8rem;
-        }
-
-        /* ---------- FAQ ---------- */
-        .faq {
-            background: #fff;
-        }
-
-        .faq-list {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
-            padding: 1.2rem 0;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: rgba(255, 255, 255, 0.60);
+            border: 1px solid rgba(255, 255, 255, 0.40);
+            color: #4b5563;
+            transition: all 0.25s ease;
+            white-space: nowrap;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 1.05rem;
-            color: var(--color-deep);
-            transition: var(--transition);
-            padding: 0.25rem 0;
-            user-select: none;
+            backdrop-filter: blur(4px);
         }
-        .faq-question:hover {
-            color: var(--color-gold);
+        .cat-pill.active {
+            background: #0b1120;
+            color: #fff;
+            border-color: #0b1120;
+            box-shadow: 0 4px 16px rgba(11, 17, 32, 0.15);
         }
-        .faq-question i {
-            transition: var(--transition);
-            color: var(--color-gold);
-            font-size: 1.2rem;
-        }
-        .faq-item.open .faq-question i {
-            transform: rotate(180deg);
+        .cat-pill:active {
+            transform: scale(0.95);
         }
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.45s ease, padding 0.3s ease;
-            color: rgba(26, 26, 26, 0.65);
-            line-height: 1.7;
-        }
-        .faq-item.open .faq-answer {
-            max-height: 300px;
-            padding-top: 0.75rem;
-        }
-
-        /* ---------- Contact / Booking ---------- */
-        .contact {
-            background: var(--color-warm-dark);
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .contact-info h3 {
-            font-family: var(--font-sans);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .contact-info p {
-            color: rgba(26, 26, 26, 0.6);
-            margin-bottom: 1rem;
-        }
-        .contact-info .detail {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.6rem;
-        }
-        .contact-info .detail i {
-            color: var(--color-gold);
-            width: 1.4rem;
-            font-size: 1.1rem;
+        /* ── Toast ── */
+        .toast {
+            background: #0b1120;
+            color: #fff;
+            border-radius: 1rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            box-shadow: 0 12px 40px rgba(11, 17, 32, 0.25);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1.5px solid rgba(26, 26, 26, 0.08);
-            border-radius: 12px;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            transition: var(--transition);
-            background: #fff;
-            margin-bottom: 1rem;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.10);
-        }
-
-        /* ---------- Footer ---------- */
-        .site-footer {
-            background: var(--color-deep);
-            color: rgba(245, 240, 232, 0.6);
-            padding: 3rem 1.5rem 2rem;
-            border-top: 1px solid rgba(201, 168, 76, 0.08);
-        }
-        .footer-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        .footer-socials {
-            display: flex;
-            gap: 1.2rem;
-        }
-        .footer-socials a {
-            color: rgba(245, 240, 232, 0.4);
-            font-size: 1.3rem;
-            transition: var(--transition);
-        }
-        .footer-socials a:hover {
-            color: var(--color-gold);
-            transform: translateY(-2px);
-        }
-        .footer-copy {
-            font-size: 0.85rem;
-        }
-        .footer-copy .gold {
-            color: var(--color-gold);
-        }
-
-        /* ---------- Responsive ---------- */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                gap: 1rem;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(10, 22, 40, 0.98);
-                backdrop-filter: blur(14px);
-                padding: 1.5rem 2rem;
-                border-top: 1px solid rgba(201, 168, 76, 0.10);
-            }
-            .nav-links.open {
-                display: flex;
-            }
-            .mobile-toggle {
-                display: block;
-            }
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            .order-form-wrap {
-                padding: 1.5rem;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-            .categories-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
+        /* ── Responsive tweaks ── */
         @media (max-width: 480px) {
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .restaurant-card {
+                transform: none !important;
             }
-            .hero-actions .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .hero {
-                padding-top: 6rem;
+            .restaurant-card:active {
+                transform: scale(0.98) !important;
             }
         }
 
-        /* ---------- Utility ---------- */
-        .hidden {
-            display: none !important;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mt-1 {
-            margin-top: 1rem;
-        }
-        .mb-1 {
-            margin-bottom: 1rem;
+        /* ── Bottom nav safe area ── */
+        .bottom-nav {
+            padding-bottom: env(safe-area-inset-bottom, 0.5rem);
         }
     </style>
 </head>
-
 <body>
 
-    <!-- ============================================================
-    HEADER
-    ============================================================ -->
-    <header class="site-header" id="siteHeader" role="banner">
-        <div class="header-inner">
-            <a href="#" class="logo" aria-label="Bluebite home">
-                <i class="fas fa-utensils"></i> Blue<span>bite</span>
-            </a>
-
-            <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
-                <a href="#menu">Menu</a>
-                <a href="#order">Order</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-                <a href="#order" class="cta-nav">Order Now</a>
-            </nav>
-
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- ============================================================
-    HERO
-    ============================================================ -->
-    <section class="hero" id="home" aria-labelledby="heroTitle">
-        <div class="hero-glow"></div>
-        <div class="hero-glow hero-glow-2"></div>
-
-        <div class="hero-content">
-            <div class="hero-badge">✦ Est. 2026</div>
-            <h1 id="heroTitle">
-                Taste the <span class="gold">Extraordinary</span>
-            </h1>
-            <p>
-                Cinematic Mo:Mo, hand-pulled noodles, and artisanal beverages —
-                crafted for those who savor the finest.
-            </p>
-            <div class="hero-actions">
-                <a href="#menu" class="btn btn-primary">
-                    <i class="fas fa-arrow-right"></i> Explore Menu
-                </a>
-                <a href="#order" class="btn btn-outline">
-                    <i class="fas fa-shopping-bag"></i> Order Now
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    CATEGORIES
-    ============================================================ -->
-    <section class="categories" id="categories" aria-labelledby="categoriesTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">Categories</span>
-                <h2 id="categoriesTitle">Our <span class="gold">Signature</span> Offerings</h2>
-                <p>Handpicked for perfection, every bite tells a story.</p>
-            </div>
-
-            <div class="categories-grid" id="categoriesGrid">
-                <!-- filled by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    MENU / FOOD SELECTOR
-    ============================================================ -->
-    <section class="menu-section" id="menu" aria-labelledby="menuTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">Menu</span>
-                <h2 id="menuTitle">The <span class="gold">Bluebite</span> Selection</h2>
-                <p>Each dish is a masterpiece. Choose your favorite.</p>
-            </div>
-
-            <div class="menu-grid" id="menuGrid">
-                <!-- filled by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    ORDER FORM
-    ============================================================ -->
-    <section class="order-section" id="order" aria-labelledby="orderTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">Order</span>
-                <h2 id="orderTitle">Place Your <span class="gold">Order</span></h2>
-                <p>Freshly prepared and delivered with care.</p>
-            </div>
-
-            <div class="order-form-wrap">
-                <form id="orderForm" novalidate>
-                    <div class="form-group">
-                        <label for="orderName">Full Name</label>
-                        <input type="text" id="orderName" placeholder="e.g. Jamie Oliver" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="orderEmail">Email</label>
-                        <input type="email" id="orderEmail" placeholder="you@example.com" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="orderItem">Select Dish</label>
-                        <select id="orderItem" required>
-                            <option value="">— Choose a dish —</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="orderVariant">Variant</label>
-                        <select id="orderVariant" required>
-                            <option value="">— Select variant —</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="orderQuantity">Quantity</label>
-                        <input type="number" id="orderQuantity" min="1" value="1" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="orderNotes">Special Instructions</label>
-                        <textarea id="orderNotes" placeholder="Any allergies, extra spice, or delivery notes…"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit" id="orderSubmit">
-                        <i class="fas fa-check"></i> Submit Order
-                    </button>
-                    <div class="form-feedback" id="orderFeedback"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    TESTIMONIALS
-    ============================================================ -->
-    <section class="testimonials" id="testimonials" aria-labelledby="testimonialTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">Testimonials</span>
-                <h2 id="testimonialTitle">What Our <span class="gold">Guests</span> Say</h2>
-                <p>Real reviews from real food lovers.</p>
-            </div>
-
-            <div class="testimonial-grid" id="testimonialGrid">
-                <!-- filled by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    FAQ
-    ============================================================ -->
-    <section class="faq" id="faq" aria-labelledby="faqTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">FAQ</span>
-                <h2 id="faqTitle">Frequently Asked <span class="gold">Questions</span></h2>
-                <p>Everything you need to know before ordering.</p>
-            </div>
-
-            <div class="faq-list" id="faqList">
-                <!-- filled by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    CONTACT
-    ============================================================ -->
-    <section class="contact" id="contact" aria-labelledby="contactTitle">
-        <div class="container">
-            <div class="section-title">
-                <span class="section-label">Contact</span>
-                <h2 id="contactTitle">Get in <span class="gold">Touch</span></h2>
-                <p>We'd love to hear from you.</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Bluebite Kitchen</h3>
-                    <p>123 Gourmet Avenue, Kathmandu, Nepal</p>
-                    <div class="detail"><i class="fas fa-phone"></i> +977 980-123-4567</div>
-                    <div class="detail"><i class="fas fa-envelope"></i> hello@bluebite.com</div>
-                    <div class="detail"><i class="fas fa-clock"></i> 10:00 AM – 10:00 PM</div>
-                    <div style="margin-top:1.5rem;border-radius:12px;overflow:hidden;height:160px;background:var(--color-warm-dark);">
-                        <!-- simple map placeholder: replace with real iframe if needed -->
-                        <div style="background:#1a2a4a;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:0.9rem;">
-                            <i class="fas fa-map-pin" style="margin-right:0.5rem;color:var(--color-gold);"></i> Find us on Google Maps
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="Your Name" required />
-                    <input type="email" placeholder="Your Email" required />
-                    <textarea rows="4" placeholder="Your message…" required></textarea>
-                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-inner">
-            <div class="footer-copy">
-                &copy; 2026 <span class="gold">Bluebite</span> — crafted with <i class="fas fa-heart" style="color:var(--color-gold);font-size:0.8rem;"></i>
-            </div>
-            <div class="footer-socials">
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ============================================================
-    JAVASCRIPT — Vanilla JS + Supabase Integration
-    ============================================================ -->
-    <script>
-        /* ============================================================
-               CONFIG — Supabase (replace with your own keys)
-               ============================================================ */
-        const SUPABASE_URL = 'https://your-project.supabase.co';
-        const SUPABASE_ANON_KEY = 'your-anon-key';
-
-        // -------- Supabase client (lazy init) --------
-        let supabaseClient = null;
-
-        function getSupabase() {
-            if (!supabaseClient && typeof supabase !== 'undefined') {
-                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            }
-            return supabaseClient;
-        }
-
-        // -------- DATA (fallback static + Supabase) --------
-        const CATEGORIES_DATA = [
-            { id: 'momo', icon: 'fa-egg', label: 'Mo:Mo', desc: 'Steamed, fried & jhol' },
-            { id: 'noodles', icon: 'fa-utensils', label: 'Noodles', desc: 'Hand-pulled perfection' },
-            { id: 'chowmein', icon: 'fa-bowl-food', label: 'Chowmein', desc: 'Wok-tossed delight' },
-            { id: 'snacks', icon: 'fa-bacon', label: 'Snacks', desc: 'Crispy & savory' },
-            { id: 'beverages', icon: 'fa-mug-saucer', label: 'Beverages', desc: 'Artisanal drinks' }
-        ];
-
-        const MENU_DATA = [{
-            id: 1,
-            name: 'Buff Mo:Mo',
-            desc: 'Juicy buffalo dumplings with house-made spices.',
-            price: 350,
-            category: 'momo',
-            variants: ['Steamed', 'Pan Seared', 'Jhol', 'Pork'],
-            image: ''
-        }, {
-            id: 2,
-            name: 'Chicken Noodles',
-            desc: 'Hand-pulled noodles in a fragrant broth.',
-            price: 420,
-            category: 'noodles',
-            variants: ['Regular', 'Spicy', 'Garlic'],
-            image: ''
-        }, {
-            id: 3,
-            name: 'Veg Chowmein',
-            desc: 'Wok-tossed noodles with crisp vegetables.',
-            price: 310,
-            category: 'chowmein',
-            variants: ['Regular', 'Egg', 'Paneer'],
-            image: ''
-        }, {
-            id: 4,
-            name: 'Crispy Spring Rolls',
-            desc: 'Golden rolls with a crunchy vegetable filling.',
-            price: 280,
-            category: 'snacks',
-            variants: ['Veg', 'Chicken', 'Cheese'],
-            image: ''
-        }, {
-            id: 5,
-            name: 'Lemon Mint Cooler',
-            desc: 'Refreshing blend of lemon, mint, and soda.',
-            price: 190,
-            category: 'beverages',
-            variants: ['Regular', 'Ginger', 'Honey'],
-            image: ''
-        }];
-
-        const TESTIMONIALS_DATA = [
-            { id: 1, name: 'Aisha Gurung', text: 'The Buff Mo:Mo is out of this world! Absolute perfection.', stars: 5 },
-            { id: 2, name: 'Rohan Shrestha', text: 'Best noodles in town. The broth is heavenly.', stars: 5 },
-            { id: 3, name: 'Priya Karki', text: 'Bluebite redefined comfort food for me. 10/10.', stars: 4 },
-        ];
-
-        const FAQ_DATA = [
-            { q: 'What are your delivery hours?', a: 'We deliver daily from 10:00 AM to 10:00 PM.' },
-            { q: 'Do you offer vegan options?', a: 'Yes! Many of our dishes can be made vegan. Just mention it in your order notes.' },
-            { q: 'How long does delivery take?', a: 'Typically 30–45 minutes within the city limits.' },
-            { q: 'Is there a minimum order?', a: 'No minimum order — we deliver any size with a small delivery fee.' },
-        ];
-
-        // -------- State --------
-        let currentMenu = [...MENU_DATA];
-        let currentTestimonials = [...TESTIMONIALS_DATA];
-        let currentFaq = [...FAQ_DATA];
-        let selectedVariants = {};
-
-        // -------- DOM refs --------
-        const $ = (sel) => document.querySelector(sel);
-        const $$ = (sel) => document.querySelectorAll(sel);
-
-        // -------- Render: Categories --------
-        function renderCategories() {
-            const grid = $('#categoriesGrid');
-            if (!grid) return;
-            grid.innerHTML = CATEGORIES_DATA.map(c =>
-                `<div class="category-card" data-category="${c.id}">
-                    <span class="icon"><i class="fas ${c.icon}"></i></span>
-                    <h3>${c.label}</h3>
-                    <p>${c.desc}</p>
-                </div>`
-            ).join('');
-            // click => scroll to menu & filter
-            grid.querySelectorAll('.category-card').forEach(el => {
-                el.addEventListener('click', () => {
-                    const cat = el.dataset.category;
-                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-                    // highlight matching items (simple filter)
-                    renderMenu(cat);
-                });
-            });
-        }
-
-        // -------- Render: Menu --------
-        function renderMenu(filterCategory = null) {
-            const grid = $('#menuGrid');
-            if (!grid) return;
-
-            const items = filterCategory ?
-                currentMenu.filter(m => m.category === filterCategory) :
-                currentMenu;
-
-            if (items.length === 0) {
-                grid.innerHTML =
-                    `<p style="grid-column:1/-1;text-align:center;color:rgba(26,26,26,0.4);padding:2rem 0;">No items in this category.</p>`;
-                return;
-            }
-
-            grid.innerHTML = items.map(item => {
-                const selected = selectedVariants[item.id] || item.variants[0] || '';
-                return `
-                    <div class="menu-item" data-id="${item.id}">
-                        <div class="item-header">
-                            <span class="item-name">${item.name}</span>
-                            <span class="item-price">₹${item.price}</span>
-                        </div>
-                        <p class="item-desc">${item.desc}</p>
-                        <div class="options" data-id="${item.id}">
-                            ${item.variants.map(v =>
-                                `<span class="opt ${v === selected ? 'active' : ''}" data-variant="${v}">${v}</span>`
-                            ).join('')}
-                        </div>
-                        <button class="btn-add" data-id="${item.id}">
-                            <i class="fas fa-plus"></i> Add to Order
-                        </button>
-                    </div>
-                `;
-            }).join('');
-
-            // variant selection
-            grid.querySelectorAll('.options').forEach(optGroup => {
-                const id = parseInt(optGroup.dataset.id);
-                optGroup.querySelectorAll('.opt').forEach(opt => {
-                    opt.addEventListener('click', () => {
-                        optGroup.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
-                        opt.classList.add('active');
-                        selectedVariants[id] = opt.dataset.variant;
-                        // update order form dropdown
-                        populateOrderItems();
-                    });
-                });
-            });
-
-            // "Add to Order" buttons
-            grid.querySelectorAll('.btn-add').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.dataset.id);
-                    const item = currentMenu.find(m => m.id === id);
-                    if (!item) return;
-                    const variant = selectedVariants[id] || item.variants[0] || '';
-                    // pre-fill order form
-                    const select = $('#orderItem');
-                    if (select) {
-                        select.value = id;
-                        populateOrderVariants(id);
-                        const vSelect = $('#orderVariant');
-                        if (vSelect) vSelect.value = variant;
-                    }
-                    document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        }
-
-        // -------- Render: Testimonials --------
-        function renderTestimonials() {
-            const grid = $('#testimonialGrid');
-            if (!grid) return;
-            grid.innerHTML = currentTestimonials.map(t =>
-                `<div class="testimonial-card">
-                    <div class="stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
-                    <blockquote>“${t.text}”</blockquote>
-                    <div class="author">${t.name} <span>• verified</span></div>
-                </div>`
-            ).join('');
-        }
-
-        // -------- Render: FAQ --------
-        function renderFaq() {
-            const list = $('#faqList');
-            if (!list) return;
-            list.innerHTML = currentFaq.map((f, idx) =>
-                `<div class="faq-item" data-index="${idx}">
-                    <div class="faq-question">
-                        <span>${f.q}</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">${f.a}</div>
-                </div>`
-            ).join('');
-
-            list.querySelectorAll('.faq-item').forEach(el => {
-                const q = el.querySelector('.faq-question');
-                q.addEventListener('click', () => {
-                    el.classList.toggle('open');
-                });
-            });
-        }
-
-        // -------- Order Form helpers --------
-        function populateOrderItems() {
-            const select = $('#orderItem');
-            if (!select) return;
-            const currentVal = select.value;
-            select.innerHTML = '<option value="">— Choose a dish —</option>' +
-                currentMenu.map(m =>
-                    `<option value="${m.id}">${m.name} (₹${m.price})</option>`
-                ).join('');
-            if (currentVal) select.value = currentVal;
-            // trigger variant populate
-            const id = parseInt(select.value);
-            if (id) populateOrderVariants(id);
-        }
-
-        function populateOrderVariants(itemId) {
-            const vSelect = $('#orderVariant');
-            if (!vSelect) return;
-            const item = currentMenu.find(m => m.id === itemId);
-            if (!item) {
-                vSelect.innerHTML = '<option value="">— Select variant —</option>';
-                return;
-            }
-            const currentVal = vSelect.value;
-            vSelect.innerHTML = '<option value="">— Select variant —</option>' +
-                item.variants.map(v =>
-                    `<option value="${v}">${v}</option>`
-                ).join('');
-            if (currentVal && item.variants.includes(currentVal)) vSelect.value = currentVal;
-            else if (item.variants.length) vSelect.value = item.variants[0];
-        }
-
-        // -------- Supabase: fetch data (if available) --------
-        async function fetchFromSupabase() {
-            const sb = getSupabase();
-            if (!sb) {
-                console.log('Supabase not initialized, using fallback data.');
-                return;
-            }
-            try {
-                // Try fetching menu
-                const { data: menuData, error: menuErr } = await sb
-                    .from('menu')
-                    .select('*');
-                if (!menuErr && menuData && menuData.length) {
-                    currentMenu = menuData.map(m => ({
-                        ...m,
-                        variants: m.variants || ['Standard']
-                    }));
-                }
-
-                const { data: testData, error: testErr } = await sb
-                    .from('testimonials')
-                    .select('*');
-                if (!testErr && testData && testData.length) {
-                    currentTestimonials = testData;
-                }
-
-                const { data: faqData, error: faqErr } = await sb
-                    .from('faqs')
-                    .select('*');
-                if (!faqErr && faqData && faqData.length) {
-                    currentFaq = faqData;
-                }
-
-                renderMenu();
-                renderTestimonials();
-                renderFaq();
-                populateOrderItems();
-
-            } catch (e) {
-                console.log('Supabase fetch error, using fallback data.', e);
-            }
-        }
-
-        // -------- Supabase: submit order --------
-        async function submitOrder(orderData) {
-            const sb = getSupabase();
-            if (!sb) {
-                // fallback: simulate success
-                console.log('Supabase not available, order logged:', orderData);
-                return { success: true, id: 'local_' + Date.now() };
-            }
-            try {
-                const { data, error } = await sb
-                    .from('orders')
-                    .insert([{
-                        customer_name: orderData.name,
-                        email: orderData.email,
-                        item_id: orderData.itemId,
-                        variant: orderData.variant,
-                        quantity: orderData.quantity,
-                        notes: orderData.notes,
-                        status: 'pending',
-                        created_at: new Date().toISOString()
-                    }])
-                    .select();
-                if (error) throw error;
-                return { success: true, id: data?.[0]?.id || 'ok' };
-            } catch (e) {
-                console.error('Order submission error:', e);
-                return { success: false, error: e.message };
-            }
-        }
-
-        // -------- Order form handler --------
-        function initOrderForm() {
-            const form = $('#orderForm');
-            const feedback = $('#orderFeedback');
-            const submitBtn = $('#orderSubmit');
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                feedback.className = 'form-feedback';
-                feedback.style.display = 'none';
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing…';
-
-                const name = $('#orderName').value.trim();
-                const email = $('#orderEmail').value.trim();
-                const itemId = parseInt($('#orderItem').value);
-                const variant = $('#orderVariant').value;
-                const quantity = parseInt($('#orderQuantity').value) || 1;
-                const notes = $('#orderNotes').value.trim();
-
-                if (!name || !email || !itemId || !variant) {
-                    feedback.className = 'form-feedback error';
-                    feedback.textContent = 'Please fill in all required fields.';
-                    feedback.style.display = 'block';
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Submit Order';
-                    return;
-                }
-
-                const result = await submitOrder({
-                    name,
-                    email,
-                    itemId,
-                    variant,
-                    quantity,
-                    notes
-                });
-
-                if (result.success) {
-                    feedback.className = 'form-feedback success';
-                    feedback.textContent =
-                        `✅ Order placed! (Ref: ${result.id || 'OK'}) We'll confirm shortly.`;
-                    feedback.style.display = 'block';
-                    form.reset();
-                    populateOrderItems();
-                    // reset variant
-                    const vSelect = $('#orderVariant');
-                    if (vSelect) vSelect.innerHTML = '<option value="">— Select variant —</option>';
-                } else {
-                    feedback.className = 'form-feedback error';
-                    feedback.textContent = '❌ Failed to place order. Please try again.';
-                    feedback.style.display = 'block';
-                }
-
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Submit Order';
-            });
-
-            // item select => update variants
-            $('#orderItem').addEventListener('change', function() {
-                const id = parseInt(this.value);
-                if (id) populateOrderVariants(id);
-                else {
-                    const vSelect = $('#orderVariant');
-                    if (vSelect) vSelect.innerHTML = '<option value="">— Select variant —</option>';
-                }
-            });
-        }
-
-        // -------- Mobile nav toggle --------
-        function initMobileNav() {
-            const toggle = $('#mobileToggle');
-            const nav = $('#navLinks');
-            toggle.addEventListener('click', () => {
-                const open = nav.classList.toggle('open');
-                toggle.setAttribute('aria-expanded', open);
-                toggle.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-            // close on link click
-            nav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('open');
-                    toggle.setAttribute('aria-expanded', 'false');
-                    toggle.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-        }
-
-        // -------- Header scroll effect --------
-        function initScrollHeader() {
-            const header = $('#siteHeader');
-            let lastScroll = 0;
-            window.addEventListener('scroll', () => {
-                const y = window.scrollY;
-                if (y > 60) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                lastScroll = y;
-            });
-        }
-
-        // -------- Contact form (demo) --------
-        function initContactForm() {
-            const form = $('#contactForm');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Thank you! We\'ll get back to you shortly. 📬');
-                form.reset();
-            });
-        }
-
-        // -------- JSON-LD Structured Data --------
-        function injectStructuredData() {
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Restaurant",
-                "name": "Bluebite",
-                "description": "Ultra-premium Mo:Mo, noodles, and artisanal beverages.",
-                "url": "https://yourusername.github.io/bluebite/",
-                "telephone": "+977-980-123-4567",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "123 Gourmet Avenue",
-                    "addressLocality": "Kathmandu",
-                    "addressCountry": "NP"
-                },
-                "servesCuisine": "Nepali, Asian",
-                "priceRange": "₹₹",
-                "openingHours": "Mo-Su 10:00-22:00",
-                "menu": "https://yourusername.github.io/bluebite/#menu"
-            });
-            document.head.appendChild(script);
-
-            // FAQ schema
-            const faqScript = document.createElement('script');
-            faqScript.type = 'application/ld+json';
-            faqScript.textContent = JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": FAQ_DATA.map(f => ({
-                    "@type": "Question",
-                    "name": f.q,
-                    "acceptedAnswer": { "@type": "Answer", "text": f.a }
-                }))
-            });
-            document.head.appendChild(faqScript);
-        }
-
-        // -------- Init --------
-        document.addEventListener('DOMContentLoaded', () => {
-            // Render all static data
-            renderCategories();
-            renderMenu();
-            renderTestimonials();
-            renderFaq();
-            populateOrderItems();
-
-            // Initialize features
-            initOrderForm();
-            initMobileNav();
-            initScrollHeader();
-            initContactForm();
-            injectStructuredData();
-
-            // Try Supabase fetch if available
-            if (typeof supabase !== 'undefined') {
-                fetchFromSupabase();
-            } else {
-                console.log('Supabase SDK not loaded. Using static data.');
-                // show a note in console
-            }
-
-            // Update order variants on first load
-            const firstItem = $('#orderItem');
-            if (firstItem && firstItem.value) {
-                populateOrderVariants(parseInt(firstItem.value));
-            }
-
-            console.log('✨ Bluebite — ultra-premium food ordering ready.');
-        });
-
-        // -------- Expose for debugging (optional) --------
-        window.__bluebite = {
-            menu: currentMenu,
-            testimonials: currentTestimonials,
-            faq: currentFaq,
-            supabase: getSupabase,
-            refresh: fetchFromSupabase
-        };
+    <div id="root"></div>
+
+    <!-- ─── CDN Scripts ─── -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js">
+    </script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js">
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js">
     </script>
 
-    <!-- Load Supabase SDK (optional, for production use) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- ─── APP ─── -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } = React;
 
+        // ─── Supabase Client ───
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_ANON_KEY = 'your-anon-key';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ─── Mock Data (fallback) ───
+        const MOCK_RESTAURANTS = [{
+            id: 'r1',
+            name: 'Krishnarpan',
+            cuisine: 'Newari • Traditional',
+            rating: 4.9,
+            reviews: 342,
+            price: '$$$',
+            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
+            featured: true,
+            sponsored: true,
+            description: 'Authentic Newari cuisine in a historic setting with live cultural performances.',
+            menu: [
+                { name: 'Samay Baji', price: 850, desc: 'Traditional Newari platter' },
+                { name: 'Choila', price: 650, desc: 'Spicy buffalo meat' },
+                { name: 'Yomari', price: 350, desc: 'Sweet dumpling with molasses' },
+            ],
+            offers: '20% off on lunch combos',
+            location: 'Patan Durbar Square',
+            tags: ['Newari', 'Cultural', 'Fine Dining'],
+        }, {
+            id: 'r2',
+            name: 'Thakali Bhancha',
+            cuisine: 'Thakali • Nepali',
+            rating: 4.7,
+            reviews: 218,
+            price: '$$',
+            image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+            featured: true,
+            sponsored: false,
+            description: 'Home-style Thakali meals with organic ingredients from Mustang.',
+            menu: [
+                { name: 'Thakali Khana Set', price: 990, desc: 'Dal, bhat, tarkari, pickle' },
+                { name: 'Jhol Momo', price: 420, desc: 'Momo in spicy broth' },
+            ],
+            offers: 'Free dessert with combo',
+            location: 'Lazimpat, Kathmandu',
+            tags: ['Thakali', 'Organic', 'Set Meals'],
+        }, {
+            id: 'r3',
+            name: 'Garden of Dreams',
+            cuisine: 'Continental • Café',
+            rating: 4.6,
+            reviews: 156,
+            price: '$$',
+            image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=600&h=400&fit=crop',
+            featured: false,
+            sponsored: true,
+            description: 'Elegant garden café with European-inspired dishes and artisan coffee.',
+            menu: [
+                { name: 'Truffle Pasta', price: 1200, desc: 'Wild mushroom truffle pasta' },
+                { name: 'Flat White', price: 450, desc: 'Single origin espresso' },
+            ],
+            offers: 'Buy 1 get 1 free on coffee (2-4pm)',
+            location: 'Thamel, Kathmandu',
+            tags: ['Café', 'Continental', 'Garden'],
+        }, {
+            id: 'r4',
+            name: 'Bhojan Griha',
+            cuisine: 'Nepali • Fine Dining',
+            rating: 4.8,
+            reviews: 289,
+            price: '$$$',
+            image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
+            featured: true,
+            sponsored: false,
+            description: 'Royal Newari dining experience in a restored 19th-century mansion.',
+            menu: [
+                { name: 'Royal Thali', price: 1800, desc: 'Multi-course Nepali feast' },
+                { name: 'Mutton Sekuwa', price: 850, desc: 'Grilled spiced mutton' },
+            ],
+            offers: 'Complimentary welcome drink',
+            location: 'Dillibazar, Kathmandu',
+            tags: ['Royal', 'Newari', 'Heritage'],
+        }, {
+            id: 'r5',
+            name: 'Momo Magic',
+            cuisine: 'Street Food • Asian',
+            rating: 4.5,
+            reviews: 412,
+            price: '$',
+            image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&h=400&fit=crop',
+            featured: false,
+            sponsored: false,
+            description: 'The city\'s best momos with 12 varieties of dipping sauces.',
+            menu: [
+                { name: 'Steam Momo', price: 250, desc: 'Classic buffalo momo' },
+                { name: 'Kothey Momo', price: 300, desc: 'Pan-fried momo' },
+                { name: 'C Momo', price: 350, desc: 'Chilli garlic momo' },
+            ],
+            offers: '10% off on orders above 5 plates',
+            location: 'New Road, Kathmandu',
+            tags: ['Momo', 'Street Food', 'Budget'],
+        }, {
+            id: 'r6',
+            name: 'Himalayan Java',
+            cuisine: 'Café • Bakery',
+            rating: 4.4,
+            reviews: 178,
+            price: '$$',
+            image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
+            featured: false,
+            sponsored: false,
+            description: 'Specialty coffee roastery with Himalayan-inspired pastries.',
+            menu: [
+                { name: 'Pour Over', price: 550, desc: 'Single origin, light roast' },
+                { name: 'Apple Crumble', price: 390, desc: 'Warm spiced apple crumble' },
+            ],
+            offers: 'Free pastry with any coffee before 10am',
+            location: 'Jhamsikhel, Lalitpur',
+            tags: ['Coffee', 'Bakery', 'Work-friendly'],
+        }, ];
+
+        // ─── Context ───
+        const AppContext = createContext();
+
+        // ─── Main App ───
+        function App() {
+            const [user, setUser] = useState(null);
+            const [session, setSession] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [restaurants, setRestaurants] = useState(MOCK_RESTAURANTS);
+            const [filtered, setFiltered] = useState(MOCK_RESTAURANTS);
+            const [search, setSearch] = useState('');
+            const [category, setCategory] = useState('All');
+            const [favorites, setFavorites] = useState([]);
+            const [reviews, setReviews] = useState([]);
+            const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+            const [showAuth, setShowAuth] = useState(false);
+            const [authMode, setAuthMode] = useState('login');
+            const [authEmail, setAuthEmail] = useState('');
+            const [authPassword, setAuthPassword] = useState('');
+            const [authName, setAuthName] = useState('');
+            const [authLoading, setAuthLoading] = useState(false);
+            const [toast, setToast] = useState(null);
+            const [view, setView] = useState('home'); // home | detail | dashboard
+            const [dashboardTab, setDashboardTab] = useState('favorites');
+
+            // ── Auth ──
+            useEffect(() => {
+                supabase.auth.getSession().then(({ data: { session } }) => {
+                    setSession(session);
+                    setUser(session?.user ?? null);
+                    setLoading(false);
+                });
+
+                const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+                    setSession(session);
+                    setUser(session?.user ?? null);
+                    setLoading(false);
+                });
+
+                return () => listener?.subscription?.unsubscribe();
+            }, []);
+
+            // ── Load favorites & reviews ──
+            useEffect(() => {
+                if (user) {
+                    loadFavorites();
+                    loadReviews();
+                } else {
+                    setFavorites([]);
+                    setReviews([]);
+                }
+            }, [user]);
+
+            async function loadFavorites() {
+                try {
+                    const { data, error } = await supabase
+                        .from('favorites')
+                        .select('restaurant_id')
+                        .eq('user_id', user.id);
+                    if (error) throw error;
+                    setFavorites(data.map(f => f.restaurant_id));
+                } catch (e) {
+                    console.warn('Favorites fallback', e);
+                    setFavorites(['r1', 'r3']);
+                }
+            }
+
+            async function loadReviews() {
+                try {
+                    const { data, error } = await supabase
+                        .from('reviews')
+                        .select('*')
+                        .eq('user_id', user.id);
+                    if (error) throw error;
+                    setReviews(data || []);
+                } catch (e) {
+                    console.warn('Reviews fallback', e);
+                    setReviews([{ id: 'rev1', restaurant_id: 'r1', rating: 5, comment: 'Amazing!', created_at: new Date()
+                            .toISOString() }]);
+                }
+            }
+
+            async function toggleFavorite(restaurantId) {
+                if (!user) {
+                    setShowAuth(true);
+                    return;
+                }
+                const isFav = favorites.includes(restaurantId);
+                try {
+                    if (isFav) {
+                        await supabase.from('favorites').delete().eq('user_id', user.id).eq('restaurant_id',
+                        restaurantId);
+                        setFavorites(favorites.filter(id => id !== restaurantId));
+                        showToast('Removed from favorites');
+                    } else {
+                        await supabase.from('favorites').insert({ user_id: user.id, restaurant_id: restaurantId });
+                        setFavorites([...favorites, restaurantId]);
+                        showToast('Added to favorites ✨');
+                    }
+                } catch (e) {
+                    // Fallback: local toggle
+                    if (isFav) {
+                        setFavorites(favorites.filter(id => id !== restaurantId));
+                    } else {
+                        setFavorites([...favorites, restaurantId]);
+                    }
+                    showToast(isFav ? 'Removed' : 'Added ✨');
+                }
+            }
+
+            async function submitReview(restaurantId, rating, comment) {
+                if (!user) { setShowAuth(true); return false; }
+                try {
+                    const { data, error } = await supabase.from('reviews').insert({
+                        user_id: user.id,
+                        restaurant_id: restaurantId,
+                        rating,
+                        comment,
+                        created_at: new Date().toISOString(),
+                    });
+                    if (error) throw error;
+                    const newReview = { id: data?.[0]?.id || 'rev_' + Date.now(), restaurant_id: restaurantId, rating,
+                        comment, created_at: new Date().toISOString() };
+                    setReviews([...reviews, newReview]);
+                    showToast('Review posted! 🌟');
+                    return true;
+                } catch (e) {
+                    // Fallback: local
+                    const newReview = { id: 'rev_' + Date.now(), restaurant_id: restaurantId, rating, comment,
+                        created_at: new Date().toISOString() };
+                    setReviews([...reviews, newReview]);
+                    showToast('Review posted! 🌟');
+                    return true;
+                }
+            }
+
+            function getRestaurantReviews(restaurantId) {
+                return reviews.filter(r => r.restaurant_id === restaurantId);
+            }
+
+            function isFavorite(id) { return favorites.includes(id); }
+
+            // ── Filtering ──
+            useEffect(() => {
+                let result = restaurants;
+                if (category !== 'All') {
+                    result = result.filter(r => r.cuisine.includes(category) || r.tags?.includes(category));
+                }
+                if (search.trim()) {
+                    const q = search.trim().toLowerCase();
+                    result = result.filter(r =>
+                        r.name.toLowerCase().includes(q) ||
+                        r.cuisine.toLowerCase().includes(q) ||
+                        r.location?.toLowerCase().includes(q)
+                    );
+                }
+                // Featured first
+                result = [...result].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+                setFiltered(result);
+            }, [search, category, restaurants]);
+
+            // ── Toast ──
+            function showToast(msg) {
+                setToast(msg);
+                clearTimeout(window.toastTimer);
+                window.toastTimer = setTimeout(() => setToast(null), 2800);
+            }
+
+            // ── Auth Handlers ──
+            async function handleAuthSubmit(e) {
+                e.preventDefault();
+                setAuthLoading(true);
+                try {
+                    if (authMode === 'login') {
+                        const { data, error } = await supabase.auth.signInWithPassword({
+                            email: authEmail,
+                            password: authPassword,
+                        });
+                        if (error) throw error;
+                        setShowAuth(false);
+                        showToast('Welcome back! 👋');
+                    } else {
+                        const { data, error } = await supabase.auth.signUp({
+                            email: authEmail,
+                            password: authPassword,
+                            options: { data: { full_name: authName } },
+                        });
+                        if (error) throw error;
+                        setShowAuth(false);
+                        showToast('Account created! 🎉');
+                    }
+                } catch (e) {
+                    showToast(e.message || 'Auth error');
+                } finally {
+                    setAuthLoading(false);
+                }
+            }
+
+            async function handleLogout() {
+                await supabase.auth.signOut();
+                setView('home');
+                showToast('Signed out');
+            }
+
+            // ── Categories ──
+            const categories = ['All', 'Newari', 'Thakali', 'Continental', 'Nepali', 'Café', 'Street Food', 'Asian'];
+
+            // ── Featured & Sponsored ──
+            const featuredRestaurants = restaurants.filter(r => r.featured);
+            const sponsoredRestaurants = restaurants.filter(r => r.sponsored);
+
+            // ── Context value ──
+            const ctx = {
+                user,
+                session,
+                loading,
+                restaurants,
+                filtered,
+                search,
+                setSearch,
+                category,
+                setCategory,
+                categories,
+                favorites,
+                isFavorite,
+                toggleFavorite,
+                reviews,
+                submitReview,
+                getRestaurantReviews,
+                selectedRestaurant,
+                setSelectedRestaurant,
+                showAuth,
+                setShowAuth,
+                authMode,
+                setAuthMode,
+                authEmail,
+                setAuthEmail,
+                authPassword,
+                setAuthPassword,
+                authName,
+                setAuthName,
+                authLoading,
+                handleAuthSubmit,
+                handleLogout,
+                toast,
+                showToast,
+                view,
+                setView,
+                dashboardTab,
+                setDashboardTab,
+                featuredRestaurants,
+                sponsoredRestaurants,
+                MOCK_RESTAURANTS,
+            };
+
+            return ( <
+                AppContext.Provider value = { ctx } >
+                <
+                RouterView / >
+                <
+                ToastManager / >
+                <
+                AuthModal / >
+                <
+                /AppContext.Provider>
+            );
+        }
+
+        // ─── Router View ───
+        function RouterView() {
+            const { view, setView, selectedRestaurant } = useContext(AppContext);
+
+            if (view === 'detail' && selectedRestaurant) {
+                return <RestaurantDetailView / > ;
+            }
+            if (view === 'dashboard') {
+                return <DashboardView / > ;
+            }
+            return <HomeView / > ;
+        }
+
+        // ─── Home View ───
+        function HomeView() {
+            const {
+                user,
+                filtered,
+                search,
+                setSearch,
+                category,
+                setCategory,
+                categories,
+                toggleFavorite,
+                isFavorite,
+                setSelectedRestaurant,
+                setView,
+                showToast,
+                featuredRestaurants,
+                sponsoredRestaurants,
+                restaurants,
+                loading,
+            } = useContext(AppContext);
+
+            const [showSearch, setShowSearch] = useState(false);
+
+            // Ad spots
+            const adSlots = [
+                { id: 'ad1', title: 'Sponsor Your Restaurant', desc: 'Reach 10k+ foodies daily', cta: 'Advertise',
+                    bg: 'from-amber-700 to-amber-900' },
+                { id: 'ad2', title: 'Featured Listing', desc: 'Get premium visibility on top', cta: 'Learn More',
+                    bg: 'from-indigo-800 to-indigo-950' },
+            ];
+
+            return ( <
+                    div className = "min-h-screen bg-[#faf6ef] pb-24" >
+
+                    { /* ─── Header ─── */ } <
+                    header className = "sticky top-0 z-40 glass border-b border-white/30" >
+                    <
+                    div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
+                    <
+                    div className = "flex items-center gap-2" >
+                    <
+                    div className = "w-9 h-9 rounded-xl bg-gradient-gold flex items-center justify-center shadow-glow" >
+                    <
+                    i className = "fas fa-utensils text-[#0b1120] text-sm" > < /i> <
+                    /div> <
+                    div >
+                    <
+                    h1 className = "font-display text-lg font-bold leading-tight tracking-tight" >
+                    Blue < span className = "text-gold-gradient" > Bite < /span> <
+                    /h1> <
+                    p className = "text-[0.5rem] font-medium text-brand-slate tracking-[0.15em] uppercase" >
+                    Nepal < /p> <
+                    /div> <
+                    /div>
+
+                    <
+                    div className = "flex items-center gap-2" >
+                    <
+                    button onClick = {
+                        () => setShowSearch(!showSearch) }
+                    className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-slate hover:bg-white/80 transition-all" >
+                    <
+                    i className = "fas fa-search text-sm" > < /i> <
+                    /button> {
+                        user ? ( <
+                            button onClick = {
+                                () => setView('dashboard') }
+                            className = "w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white shadow-md hover:scale-105 transition-all" >
+                            <
+                            i className = "fas fa-user text-sm" > < /i> <
+                            /button>
+                        ) : ( <
+                            button onClick = {
+                                () => setShowAuth(true) }
+                            className = "btn-premium px-4 py-1.5 rounded-full text-xs font-semibold" >
+                            Sign In <
+                            /button>
+                        )
+                    } <
+                    /div> <
+                    /div>
+
+                    { /* Search Bar */ } {
+                        showSearch && ( <
+                            div className = "px-4 pb-3 max-w-lg mx-auto" >
+                            <
+                            div className = "search-premium rounded-2xl px-4 py-3 flex items-center gap-3" >
+                            <
+                            i className = "fas fa-search text-brand-slate/60 text-sm" > < /i> <
+                            input type = "text"
+                            placeholder = "Search restaurants, cuisines..."
+                            value = { search }
+                            onChange = {
+                                (e) => setSearch(e.target.value) }
+                            className = "flex-1 bg-transparent border-0 outline-none text-sm font-medium text-brand-navy placeholder:text-brand-slate/50" /
+                            >
+                            {
+                                search && ( <
+                                    button onClick = {
+                                        () => setSearch('') }
+                                    className = "text-brand-slate/50 hover:text-brand-navy transition-colors" >
+                                    <
+                                    i className = "fas fa-times-circle" > < /i> <
+                                    /button>
+                                )
+                            } <
+                            /div> <
+                            /div>
+                        )
+                    } <
+                    /header>
+
+                    { /* ─── Hero ─── */ } <
+                    section className = "px-4 pt-6 pb-2 max-w-lg mx-auto" >
+                    <
+                    div className = "relative rounded-3xl overflow-hidden bg-gradient-premium p-6 shadow-premium" >
+                    <
+                    div className = "absolute inset-0 bg-gradient-radial from-gold/10 via-transparent to-transparent pointer-events-none" >
+                    < /div> <
+                    div className = "relative z-10" >
+                    <
+                    span className = "badge-featured inline-block mb-3" >
+                    <
+                    i className = "fas fa-crown mr-1.5 text-[0.5rem]" > < /i> Discover Nepal’s Finest <
+                    /span> <
+                    h2 className = "font-display text-2xl font-bold text-white leading-tight" >
+                    Taste the < br / >
+                    < span className = "text-gold-gradient" > Himalaya < /span> <
+                    /h2> <
+                    p className = "text-sm text-white/70 mt-2 font-light leading-relaxed max-w-xs" >
+                    Curated restaurants, authentic flavors, and exclusive offers — all in one place. <
+                    /p> <
+                    div className = "mt-4 flex gap-2" >
+                    <
+                    button onClick = {
+                        () => setShowSearch(!showSearch) }
+                    className = "btn-premium px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2" >
+                    <
+                    i className = "fas fa-compass" > < /i> Explore <
+                    /button> <
+                    button className = "glass-dark px-5 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 hover:bg-white/10 transition-all" >
+                    <
+                    i className = "fas fa-star mr-1.5 text-gold" > < /i> { restaurants.length } + spots <
+                    /button> <
+                    /div> <
+                    /div> <
+                    /div> <
+                    /section>
+
+                    { /* ─── Categories ─── */ } <
+                    section className = "px-4 py-4 max-w-lg mx-auto" >
+                    <
+                    div className = "flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar" style = { { scrollbarWidth: 'none',
+                            msOverflowStyle: 'none' } } >
+                    {
+                        categories.map(c => ( <
+                            button key = { c }
+                            onClick = {
+                                () => setCategory(c) }
+                            className = { `cat-pill ${category === c ? 'active' : ''}` } >
+                            { c } <
+                            /button>
+                        ))
+                    } <
+                    /div> <
+                    /section>
+
+                    { /* ─── Featured Banner ─── */ } {
+                        featuredRestaurants.length > 0 && ( <
+                            section className = "px-4 pb-2 max-w-lg mx-auto" >
+                            <
+                            div className = "flex items-center justify-between mb-2" >
+                            <
+                            span className = "text-xs font-semibold text-brand-navy/60 tracking-wider uppercase" >
+                            <
+                            i className = "fas fa-crown text-gold mr-1.5" > < /i> Featured <
+                            /span> <
+                            span className = "text-[0.55rem] font-medium text-brand-slate/50" > Sponsored < /span> <
+                            /div> <
+                            div className = "grid grid-cols-2 gap-3" > {
+                                featuredRestaurants.slice(0, 2).map(r => ( <
+                                    RestaurantCard key = { r.id }
+                                    restaurant = { r }
+                                    compact = { true }
+                                    />
+                                ))
+                            } <
+                            /div> <
+                            /section>
+                        )
+                    }
+
+                    { /* ─── Restaurant Grid ─── */ } <
+                    section className = "px-4 py-3 max-w-lg mx-auto" >
+                    <
+                    div className = "flex items-center justify-between mb-3" >
+                    <
+                    h3 className = "font-display text-lg font-bold text-brand-navy" >
+                    All Restaurants <
+                    /h3> <
+                    span className = "text-xs text-brand-slate/60 font-medium" > { filtered.length } found < /span> <
+                    /div>
+
+                    {
+                        loading ? ( <
+                            div className = "grid grid-cols-2 gap-3" > {
+                                [1, 2, 3, 4].map(i => ( <
+                                    div key = { i }
+                                    className = "rounded-2xl bg-white/40 p-3" >
+                                    <
+                                    div className = "skeleton h-32 w-full rounded-xl" > < /div> <
+                                    div className = "skeleton h-4 w-3/4 mt-3" > < /div> <
+                                    div className = "skeleton h-3 w-1/2 mt-2" > < /div> <
+                                    /div>
+                                ))
+                            } <
+                            /div>
+                        ) : filtered.length === 0 ? ( <
+                            div className = "text-center py-12" >
+                            <
+                            i className = "fas fa-search text-3xl text-brand-slate/20 mb-3" > < /i> <
+                            p className = "text-sm text-brand-slate/60" > No restaurants found < /p> <
+                            button onClick = {
+                                () => { setSearch('');
+                                setCategory('All') } }
+                            className = "text-gold text-xs font-medium mt-2 hover:underline" >
+                            Clear filters <
+                            /button> <
+                            /div>
+                        ) : ( <
+                            div className = "grid grid-cols-2 gap-3" > {
+                                filtered.map(r => ( <
+                                    RestaurantCard key = { r.id }
+                                    restaurant = { r }
+                                    />
+                                ))
+                            } <
+                            /div>
+                        )
+                    } <
+                    /section>
+
+                    { /* ─── Ad Banner ─── */ } <
+                    section className = "px-4 py-2 max-w-lg mx-auto" >
+                    <
+                    div className = "ad-card rounded-2xl p-4 shadow-premium" >
+                    <
+                    div className = "flex items-start gap-3 relative z-10" >
+                    <
+                    div className = "w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0" >
+                    <
+                    i className = "fas fa-bullhorn text-gold text-xl" > < /i> <
+                    /div> <
+                    div className = "flex-1" >
+                    <
+                    span className = "ad-tag" > < i className = "fas fa-sparkle mr-1" > < /i> Ad < /span> <
+                    h4 className = "text-white font-semibold text-sm mt-1" > Get Featured on BlueBite < /h4> <
+                    p className = "text-white/50 text-xs mt-0.5" > Boost visibility, attract more customers. < /p> <
+                    button className = "mt-2 text-xs font-semibold text-gold hover:text-goldLight transition-colors" >
+                    Learn More → <
+                    /button> <
+                    /div> <
+                    /div> <
+                    /div> <
+                    /section>
+
+                    { /* ─── Sponsored Grid ─── */ } {
+                        sponsoredRestaurants.length > 0 && ( <
+                            section className = "px-4 py-2 pb-6 max-w-lg mx-auto" >
+                            <
+                            div className = "flex items-center gap-2 mb-2" >
+                            <
+                            i className = "fas fa-bolt text-gold text-xs" > < /i> <
+                            span className = "text-xs font-semibold text-brand-navy/60 tracking-wider uppercase" >
+                            Sponsored <
+                            /span> <
+                            /div> <
+                            div className = "grid grid-cols-2 gap-3" > {
+                                sponsoredRestaurants.slice(0, 2).map(r => ( <
+                                    RestaurantCard key = { r.id }
+                                    restaurant = { r }
+                                    compact = { true }
+                                    />
+                                ))
+                            } <
+                            /div> <
+                            /section>
+                        )
+                    }
+
+                    { /* ─── Bottom Navigation ─── */ } <
+                    BottomNav / >
+
+                    <
+                    /div>
+                );
+            }
+
+            // ─── Restaurant Card ───
+            function RestaurantCard({ restaurant, compact = false }) {
+                const { toggleFavorite, isFavorite, setSelectedRestaurant, setView } = useContext(AppContext);
+                const fav = isFavorite(restaurant.id);
+
+                return ( <
+                        div className = { `restaurant-card bg-white/70 rounded-2xl overflow-hidden shadow-sm border border-white/40 cursor-pointer transition-all ${compact ? 'p-2' : 'p-3'}` }
+                        onClick = {
+                            () => { setSelectedRestaurant(restaurant);
+                                setView('detail'); } } >
+                        <
+                        div className = "relative" >
+                        <
+                        img src = { restaurant.image }
+                        alt = { restaurant.name }
+                        className = { `w-full object-cover rounded-xl ${compact ? 'h-28' : 'h-40'}` }
+                        loading = "lazy" /
+                        >
+                        {
+                            restaurant.featured && ( <
+                                span className = "absolute top-2 left-2 badge-featured text-[0.5rem] flex items-center gap-1" >
+                                <
+                                i className = "fas fa-crown text-[0.45rem]" > < /i> Featured <
+                                /span>
+                            )
+                        } {
+                            restaurant.sponsored && !restaurant.featured && ( <
+                                span className = "absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[0.5rem] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/10" >
+                                <
+                                i className = "fas fa-bolt text-gold text-[0.4rem]" > < /i> Sponsored <
+                                /span>
+                            )
+                        } <
+                        button onClick = {
+                            (e) => { e.stopPropagation();
+                                toggleFavorite(restaurant.id); } }
+                        className = { `absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${fav ? 'bg-gold/90 text-brand-navy shadow-glow' : 'bg-white/40 text-white/70 hover:bg-white/60'}` } >
+                        <
+                        i className = { `fas fa-heart text-[0.7rem] ${fav ? 'text-brand-navy' : ''}` } > < /i> <
+                        /button> <
+                        /div>
+
+                        <
+                        div className = { `mt-2 ${compact ? 'space-y-0.5' : 'space-y-1'}` } >
+                        <
+                        div className = "flex items-start justify-between gap-1" >
+                        <
+                        h4 className = { `font-semibold text-brand-navy truncate ${compact ? 'text-sm' : 'text-base'}` } >
+                        { restaurant.name } <
+                        /h4> <
+                        span className = "text-[0.6rem] font-bold text-brand-slate/60 shrink-0" >
+                        { restaurant.price } <
+                        /span> <
+                        /div> <
+                        p className = "text-[0.6rem] text-brand-slate/70 truncate" >
+                        { restaurant.cuisine } <
+                        /p> <
+                        div className = "flex items-center gap-2 mt-0.5" >
+                        <
+                        div className = "flex items-center gap-0.5" >
+                        {
+                            [1, 2, 3, 4, 5].map(i => ( <
+                                i key = { i }
+                                className = { `fa-solid fa-star text-[0.5rem] ${i <= Math.round(restaurant.rating) ? 'text-gold' : 'text-gray-300'}` } >
+                                < /i>
+                            ))
+                        } <
+                        span className = "text-[0.55rem] font-bold text-brand-navy ml-0.5" >
+                        { restaurant.rating } < /span> <
+                        /div> <
+                        span className = "text-[0.5rem] text-brand-slate/50" >
+                        ({ restaurant.reviews }) < /span> <
+                        /div> {
+                            restaurant.offers && !compact && ( <
+                                div className = "mt-1.5 flex items-center gap-1.5 bg-gold/10 rounded-full px-2 py-0.5 border border-gold/15" >
+                                <
+                                i className = "fas fa-tag text-gold text-[0.45rem]" > < /i> <
+                                span className = "text-[0.55rem] font-medium text-brand-navy/80 truncate" >
+                                { restaurant.offers } < /span> <
+                                /div>
+                            )
+                        } <
+                        /div> <
+                        /div>
+                    );
+                }
+
+                // ─── Restaurant Detail View ───
+                function RestaurantDetailView() {
+                    const { selectedRestaurant, setView, toggleFavorite, isFavorite, user, submitReview, getRestaurantReviews,
+                        showToast } =
+                        useContext(AppContext);
+                    const r = selectedRestaurant;
+                    const [reviewRating, setReviewRating] = useState(5);
+                    const [reviewComment, setReviewComment] = useState('');
+                    const [submitting, setSubmitting] = useState(false);
+                    const [activeTab, setActiveTab] = useState('menu');
+
+                    if (!r) return null;
+
+                    const fav = isFavorite(r.id);
+                    const reviewsList = getRestaurantReviews(r.id);
+
+                    async function handleReviewSubmit(e) {
+                        e.preventDefault();
+                        if (!user) { showToast('Please sign in to review'); return; }
+                        if (!reviewComment.trim()) { showToast('Please write a comment'); return; }
+                        setSubmitting(true);
+                        const ok = await submitReview(r.id, reviewRating, reviewComment);
+                        setSubmitting(false);
+                        if (ok) { setReviewComment('');
+                            setReviewRating(5); }
+                    }
+
+                    return ( <
+                            div className = "min-h-screen bg-[#faf6ef] pb-28" >
+                            { /* Header */ } <
+                            header className = "sticky top-0 z-40 glass border-b border-white/30" >
+                            <
+                            div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
+                            <
+                            button onClick = {
+                                () => setView('home') }
+                            className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-navy hover:bg-white/80 transition-all" >
+                            <
+                            i className = "fas fa-arrow-left" > < /i> <
+                            /button> <
+                            span className = "font-display text-sm font-bold text-brand-navy" > Details < /span> <
+                            button onClick = {
+                                () => toggleFavorite(r.id) }
+                            className = { `w-9 h-9 rounded-full flex items-center justify-center transition-all ${fav ? 'bg-gold/90 text-brand-navy shadow-glow' : 'bg-white/50 text-brand-slate'}` } >
+                            <
+                            i className = { `fas fa-heart ${fav ? 'text-brand-navy' : ''}` } > < /i> <
+                            /button> <
+                            /div> <
+                            /header>
+
+                            { /* Hero Image */ } <
+                            div className = "relative w-full h-64 overflow-hidden" >
+                            <
+                            img src = { r.image }
+                            alt = { r.name }
+                            className = "w-full h-full object-cover" / >
+                            <
+                            div className = "absolute inset-0 bg-gradient-to-t from-[#faf6ef] via-transparent to-transparent" >
+                            < /div> {
+                                r.featured && ( <
+                                    span className = "absolute top-4 left-4 badge-featured text-xs flex items-center gap-1.5" >
+                                    <
+                                    i className = "fas fa-crown" > < /i> Featured <
+                                    /span>
+                                )
+                            } {
+                                r.sponsored && !r.featured && ( <
+                                    span className = "absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 border border-white/10" >
+                                    <
+                                    i className = "fas fa-bolt text-gold" > < /i> Sponsored <
+                                    /span>
+                                )
+                            } <
+                            /div>
+
+                            { /* Info */ } <
+                            div className = "px-4 -mt-6 relative z-10 max-w-lg mx-auto" >
+                            <
+                            div className = "bg-white/80 backdrop-blur-xl rounded-3xl p-5 shadow-premium border border-white/50" >
+                            <
+                            div className = "flex items-start justify-between" >
+                            <
+                            div >
+                            <
+                            h2 className = "font-display text-2xl font-bold text-brand-navy" > { r.name } < /h2> <
+                            p className = "text-sm text-brand-slate/70 mt-0.5" > { r.cuisisine } • { r.location } < /p> <
+                            /div> <
+                            span className = "text-lg font-bold text-brand-navy" > { r.price } < /span> <
+                            /div>
+
+                            <
+                            div className = "flex items-center gap-4 mt-3" >
+                            <
+                            div className = "flex items-center gap-1" >
+                            {
+                                [1, 2, 3, 4, 5].map(i => ( <
+                                    i key = { i }
+                                    className = { `fa-solid fa-star ${i <= Math.round(r.rating) ? 'text-gold' : 'text-gray-300'}` } >
+                                    < /i>
+                                ))
+                            } <
+                            span className = "ml-1 font-bold text-brand-navy" > { r.rating } < /span> <
+                            span className = "text-sm text-brand-slate/50" > ({ r.reviews }) < /span> <
+                            /div> <
+                            /div>
+
+                            <
+                            p className = "text-sm text-brand-slate/80 mt-3 leading-relaxed" > { r.description } < /p>
+
+                            {
+                                r.offers && ( <
+                                    div className = "mt-3 bg-gold/10 rounded-xl px-3 py-2 border border-gold/20 flex items-center gap-2" >
+                                    <
+                                    i className = "fas fa-gift text-gold" > < /i> <
+                                    span className = "text-sm font-medium text-brand-navy" > { r.offers } < /span> <
+                                    /div>
+                                )
+                            }
+
+                            {
+                                r.tags && ( <
+                                    div className = "flex flex-wrap gap-1.5 mt-3" > {
+                                        r.tags.map(t => ( <
+                                            span key = { t }
+                                            className = "text-[0.6rem] font-medium bg-brand-navy/5 text-brand-slate/70 px-2.5 py-1 rounded-full" >
+                                            { t } <
+                                            /span>
+                                        ))
+                                    } <
+                                    /div>
+                                )
+                            } <
+                            /div> <
+                            /div>
+
+                            { /* Tabs */ } <
+                            div className = "px-4 mt-5 max-w-lg mx-auto" >
+                            <
+                            div className = "flex gap-1 bg-white/60 rounded-2xl p-1 border border-white/40" >
+                            <
+                            button onClick = {
+                                () => setActiveTab('menu') }
+                            className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'menu' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
+                            <
+                            i className = "fas fa-utensils mr-1.5" > < /i> Menu <
+                            /button> <
+                            button onClick = {
+                                () => setActiveTab('reviews') }
+                            className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'reviews' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
+                            <
+                            i className = "fas fa-star mr-1.5" > < /i> Reviews <
+                            span className = "ml-1 text-xs" > ({ reviewsList.length }) < /span> <
+                            /button> <
+                            /div> <
+                            /div>
+
+                            { /* Content */ } <
+                            div className = "px-4 mt-4 pb-8 max-w-lg mx-auto" >
+                            {
+                                activeTab === 'menu' ? ( <
+                                    div className = "space-y-3" > {
+                                        r.menu && r.menu.map((item, idx) => ( <
+                                            div key = { idx }
+                                            className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50 flex items-start justify-between gap-3" >
+                                            <
+                                            div >
+                                            <
+                                            h5 className = "font-semibold text-brand-navy text-sm" > { item.name } < /h5> <
+                                            p className = "text-xs text-brand-slate/60 mt-0.5" > { item.desc } < /p> <
+                                            /div> <
+                                            span className = "font-bold text-brand-navy text-sm shrink-0" >
+                                            Rs. { item.price } < /span> <
+                                            /div>
+                                        ))
+                                    } <
+                                    /div>
+                                ) : ( <
+                                    div className = "space-y-4" >
+                                    <
+                                    div className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50" >
+                                    <
+                                    h5 className = "font-semibold text-brand-navy text-sm mb-1" >
+                                    Write a Review <
+                                    /h5> <
+                                    form onSubmit = { handleReviewSubmit }
+                                    className = "space-y-3" >
+                                    <
+                                    div className = "flex items-center gap-2" >
+                                    <
+                                    span className = "text-xs text-brand-slate/60" > Rate: < /span> {
+                                        [1, 2, 3, 4, 5].map(i => ( <
+                                            button key = { i }
+                                            type = "button"
+                                            onClick = {
+                                                () => setReviewRating(i) }
+                                            className = { `text-xl transition-all ${i <= reviewRating ? 'text-gold scale-110' : 'text-gray-300'}` } >
+                                            <
+                                            i className = "fa-solid fa-star" > < /i> <
+                                            /button>
+                                        ))
+                                    } <
+                                    /div> <
+                                    textarea value = { reviewComment }
+                                    onChange = {
+                                        (e) => setReviewComment(e.target.value) }
+                                    placeholder = "Share your experience..."
+                                    className = "w-full bg-white/70 rounded-xl px-3 py-2 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all resize-none h-16" /
+                                    >
+                                    <
+                                    button type = "submit"
+                                    disabled = { submitting }
+                                    className = "btn-premium w-full py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50" >
+                                    { submitting ? 'Posting...' : 'Post Review' } <
+                                    /button> <
+                                    /form> <
+                                    /div>
+
+                                    <
+                                    div className = "space-y-3" > {
+                                        reviewsList.length === 0 ? ( <
+                                            p className = "text-center text-sm text-brand-slate/50 py-6" >
+                                            No reviews yet. Be the first! <
+                                            /p>
+                                        ) : (
+                                            reviewsList.map(rev => ( <
+                                                div key = { rev.id }
+                                                className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50" >
+                                                <
+                                                div className = "flex items-center gap-2" >
+                                                <
+                                                div className = "flex items-center gap-0.5" > {
+                                                    [1, 2, 3, 4, 5].map(i => ( <
+                                                        i key = { i }
+                                                        className = { `fa-solid fa-star text-xs ${i <= rev.rating ? 'text-gold' : 'text-gray-300'}` } >
+                                                        < /i>
+                                                    ))
+                                                } <
+                                                /div> <
+                                                span className = "text-xs text-brand-slate/50" >
+                                                { new Date(rev.created_at).toLocaleDateString() } < /span> <
+                                                /div> <
+                                                p className = "text-sm text-brand-navy/80 mt-1" > { rev.comment } < /p> <
+                                                /div>
+                                            ))
+                                        )
+                                    } <
+                                    /div> <
+                                    /div>
+                                )
+                            } <
+                            /div>
+
+                            { /* Bottom Nav */ } <
+                            BottomNav / >
+
+                            <
+                            /div>
+                        );
+                    }
+
+                    // ─── Dashboard View ───
+                    function DashboardView() {
+                        const { user, setView, favorites, restaurants, reviews, handleLogout, dashboardTab, setDashboardTab,
+                            showToast } =
+                            useContext(AppContext);
+                        const [activeTab, setActiveTab] = useState(dashboardTab || 'favorites');
+
+                        useEffect(() => {
+                            setDashboardTab(activeTab);
+                        }, [activeTab]);
+
+                        const favRestaurants = restaurants.filter(r => favorites.includes(r.id));
+                        const userReviews = reviews;
+
+                        if (!user) {
+                            return ( <
+                                div className = "min-h-screen flex items-center justify-center p-6 bg-[#faf6ef]" >
+                                <
+                                div className = "text-center" >
+                                <
+                                i className = "fas fa-lock text-3xl text-brand-slate/30 mb-4" > < /i> <
+                                p className = "text-brand-navy font-medium" > Please sign in to view your dashboard < /p> <
+                                button onClick = {
+                                    () => setView('home') }
+                                className = "mt-4 btn-premium px-6 py-2 rounded-full text-sm" >
+                                Go Home <
+                                /button> <
+                                /div> <
+                                /div>
+                            );
+                        }
+
+                        return ( <
+                                div className = "min-h-screen bg-[#faf6ef] pb-28" >
+                                { /* Header */ } <
+                                header className = "sticky top-0 z-40 glass border-b border-white/30" >
+                                <
+                                div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
+                                <
+                                button onClick = {
+                                    () => setView('home') }
+                                className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-navy hover:bg-white/80 transition-all" >
+                                <
+                                i className = "fas fa-arrow-left" > < /i> <
+                                /button> <
+                                span className = "font-display text-sm font-bold text-brand-navy" > Dashboard < /span> <
+                                button onClick = { handleLogout }
+                                className = "text-xs font-medium text-brand-slate/60 hover:text-brand-navy transition-colors" >
+                                <
+                                i className = "fas fa-sign-out-alt mr-1" > < /i> Sign Out <
+                                /button> <
+                                /div> <
+                                /header>
+
+                                { /* User Info */ } <
+                                div className = "px-4 pt-4 max-w-lg mx-auto" >
+                                <
+                                div className = "bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white/50 shadow-premium" >
+                                <
+                                div className = "flex items-center gap-4" >
+                                <
+                                div className = "w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-glow" >
+                                <
+                                i className = "fas fa-user text-2xl text-brand-navy" > < /i> <
+                                /div> <
+                                div >
+                                <
+                                h3 className = "font-display text-lg font-bold text-brand-navy" >
+                                { user.user_metadata?.full_name || user.email?.split('@')[0] || 'Foodie' } <
+                                /h3> <
+                                p className = "text-xs text-brand-slate/60" > { user.email } < /p> <
+                                /div> <
+                                /div> <
+                                div className = "flex gap-4 mt-4 pt-4 border-t border-white/40" >
+                                <
+                                div >
+                                <
+                                span className = "block text-xl font-bold text-brand-navy" > { favorites.length } < /span> <
+                                span className = "text-[0.6rem] text-brand-slate/50 uppercase tracking-wider" >
+                                Favorites < /span> <
+                                /div> <
+                                div >
+                                <
+                                span className = "block text-xl font-bold text-brand-navy" > { userReviews.length } < /span> <
+                                span className = "text-[0.6rem] text-brand-slate/50 uppercase tracking-wider" >
+                                Reviews < /span> <
+                                /div> <
+                                /div> <
+                                /div> <
+                                /div>
+
+                                { /* Tabs */ } <
+                                div className = "px-4 mt-4 max-w-lg mx-auto" >
+                                <
+                                div className = "flex gap-1 bg-white/60 rounded-2xl p-1 border border-white/40" >
+                                <
+                                button onClick = {
+                                    () => setActiveTab('favorites') }
+                                className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'favorites' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
+                                <
+                                i className = "fas fa-heart mr-1.5" > < /i> Favorites <
+                                /button> <
+                                button onClick = {
+                                    () => setActiveTab('reviews') }
+                                className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'reviews' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
+                                <
+                                i className = "fas fa-star mr-1.5" > < /i> My Reviews <
+                                /button> <
+                                /div> <
+                                /div>
+
+                                { /* Content */ } <
+                                div className = "px-4 mt-4 pb-8 max-w-lg mx-auto" >
+                                {
+                                    activeTab === 'favorites' ? ( <
+                                        div >
+                                        {
+                                            favRestaurants.length === 0 ? ( <
+                                                div className = "text-center py-12 bg-white/40 rounded-2xl border border-white/40" >
+                                                <
+                                                i className = "fas fa-heart text-3xl text-brand-slate/20 mb-3" > < /i> <
+                                                p className = "text-sm text-brand-slate/60" > No favorites yet < /p> <
+                                                button onClick = {
+                                                    () => setView('home') }
+                                                className = "mt-2 text-gold text-xs font-medium hover:underline" >
+                                                Explore restaurants →
+                                                <
+                                                /button> <
+                                                /div>
+                                            ) : ( <
+                                                div className = "grid grid-cols-2 gap-3" > {
+                                                    favRestaurants.map(r => ( <
+                                                        RestaurantCard key = { r.id }
+                                                        restaurant = { r }
+                                                        compact = { true }
+                                                        />
+                                                    ))
+                                                } <
+                                                /div>
+                                            )
+                                        } <
+                                        /div>
+                                    ) : ( <
+                                        div className = "space-y-3" >
+                                        {
+                                            userReviews.length === 0 ? ( <
+                                                div className = "text-center py-12 bg-white/40 rounded-2xl border border-white/40" >
+                                                <
+                                                i className = "fas fa-pen text-3xl text-brand-slate/20 mb-3" > < /i> <
+                                                p className = "text-sm text-brand-slate/60" > You haven't reviewed any restaurants yet < /p> <
+                                                button onClick = {
+                                                    () => setView('home') }
+                                                className = "mt-2 text-gold text-xs font-medium hover:underline" >
+                                                Write a review →
+                                                <
+                                                /button> <
+                                                /div>
+                                            ) : (
+                                                userReviews.map(rev => {
+                                                    const r = restaurants.find(rt => rt.id === rev
+                                                    .restaurant_id);
+                                                    return ( <
+                                                        div key = { rev.id }
+                                                        className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50 flex items-start gap-3" >
+                                                        <
+                                                        div className = "w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-brand-slate/10" >
+                                                        {
+                                                            r ? ( <
+                                                                img src = { r.image }
+                                                                alt = { r.name }
+                                                                className = "w-full h-full object-cover" /
+                                                                >
+                                                            ) : ( <
+                                                                div className = "w-full h-full flex items-center justify-center text-brand-slate/30" >
+                                                                <
+                                                                i className = "fas fa-utensils" > < /i> <
+                                                                /div>
+                                                            )
+                                                        } <
+                                                        /div> <
+                                                        div className = "flex-1 min-w-0" >
+                                                        <
+                                                        h5 className = "font-semibold text-brand-navy text-sm truncate" >
+                                                        { r ? r.name : 'Restaurant' } < /h5> <
+                                                        div className = "flex items-center gap-1 mt-0.5" > {
+                                                            [1, 2, 3, 4, 5].map(i => ( <
+                                                                i key = { i }
+                                                                className = { `fa-solid fa-star text-[0.6rem] ${i <= rev.rating ? 'text-gold' : 'text-gray-300'}` } >
+                                                                < /i>
+                                                            ))
+                                                        } <
+                                                        /div> <
+                                                        p className = "text-xs text-brand-slate/60 mt-1 line-clamp-2" >
+                                                        { rev.comment } < /p> <
+                                                        /div> <
+                                                        /div>
+                                                    );
+                                                })
+                                            )
+                                        } <
+                                        /div>
+                                    )
+                                } <
+                                /div>
+
+                                { /* Ad */ } <
+                                div className = "px-4 pb-4 max-w-lg mx-auto" >
+                                <
+                                div className = "ad-card rounded-2xl p-4 shadow-premium" >
+                                <
+                                div className = "flex items-center gap-3 relative z-10" >
+                                <
+                                div className = "w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0" >
+                                <
+                                i className = "fas fa-chart-line text-gold" > < /i> <
+                                /div> <
+                                div className = "flex-1" >
+                                <
+                                h5 className = "text-white font-semibold text-sm" > Own a Restaurant? < /h5> <
+                                p className = "text-white/40 text-xs" > List your spot on BlueBite. < /p> <
+                                /div> <
+                                button className = "text-xs font-semibold text-gold hover:text-goldLight transition-colors" >
+                                Get Started → <
+                                /button> <
+                                /div> <
+                                /div> <
+                                /div>
+
+                                <
+                                BottomNav / >
+                                <
+                                /div>
+                            );
+                        }
+
+                        // ─── Bottom Navigation ───
+                        function BottomNav() {
+                            const { view, setView, user } = useContext(AppContext);
+                            return ( <
+                                    nav className = "fixed bottom-0 left-0 right-0 z-50 bottom-nav" >
+                                    <
+                                    div className = "max-w-lg mx-auto px-3" >
+                                    <
+                                    div className = "glass-dark rounded-2xl px-2 py-1.5 flex items-center justify-between shadow-premium-lg border border-white/10" >
+                                    <
+                                    button onClick = {
+                                        () => setView('home') }
+                                    className = { `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${view === 'home' ? 'text-gold' : 'text-white/40 hover:text-white/70'}` } >
+                                    <
+                                    i className = { `fas fa-home text-base ${view === 'home' ? 'text-gold' : ''}` } >
+                                    < /i> <
+                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Home < /span> <
+                                    /button>
+
+                                    <
+                                    button onClick = {
+                                        () => user ? setView('dashboard') : setShowAuth(true) }
+                                    className = { `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${view === 'dashboard' ? 'text-gold' : 'text-white/40 hover:text-white/70'}` } >
+                                    <
+                                    i className = { `fas fa-user text-base ${view === 'dashboard' ? 'text-gold' : ''}` } >
+                                    < /i> <
+                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" >
+                                    { user ? 'Profile' : 'Sign In' } < /span> <
+                                    /button>
+
+                                    <
+                                    button className = "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-white/40 hover:text-white/70 transition-all" >
+                                    <
+                                    i className = "fas fa-search text-base" > < /i> <
+                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Explore < /span> <
+                                    /button>
+
+                                    <
+                                    button className = "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-white/40 hover:text-white/70 transition-all" >
+                                    <
+                                    i className = "fas fa-bell text-base" > < /i> <
+                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Alerts < /span> <
+                                    /button> <
+                                    /div> <
+                                    /div> <
+                                    /nav>
+                                );
+                            }
+
+                            // ─── Auth Modal ───
+                            function AuthModal() {
+                                const {
+                                    showAuth,
+                                    setShowAuth,
+                                    authMode,
+                                    setAuthMode,
+                                    authEmail,
+                                    setAuthEmail,
+                                    authPassword,
+                                    setAuthPassword,
+                                    authName,
+                                    setAuthName,
+                                    authLoading,
+                                    handleAuthSubmit,
+                                } = useContext(AppContext);
+
+                                if (!showAuth) return null;
+
+                                return ( <
+                                        div className = "fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4" >
+                                        <
+                                        div className = "w-full max-w-sm modal-slide" >
+                                        <
+                                        div className = "bg-white/95 backdrop-blur-2xl rounded-3xl p-6 shadow-premium-lg border border-white/40" >
+                                        <
+                                        div className = "flex items-center justify-between mb-4" >
+                                        <
+                                        h3 className = "font-display text-xl font-bold text-brand-navy" >
+                                        { authMode === 'login' ? 'Welcome Back' : 'Join BlueBite' } <
+                                        /h3> <
+                                        button onClick = {
+                                            () => setShowAuth(false) }
+                                        className = "w-8 h-8 rounded-full bg-white/60 flex items-center justify-center text-brand-slate hover:bg-white transition-all" >
+                                        <
+                                        i className = "fas fa-times" > < /i> <
+                                        /button> <
+                                        /div>
+
+                                        <
+                                        p className = "text-sm text-brand-slate/60 mb-5" >
+                                        { authMode === 'login' ?
+                                            'Sign in to save favorites and review restaurants.' :
+                                            'Create your account and start discovering.' } <
+                                        /p>
+
+                                        <
+                                        form onSubmit = { handleAuthSubmit }
+                                        className = "space-y-4" >
+                                        {
+                                            authMode === 'signup' && ( <
+                                                div >
+                                                <
+                                                label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
+                                                Full Name <
+                                                /label> <
+                                                input type = "text"
+                                                value = { authName }
+                                                onChange = {
+                                                    (e) => setAuthName(e.target.value) }
+                                                className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
+                                                >
+                                                <
+                                                /div>
+                                            )
+                                        } <
+                                        div >
+                                        <
+                                        label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
+                                        Email <
+                                        /label> <
+                                        input type = "email"
+                                        value = { authEmail }
+                                        onChange = {
+                                            (e) => setAuthEmail(e.target.value) }
+                                        className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
+                                        >
+                                        <
+                                        /div> <
+                                        div >
+                                        <
+                                        label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
+                                        Password <
+                                        /label> <
+                                        input type = "password"
+                                        value = { authPassword }
+                                        onChange = {
+                                            (e) => setAuthPassword(e.target.value) }
+                                        className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
+                                        >
+                                        <
+                                        /div>
+
+                                        <
+                                        button type = "submit"
+                                        disabled = { authLoading }
+                                        className = "btn-premium w-full py-3.5 rounded-xl text-sm font-semibold disabled:opacity-50" >
+                                        { authLoading ? 'Processing...' : (authMode === 'login' ? 'Sign In' : 'Create
+                                            Account') } <
+                                        /button> <
+                                        /form>
+
+                                        <
+                                        div className = "mt-4 text-center" >
+                                        <
+                                        button onClick = {
+                                            () => setAuthMode(authMode === 'login' ? 'signup' : 'login') }
+                                        className = "text-xs font-medium text-brand-slate/50 hover:text-gold transition-colors" >
+                                        { authMode === 'login' ?
+                                            'Don\'t have an account? Sign up →' :
+                                            'Already have an account? Sign in →' } <
+                                        /button> <
+                                        /div> <
+                                        /div> <
+                                        /div> <
+                                        /div>
+                                    );
+                                }
+
+                                // ─── Toast Manager ───
+                                function ToastManager() {
+                                    const { toast } = useContext(AppContext);
+                                    if (!toast) return null;
+                                    return ( <
+                                            div className = "fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none" >
+                                            <
+                                            div className = "toast pointer-events-auto text-sm flex items-center gap-2.5" >
+                                            <
+                                            i className = "fas fa-check-circle text-gold" > < /i> { toast } <
+                                            /div> <
+                                            /div>
+                                        );
+                                    }
+
+                                    // ─── Render ───
+                                    const root = ReactDOM.createRoot(document.getElementById('root'));
+                                    root.render( < App / > );
+    </script>
 </body>
 </html>
