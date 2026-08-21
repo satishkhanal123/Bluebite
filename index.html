@@ -1,368 +1,1653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluebite – Premium Food Ordering</title>
+    <meta name="description" content="Bluebite delivers ultra-premium Mo:Mo, noodles, chowmein, snacks, and beverages. Order now for a cinematic dining experience." />
+    <meta name="keywords" content="Bluebite, food ordering, Mo:Mo, noodles, chowmein, premium food, delivery" />
+    <link rel="canonical" href="https://yourusername.github.io/bluebite/" />
 
-  <!-- SEO -->
-  <title>Bluebite | Instant Seller - Premium Food Delivery</title>
-  <meta name="description" content="Order delicious Mo:Mo, Noodles, Chowmein, Snacks and Beverages from Bluebite. Premium WhatsApp food ordering experience.">
-  <meta name="keywords" content="Bluebite, Momo, Chowmein, Noodles, Food Delivery, WhatsApp Order, Sikkim, Gangtok">
-  <meta name="author" content="Bluebite">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Bluebite – Premium Food Ordering" />
+    <meta property="og:description" content="Ultra-premium Mo:Mo, noodles, and more. Cinematic dining delivered." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourusername.github.io/bluebite/" />
+    <meta property="og:image" content="https://yourusername.github.io/bluebite/assets/og-image.jpg" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Bluebite Instant Seller">
-  <meta property="og:description" content="Premium WhatsApp food ordering experience.">
-  <meta property="og:image" content="assets/backgrounds/og-cover.jpg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font Awesome for icons (lightweight) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+                   CSS — Bluebite Ultra-Premium Theme
+                   ============================================================ */
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+        /* ---------- Reset & Base ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-deep: #0a1628;
+            --color-navy: #1a2a4a;
+            --color-navy-light: #2a3f66;
+            --color-gold: #c9a84c;
+            --color-gold-light: #f0d080;
+            --color-gold-glow: rgba(201, 168, 76, 0.35);
+            --color-warm: #f5f0e8;
+            --color-warm-dark: #e8e0d5;
+            --color-text-light: #f5f0e8;
+            --color-text-dark: #1a1a1a;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --shadow-premium: 0 20px 60px rgba(10, 22, 40, 0.45);
+            --shadow-soft: 0 8px 32px rgba(10, 22, 40, 0.20);
+            --radius: 16px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 1200px;
+            --section-padding: 4rem 1.5rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-warm);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* ---------- Typography ---------- */
+        .serif {
+            font-family: var(--font-serif);
+        }
+        .gold {
+            color: var(--color-gold);
+        }
+        .gold-light {
+            color: var(--color-gold-light);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 .gold {
+            font-style: italic;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-gold);
+            background: rgba(201, 168, 76, 0.12);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(201, 168, 76, 0.20);
+        }
+
+        /* ---------- Container ---------- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ---------- Header / Navigation ---------- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.88);
+            backdrop-filter: blur(14px) saturate(1.2);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 0.75rem 0;
+            transition: var(--transition);
+        }
+
+        .site-header.scrolled {
+            background: rgba(10, 22, 40, 0.96);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-text-light);
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: var(--color-gold);
+        }
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--color-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(245, 240, 232, 0.7);
+            transition: var(--transition);
+            letter-spacing: 0.03em;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a.cta-nav {
+            background: var(--color-gold);
+            color: var(--color-deep);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        .nav-links a.cta-nav:hover {
+            background: var(--color-gold-light);
+            transform: scale(1.03);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            font-size: 1.6rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 1.5rem 4rem;
+            background: linear-gradient(160deg, var(--color-deep) 0%, var(--color-navy) 60%, #0d1f3c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.12);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            color: var(--color-gold-light);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 5.6rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.05;
+        }
+        .hero h1 .gold {
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(245, 240, 232, 0.75);
+            max-width: 520px;
+            margin: 0.75rem auto 2rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-gold);
+            color: var(--color-deep);
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.30);
+        }
+        .btn-primary:hover {
+            background: var(--color-gold-light);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.45);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+        }
+        .btn-outline:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+        }
+
+        /* floating gold particles (creative tweak) */
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            top: -10%;
+            right: -10%;
+            pointer-events: none;
+            animation: floatGlow 12s ease-in-out infinite alternate;
+        }
+        .hero-glow-2 {
+            bottom: -20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(30px, -30px) scale(1.15);
+            }
+        }
+
+        /* ---------- Sections common ---------- */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.8rem;
+        }
+        .section-title p {
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0.25rem auto 0;
+        }
+
+        /* ---------- Categories ---------- */
+        .categories {
+            background: #fff;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--color-warm);
+            border-radius: var(--radius);
+            padding: 1.8rem 1rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+        .category-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-soft);
+        }
+        .category-card .icon {
+            font-size: 2.8rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: var(--transition);
+        }
+        .category-card:hover .icon {
+            transform: scale(1.12) rotate(-4deg);
+            text-shadow: 0 0 30px var(--color-gold-glow);
+        }
+        .category-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-deep);
+        }
+        .category-card p {
+            font-size: 0.8rem;
+            color: rgba(26, 26, 26, 0.5);
+            margin-top: 0.2rem;
+        }
+
+        /* ---------- Menu / Food Selector ---------- */
+        .menu-section {
+            background: var(--color-warm-dark);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            border: 1px solid rgba(201, 168, 76, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(10, 22, 40, 0.12);
+        }
+        .menu-item .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .menu-item .item-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .menu-item .item-price {
+            font-weight: 700;
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+        .menu-item .item-desc {
+            font-size: 0.9rem;
+            color: rgba(26, 26, 26, 0.6);
+            margin: 0.25rem 0 1rem;
+            flex: 1;
+        }
+
+        .menu-item .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.75rem 0 1.25rem;
+        }
+        .menu-item .options .opt {
+            background: var(--color-warm);
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-navy);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .menu-item .options .opt.active {
+            border-color: var(--color-gold);
+            background: rgba(201, 168, 76, 0.10);
+            color: var(--color-gold);
+        }
+        .menu-item .options .opt:hover {
+            border-color: var(--color-gold);
+        }
+
+        .menu-item .btn-add {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 60px;
+            background: var(--color-deep);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .menu-item .btn-add:hover {
+            background: var(--color-navy-light);
+            transform: scale(1.01);
+        }
+        .menu-item .btn-add i {
+            margin-right: 0.5rem;
+        }
+
+        /* ---------- Order Form ---------- */
+        .order-section {
+            background: #fff;
+        }
+
+        .order-form-wrap {
+            max-width: 620px;
+            margin: 0 auto;
+            background: var(--color-warm);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .order-form-wrap .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .order-form-wrap label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+            color: var(--color-deep);
+        }
+        .order-form-wrap input,
+        .order-form-wrap select,
+        .order-form-wrap textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid rgba(26, 26, 26, 0.10);
+            border-radius: 12px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fff;
+        }
+        .order-form-wrap input:focus,
+        .order-form-wrap select:focus,
+        .order-form-wrap textarea:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.12);
+        }
+        .order-form-wrap textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .order-form-wrap .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 60px;
+            background: var(--color-gold);
+            color: var(--color-deep);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+        }
+        .order-form-wrap .btn-submit:hover {
+            background: var(--color-gold-light);
+            transform: scale(1.01);
+        }
+        .order-form-wrap .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-feedback {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 500;
+            display: none;
+        }
+        .form-feedback.success {
+            display: block;
+            background: rgba(46, 204, 113, 0.12);
+            color: #1a7a4a;
+            border: 1px solid rgba(46, 204, 113, 0.25);
+        }
+        .form-feedback.error {
+            display: block;
+            background: rgba(231, 76, 60, 0.10);
+            color: #b03a2e;
+            border: 1px solid rgba(231, 76, 60, 0.20);
+        }
+
+        /* ---------- Testimonials ---------- */
+        .testimonials {
+            background: var(--color-deep);
+            color: var(--color-text-light);
+        }
+        .testimonials .section-title h2 {
+            color: #fff;
+        }
+        .testimonials .section-title p {
+            color: rgba(245, 240, 232, 0.5);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+        .testimonial-card .stars {
+            color: var(--color-gold);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .testimonial-card blockquote {
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(245, 240, 232, 0.85);
+        }
+        .testimonial-card .author {
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-gold-light);
+        }
+        .testimonial-card .author span {
+            font-weight: 400;
+            color: rgba(245, 240, 232, 0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ---------- FAQ ---------- */
+        .faq {
+            background: #fff;
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+            padding: 1.2rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--color-deep);
+            transition: var(--transition);
+            padding: 0.25rem 0;
+            user-select: none;
+        }
+        .faq-question:hover {
+            color: var(--color-gold);
+        }
+        .faq-question i {
+            transition: var(--transition);
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+        .faq-item.open .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease, padding 0.3s ease;
+            color: rgba(26, 26, 26, 0.65);
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-top: 0.75rem;
+        }
+
+        /* ---------- Contact / Booking ---------- */
+        .contact {
+            background: var(--color-warm-dark);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-info h3 {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-info p {
+            color: rgba(26, 26, 26, 0.6);
+            margin-bottom: 1rem;
+        }
+        .contact-info .detail {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
+        }
+        .contact-info .detail i {
+            color: var(--color-gold);
+            width: 1.4rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid rgba(26, 26, 26, 0.08);
+            border-radius: 12px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fff;
+            margin-bottom: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.10);
+        }
+
+        /* ---------- Footer ---------- */
+        .site-footer {
+            background: var(--color-deep);
+            color: rgba(245, 240, 232, 0.6);
+            padding: 3rem 1.5rem 2rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.08);
+        }
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .footer-socials a {
+            color: rgba(245, 240, 232, 0.4);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover {
+            color: var(--color-gold);
+            transform: translateY(-2px);
+        }
+        .footer-copy {
+            font-size: 0.85rem;
+        }
+        .footer-copy .gold {
+            color: var(--color-gold);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 22, 40, 0.98);
+                backdrop-filter: blur(14px);
+                padding: 1.5rem 2rem;
+                border-top: 1px solid rgba(201, 168, 76, 0.10);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .order-form-wrap {
+                padding: 1.5rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero {
+                padding-top: 6rem;
+            }
+        }
+
+        /* ---------- Utility ---------- */
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =====================================
-     HERO
-====================================== -->
-
-<header id="home" class="hero">
-
-  <!-- Top Bar -->
-
-  <div class="top-bar glass-card">
-
-    <div class="logo">
-      Bluebite
-    </div>
-
-    <div class="theme-switch" aria-label="Theme Selector">
-
-      <button class="dot red" aria-label="Bold Theme"></button>
-
-      <button class="dot gold active" aria-label="Dark Theme"></button>
-
-      <button class="dot green" aria-label="Rustic Theme"></button>
-
-    </div>
-
-    <button id="cartBtn" class="cart-pill" aria-label="Open Cart">
-
-      🛒 <span id="cartCount">0</span>
-
-      • ₹<span id="cartTotal">0</span>
-
-    </button>
-
-  </div>
-
-  <!-- Hero Image -->
-
-  <div class="hero-image">
-
-    <div class="gold-glow"></div>
-
-    <img
-      src="assets/food/hero-momo.png"
-      alt="Premium steaming Buff Momo"
-      loading="eager">
-
-  </div>
-
-  <!-- Hero Text -->
-
-  <div class="hero-content">
-
-    <h1>
-
-      Crafted with Love.
-
-      <br>
-
-      Served with Style.
-
-    </h1>
-
-    <p>
-
-      Premium Mo:Mo and street food experience.
-
-    </p>
-
-    <a href="#menu" class="btn-gold">
-
-      Order Now
-
-    </a>
-
-  </div>
-
-</header>
-
-<!-- =====================================
-     MAIN
-====================================== -->
-
-<main class="container">
-
-  <!-- Search -->
-
-  <section class="search-section">
-
-    <div class="search-wrap glass-card">
-
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="Search food..."
-        aria-label="Search Menu">
-
-    </div>
-
-  </section>
-
-  <!-- Categories -->
-
-  <section id="categories" class="categories">
-
-    <!-- JS -->
-
-  </section>
-
-  <!-- Menu -->
-
-  <section id="menu">
-
-    <div id="menuGrid" class="menu-grid">
-
-      <!-- JS -->
-
-    </div>
-
-    <div id="pagination" class="pagination"></div>
-
-  </section>
-
-</main>
-
-<!-- =====================================
-     CART DRAWER
-====================================== -->
-
-<aside id="cartDrawer" class="cart-drawer hidden">
-
-  <div class="cart-header">
-
-    <h2>Cart</h2>
-
-    <button id="closeCart" aria-label="Close Cart">
-
-      ✕
-
-    </button>
-
-  </div>
-
-  <div id="cartItems" class="cart-items">
-
-    <!-- JS -->
-
-  </div>
-
-  <div class="bill glass-card">
-
-    <div class="bill-row">
-
-      <span>Delivery</span>
-
-      <span>₹100</span>
-
-    </div>
-
-    <div class="bill-row total-row">
-
-      <strong>Total</strong>
-
-      <strong id="grandTotal">₹100</strong>
-
-    </div>
-
-    <button id="nextBtn" class="btn-gold" disabled>
-
-      Next →
-
-    </button>
-
-  </div>
-
-</aside>
-
-<!-- =====================================
-     CHECKOUT
-====================================== -->
-
-<section id="checkout" class="checkout hidden">
-
-  <div class="glass-card form-card">
-
-    <h2>Customer Details</h2>
-
-    <form id="checkoutForm">
-
-      <input
-        id="name"
-        type="text"
-        placeholder="Name *"
-        required>
-
-      <input
-        id="landmark"
-        type="text"
-        placeholder="Landmark">
-
-      <textarea
-        id="address"
-        placeholder="Address *"
-        required></textarea>
-
-      <input
-        id="mobile"
-        type="tel"
-        maxlength="10"
-        pattern="[0-9]{10}"
-        placeholder="Mobile *"
-        required>
-
-      <input
-        id="email"
-        type="email"
-        placeholder="Email (Optional)">
-
-      <textarea
-        id="notes"
-        placeholder="Delivery Notes"></textarea>
-
-    </form>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     WHATSAPP PREVIEW
-====================================== -->
-
-<section id="previewSection" class="container hidden">
-
-  <div class="glass-card preview-card">
-
-    <h2>WhatsApp Preview</h2>
-
-    <pre id="messagePreview"></pre>
-
-    <button id="waBtn" class="btn-gold">
-
-      📲 Send via WhatsApp
-
-    </button>
-
-    <button id="copyBtn" class="btn-secondary">
-
-      📋 Copy Message
-
-    </button>
-
-  </div>
-
-</section>
-
-<!-- =====================================
-     FOOTER
-====================================== -->
-
-<footer class="footer">
-
-  <div class="footer-content">
-
-    <h3>Bluebite</h3>
-
-    <p>Crafted with Love. Served with Style.</p>
-
-    <div class="socials">
-
-      <a href="#" aria-label="Instagram">Instagram</a>
-
-      <a href="#" aria-label="Facebook">Facebook</a>
-
-      <a href="#" aria-label="WhatsApp">WhatsApp</a>
-
-    </div>
-
-    <div class="map-placeholder glass-card">
-
-      <p>📍 Location Map (Coming Soon)</p>
-
-    </div>
-
-    <small>
-
-      © 2026 Bluebite. All Rights Reserved.
-
-    </small>
-
-  </div>
-
-</footer>
-
-<!-- =====================================
-     BOTTOM NAVIGATION
-====================================== -->
-
-<nav class="bottom-nav">
-
-  <a href="#home" class="nav-item active">
-
-    <span>🏠</span>
-
-    <small>Home</small>
-
-  </a>
-
-  <a href="#menu" class="nav-item">
-
-    <span>🍽️</span>
-
-    <small>Menu</small>
-
-  </a>
-
-  <button id="navCart" class="nav-item">
-
-    <span>🛒</span>
-
-    <small>Cart</small>
-
-  </button>
-
-</nav>
-
-<!-- =====================================
-     SCRIPTS
-====================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase.js"></script>
-
-<script src="script.js"></script>
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader" role="banner">
+        <div class="header-inner">
+            <a href="#" class="logo" aria-label="Bluebite home">
+                <i class="fas fa-utensils"></i> Blue<span>bite</span>
+            </a>
+
+            <nav class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
+                <a href="#menu">Menu</a>
+                <a href="#order">Order</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+                <a href="#order" class="cta-nav">Order Now</a>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+        <div class="hero-glow"></div>
+        <div class="hero-glow hero-glow-2"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">✦ Est. 2026</div>
+            <h1 id="heroTitle">
+                Taste the <span class="gold">Extraordinary</span>
+            </h1>
+            <p>
+                Cinematic Mo:Mo, hand-pulled noodles, and artisanal beverages —
+                crafted for those who savor the finest.
+            </p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Explore Menu
+                </a>
+                <a href="#order" class="btn btn-outline">
+                    <i class="fas fa-shopping-bag"></i> Order Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CATEGORIES
+    ============================================================ -->
+    <section class="categories" id="categories" aria-labelledby="categoriesTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Categories</span>
+                <h2 id="categoriesTitle">Our <span class="gold">Signature</span> Offerings</h2>
+                <p>Handpicked for perfection, every bite tells a story.</p>
+            </div>
+
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MENU / FOOD SELECTOR
+    ============================================================ -->
+    <section class="menu-section" id="menu" aria-labelledby="menuTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Menu</span>
+                <h2 id="menuTitle">The <span class="gold">Bluebite</span> Selection</h2>
+                <p>Each dish is a masterpiece. Choose your favorite.</p>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ORDER FORM
+    ============================================================ -->
+    <section class="order-section" id="order" aria-labelledby="orderTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Order</span>
+                <h2 id="orderTitle">Place Your <span class="gold">Order</span></h2>
+                <p>Freshly prepared and delivered with care.</p>
+            </div>
+
+            <div class="order-form-wrap">
+                <form id="orderForm" novalidate>
+                    <div class="form-group">
+                        <label for="orderName">Full Name</label>
+                        <input type="text" id="orderName" placeholder="e.g. Jamie Oliver" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderEmail">Email</label>
+                        <input type="email" id="orderEmail" placeholder="you@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderItem">Select Dish</label>
+                        <select id="orderItem" required>
+                            <option value="">— Choose a dish —</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderVariant">Variant</label>
+                        <select id="orderVariant" required>
+                            <option value="">— Select variant —</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderQuantity">Quantity</label>
+                        <input type="number" id="orderQuantity" min="1" value="1" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderNotes">Special Instructions</label>
+                        <textarea id="orderNotes" placeholder="Any allergies, extra spice, or delivery notes…"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="orderSubmit">
+                        <i class="fas fa-check"></i> Submit Order
+                    </button>
+                    <div class="form-feedback" id="orderFeedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TESTIMONIALS
+    ============================================================ -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonialTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Testimonials</span>
+                <h2 id="testimonialTitle">What Our <span class="gold">Guests</span> Say</h2>
+                <p>Real reviews from real food lovers.</p>
+            </div>
+
+            <div class="testimonial-grid" id="testimonialGrid">
+                <!-- filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FAQ
+    ============================================================ -->
+    <section class="faq" id="faq" aria-labelledby="faqTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">FAQ</span>
+                <h2 id="faqTitle">Frequently Asked <span class="gold">Questions</span></h2>
+                <p>Everything you need to know before ordering.</p>
+            </div>
+
+            <div class="faq-list" id="faqList">
+                <!-- filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section class="contact" id="contact" aria-labelledby="contactTitle">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-label">Contact</span>
+                <h2 id="contactTitle">Get in <span class="gold">Touch</span></h2>
+                <p>We'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Bluebite Kitchen</h3>
+                    <p>123 Gourmet Avenue, Kathmandu, Nepal</p>
+                    <div class="detail"><i class="fas fa-phone"></i> +977 980-123-4567</div>
+                    <div class="detail"><i class="fas fa-envelope"></i> hello@bluebite.com</div>
+                    <div class="detail"><i class="fas fa-clock"></i> 10:00 AM – 10:00 PM</div>
+                    <div style="margin-top:1.5rem;border-radius:12px;overflow:hidden;height:160px;background:var(--color-warm-dark);">
+                        <!-- simple map placeholder: replace with real iframe if needed -->
+                        <div style="background:#1a2a4a;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:0.9rem;">
+                            <i class="fas fa-map-pin" style="margin-right:0.5rem;color:var(--color-gold);"></i> Find us on Google Maps
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Your Email" required />
+                    <textarea rows="4" placeholder="Your message…" required></textarea>
+                    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-copy">
+                &copy; 2026 <span class="gold">Bluebite</span> — crafted with <i class="fas fa-heart" style="color:var(--color-gold);font-size:0.8rem;"></i>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT — Vanilla JS + Supabase Integration
+    ============================================================ -->
+    <script>
+        /* ============================================================
+               CONFIG — Supabase (replace with your own keys)
+               ============================================================ */
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_ANON_KEY = 'your-anon-key';
+
+        // -------- Supabase client (lazy init) --------
+        let supabaseClient = null;
+
+        function getSupabase() {
+            if (!supabaseClient && typeof supabase !== 'undefined') {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+            return supabaseClient;
+        }
+
+        // -------- DATA (fallback static + Supabase) --------
+        const CATEGORIES_DATA = [
+            { id: 'momo', icon: 'fa-egg', label: 'Mo:Mo', desc: 'Steamed, fried & jhol' },
+            { id: 'noodles', icon: 'fa-utensils', label: 'Noodles', desc: 'Hand-pulled perfection' },
+            { id: 'chowmein', icon: 'fa-bowl-food', label: 'Chowmein', desc: 'Wok-tossed delight' },
+            { id: 'snacks', icon: 'fa-bacon', label: 'Snacks', desc: 'Crispy & savory' },
+            { id: 'beverages', icon: 'fa-mug-saucer', label: 'Beverages', desc: 'Artisanal drinks' }
+        ];
+
+        const MENU_DATA = [{
+            id: 1,
+            name: 'Buff Mo:Mo',
+            desc: 'Juicy buffalo dumplings with house-made spices.',
+            price: 350,
+            category: 'momo',
+            variants: ['Steamed', 'Pan Seared', 'Jhol', 'Pork'],
+            image: ''
+        }, {
+            id: 2,
+            name: 'Chicken Noodles',
+            desc: 'Hand-pulled noodles in a fragrant broth.',
+            price: 420,
+            category: 'noodles',
+            variants: ['Regular', 'Spicy', 'Garlic'],
+            image: ''
+        }, {
+            id: 3,
+            name: 'Veg Chowmein',
+            desc: 'Wok-tossed noodles with crisp vegetables.',
+            price: 310,
+            category: 'chowmein',
+            variants: ['Regular', 'Egg', 'Paneer'],
+            image: ''
+        }, {
+            id: 4,
+            name: 'Crispy Spring Rolls',
+            desc: 'Golden rolls with a crunchy vegetable filling.',
+            price: 280,
+            category: 'snacks',
+            variants: ['Veg', 'Chicken', 'Cheese'],
+            image: ''
+        }, {
+            id: 5,
+            name: 'Lemon Mint Cooler',
+            desc: 'Refreshing blend of lemon, mint, and soda.',
+            price: 190,
+            category: 'beverages',
+            variants: ['Regular', 'Ginger', 'Honey'],
+            image: ''
+        }];
+
+        const TESTIMONIALS_DATA = [
+            { id: 1, name: 'Aisha Gurung', text: 'The Buff Mo:Mo is out of this world! Absolute perfection.', stars: 5 },
+            { id: 2, name: 'Rohan Shrestha', text: 'Best noodles in town. The broth is heavenly.', stars: 5 },
+            { id: 3, name: 'Priya Karki', text: 'Bluebite redefined comfort food for me. 10/10.', stars: 4 },
+        ];
+
+        const FAQ_DATA = [
+            { q: 'What are your delivery hours?', a: 'We deliver daily from 10:00 AM to 10:00 PM.' },
+            { q: 'Do you offer vegan options?', a: 'Yes! Many of our dishes can be made vegan. Just mention it in your order notes.' },
+            { q: 'How long does delivery take?', a: 'Typically 30–45 minutes within the city limits.' },
+            { q: 'Is there a minimum order?', a: 'No minimum order — we deliver any size with a small delivery fee.' },
+        ];
+
+        // -------- State --------
+        let currentMenu = [...MENU_DATA];
+        let currentTestimonials = [...TESTIMONIALS_DATA];
+        let currentFaq = [...FAQ_DATA];
+        let selectedVariants = {};
+
+        // -------- DOM refs --------
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        // -------- Render: Categories --------
+        function renderCategories() {
+            const grid = $('#categoriesGrid');
+            if (!grid) return;
+            grid.innerHTML = CATEGORIES_DATA.map(c =>
+                `<div class="category-card" data-category="${c.id}">
+                    <span class="icon"><i class="fas ${c.icon}"></i></span>
+                    <h3>${c.label}</h3>
+                    <p>${c.desc}</p>
+                </div>`
+            ).join('');
+            // click => scroll to menu & filter
+            grid.querySelectorAll('.category-card').forEach(el => {
+                el.addEventListener('click', () => {
+                    const cat = el.dataset.category;
+                    document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+                    // highlight matching items (simple filter)
+                    renderMenu(cat);
+                });
+            });
+        }
+
+        // -------- Render: Menu --------
+        function renderMenu(filterCategory = null) {
+            const grid = $('#menuGrid');
+            if (!grid) return;
+
+            const items = filterCategory ?
+                currentMenu.filter(m => m.category === filterCategory) :
+                currentMenu;
+
+            if (items.length === 0) {
+                grid.innerHTML =
+                    `<p style="grid-column:1/-1;text-align:center;color:rgba(26,26,26,0.4);padding:2rem 0;">No items in this category.</p>`;
+                return;
+            }
+
+            grid.innerHTML = items.map(item => {
+                const selected = selectedVariants[item.id] || item.variants[0] || '';
+                return `
+                    <div class="menu-item" data-id="${item.id}">
+                        <div class="item-header">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-price">₹${item.price}</span>
+                        </div>
+                        <p class="item-desc">${item.desc}</p>
+                        <div class="options" data-id="${item.id}">
+                            ${item.variants.map(v =>
+                                `<span class="opt ${v === selected ? 'active' : ''}" data-variant="${v}">${v}</span>`
+                            ).join('')}
+                        </div>
+                        <button class="btn-add" data-id="${item.id}">
+                            <i class="fas fa-plus"></i> Add to Order
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            // variant selection
+            grid.querySelectorAll('.options').forEach(optGroup => {
+                const id = parseInt(optGroup.dataset.id);
+                optGroup.querySelectorAll('.opt').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        optGroup.querySelectorAll('.opt').forEach(o => o.classList.remove('active'));
+                        opt.classList.add('active');
+                        selectedVariants[id] = opt.dataset.variant;
+                        // update order form dropdown
+                        populateOrderItems();
+                    });
+                });
+            });
+
+            // "Add to Order" buttons
+            grid.querySelectorAll('.btn-add').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    const item = currentMenu.find(m => m.id === id);
+                    if (!item) return;
+                    const variant = selectedVariants[id] || item.variants[0] || '';
+                    // pre-fill order form
+                    const select = $('#orderItem');
+                    if (select) {
+                        select.value = id;
+                        populateOrderVariants(id);
+                        const vSelect = $('#orderVariant');
+                        if (vSelect) vSelect.value = variant;
+                    }
+                    document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+
+        // -------- Render: Testimonials --------
+        function renderTestimonials() {
+            const grid = $('#testimonialGrid');
+            if (!grid) return;
+            grid.innerHTML = currentTestimonials.map(t =>
+                `<div class="testimonial-card">
+                    <div class="stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
+                    <blockquote>“${t.text}”</blockquote>
+                    <div class="author">${t.name} <span>• verified</span></div>
+                </div>`
+            ).join('');
+        }
+
+        // -------- Render: FAQ --------
+        function renderFaq() {
+            const list = $('#faqList');
+            if (!list) return;
+            list.innerHTML = currentFaq.map((f, idx) =>
+                `<div class="faq-item" data-index="${idx}">
+                    <div class="faq-question">
+                        <span>${f.q}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">${f.a}</div>
+                </div>`
+            ).join('');
+
+            list.querySelectorAll('.faq-item').forEach(el => {
+                const q = el.querySelector('.faq-question');
+                q.addEventListener('click', () => {
+                    el.classList.toggle('open');
+                });
+            });
+        }
+
+        // -------- Order Form helpers --------
+        function populateOrderItems() {
+            const select = $('#orderItem');
+            if (!select) return;
+            const currentVal = select.value;
+            select.innerHTML = '<option value="">— Choose a dish —</option>' +
+                currentMenu.map(m =>
+                    `<option value="${m.id}">${m.name} (₹${m.price})</option>`
+                ).join('');
+            if (currentVal) select.value = currentVal;
+            // trigger variant populate
+            const id = parseInt(select.value);
+            if (id) populateOrderVariants(id);
+        }
+
+        function populateOrderVariants(itemId) {
+            const vSelect = $('#orderVariant');
+            if (!vSelect) return;
+            const item = currentMenu.find(m => m.id === itemId);
+            if (!item) {
+                vSelect.innerHTML = '<option value="">— Select variant —</option>';
+                return;
+            }
+            const currentVal = vSelect.value;
+            vSelect.innerHTML = '<option value="">— Select variant —</option>' +
+                item.variants.map(v =>
+                    `<option value="${v}">${v}</option>`
+                ).join('');
+            if (currentVal && item.variants.includes(currentVal)) vSelect.value = currentVal;
+            else if (item.variants.length) vSelect.value = item.variants[0];
+        }
+
+        // -------- Supabase: fetch data (if available) --------
+        async function fetchFromSupabase() {
+            const sb = getSupabase();
+            if (!sb) {
+                console.log('Supabase not initialized, using fallback data.');
+                return;
+            }
+            try {
+                // Try fetching menu
+                const { data: menuData, error: menuErr } = await sb
+                    .from('menu')
+                    .select('*');
+                if (!menuErr && menuData && menuData.length) {
+                    currentMenu = menuData.map(m => ({
+                        ...m,
+                        variants: m.variants || ['Standard']
+                    }));
+                }
+
+                const { data: testData, error: testErr } = await sb
+                    .from('testimonials')
+                    .select('*');
+                if (!testErr && testData && testData.length) {
+                    currentTestimonials = testData;
+                }
+
+                const { data: faqData, error: faqErr } = await sb
+                    .from('faqs')
+                    .select('*');
+                if (!faqErr && faqData && faqData.length) {
+                    currentFaq = faqData;
+                }
+
+                renderMenu();
+                renderTestimonials();
+                renderFaq();
+                populateOrderItems();
+
+            } catch (e) {
+                console.log('Supabase fetch error, using fallback data.', e);
+            }
+        }
+
+        // -------- Supabase: submit order --------
+        async function submitOrder(orderData) {
+            const sb = getSupabase();
+            if (!sb) {
+                // fallback: simulate success
+                console.log('Supabase not available, order logged:', orderData);
+                return { success: true, id: 'local_' + Date.now() };
+            }
+            try {
+                const { data, error } = await sb
+                    .from('orders')
+                    .insert([{
+                        customer_name: orderData.name,
+                        email: orderData.email,
+                        item_id: orderData.itemId,
+                        variant: orderData.variant,
+                        quantity: orderData.quantity,
+                        notes: orderData.notes,
+                        status: 'pending',
+                        created_at: new Date().toISOString()
+                    }])
+                    .select();
+                if (error) throw error;
+                return { success: true, id: data?.[0]?.id || 'ok' };
+            } catch (e) {
+                console.error('Order submission error:', e);
+                return { success: false, error: e.message };
+            }
+        }
+
+        // -------- Order form handler --------
+        function initOrderForm() {
+            const form = $('#orderForm');
+            const feedback = $('#orderFeedback');
+            const submitBtn = $('#orderSubmit');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                feedback.className = 'form-feedback';
+                feedback.style.display = 'none';
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing…';
+
+                const name = $('#orderName').value.trim();
+                const email = $('#orderEmail').value.trim();
+                const itemId = parseInt($('#orderItem').value);
+                const variant = $('#orderVariant').value;
+                const quantity = parseInt($('#orderQuantity').value) || 1;
+                const notes = $('#orderNotes').value.trim();
+
+                if (!name || !email || !itemId || !variant) {
+                    feedback.className = 'form-feedback error';
+                    feedback.textContent = 'Please fill in all required fields.';
+                    feedback.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Submit Order';
+                    return;
+                }
+
+                const result = await submitOrder({
+                    name,
+                    email,
+                    itemId,
+                    variant,
+                    quantity,
+                    notes
+                });
+
+                if (result.success) {
+                    feedback.className = 'form-feedback success';
+                    feedback.textContent =
+                        `✅ Order placed! (Ref: ${result.id || 'OK'}) We'll confirm shortly.`;
+                    feedback.style.display = 'block';
+                    form.reset();
+                    populateOrderItems();
+                    // reset variant
+                    const vSelect = $('#orderVariant');
+                    if (vSelect) vSelect.innerHTML = '<option value="">— Select variant —</option>';
+                } else {
+                    feedback.className = 'form-feedback error';
+                    feedback.textContent = '❌ Failed to place order. Please try again.';
+                    feedback.style.display = 'block';
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Submit Order';
+            });
+
+            // item select => update variants
+            $('#orderItem').addEventListener('change', function() {
+                const id = parseInt(this.value);
+                if (id) populateOrderVariants(id);
+                else {
+                    const vSelect = $('#orderVariant');
+                    if (vSelect) vSelect.innerHTML = '<option value="">— Select variant —</option>';
+                }
+            });
+        }
+
+        // -------- Mobile nav toggle --------
+        function initMobileNav() {
+            const toggle = $('#mobileToggle');
+            const nav = $('#navLinks');
+            toggle.addEventListener('click', () => {
+                const open = nav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', open);
+                toggle.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            // close on link click
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
+
+        // -------- Header scroll effect --------
+        function initScrollHeader() {
+            const header = $('#siteHeader');
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+                if (y > 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                lastScroll = y;
+            });
+        }
+
+        // -------- Contact form (demo) --------
+        function initContactForm() {
+            const form = $('#contactForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! We\'ll get back to you shortly. 📬');
+                form.reset();
+            });
+        }
+
+        // -------- JSON-LD Structured Data --------
+        function injectStructuredData() {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Restaurant",
+                "name": "Bluebite",
+                "description": "Ultra-premium Mo:Mo, noodles, and artisanal beverages.",
+                "url": "https://yourusername.github.io/bluebite/",
+                "telephone": "+977-980-123-4567",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "123 Gourmet Avenue",
+                    "addressLocality": "Kathmandu",
+                    "addressCountry": "NP"
+                },
+                "servesCuisine": "Nepali, Asian",
+                "priceRange": "₹₹",
+                "openingHours": "Mo-Su 10:00-22:00",
+                "menu": "https://yourusername.github.io/bluebite/#menu"
+            });
+            document.head.appendChild(script);
+
+            // FAQ schema
+            const faqScript = document.createElement('script');
+            faqScript.type = 'application/ld+json';
+            faqScript.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": FAQ_DATA.map(f => ({
+                    "@type": "Question",
+                    "name": f.q,
+                    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+                }))
+            });
+            document.head.appendChild(faqScript);
+        }
+
+        // -------- Init --------
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render all static data
+            renderCategories();
+            renderMenu();
+            renderTestimonials();
+            renderFaq();
+            populateOrderItems();
+
+            // Initialize features
+            initOrderForm();
+            initMobileNav();
+            initScrollHeader();
+            initContactForm();
+            injectStructuredData();
+
+            // Try Supabase fetch if available
+            if (typeof supabase !== 'undefined') {
+                fetchFromSupabase();
+            } else {
+                console.log('Supabase SDK not loaded. Using static data.');
+                // show a note in console
+            }
+
+            // Update order variants on first load
+            const firstItem = $('#orderItem');
+            if (firstItem && firstItem.value) {
+                populateOrderVariants(parseInt(firstItem.value));
+            }
+
+            console.log('✨ Bluebite — ultra-premium food ordering ready.');
+        });
+
+        // -------- Expose for debugging (optional) --------
+        window.__bluebite = {
+            menu: currentMenu,
+            testimonials: currentTestimonials,
+            faq: currentFaq,
+            supabase: getSupabase,
+            refresh: fetchFromSupabase
+        };
+    </script>
+
+    <!-- Load Supabase SDK (optional, for production use) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </body>
 </html>
