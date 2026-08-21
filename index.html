@@ -3,83 +3,77 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>BlueBite Nepal — Restaurant Discovery</title>
+    <title>Marketly — Premium Marketplace</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
 
-    <!-- Font Awesome 6 (free) -->
+    <!-- Font Awesome 6 (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-
-    <!-- Custom Tailwind configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            navy: '#0b1120',
-                            indigo: '#1a2a4a',
-                            gold: '#d4a853',
-                            goldLight: '#f0d68a',
-                            cream: '#faf6ef',
-                            slate: '#8a9bb5',
-                        },
-                        primary: '#d4a853',
-                        secondary: '#0b1120',
-                    },
-                    fontFamily: {
-                        display: ['Playfair Display', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        'xl': '1.25rem',
-                        '2xl': '1.75rem',
-                        '3xl': '2.25rem',
-                    },
-                    boxShadow: {
-                        'premium': '0 20px 60px rgba(11, 17, 32, 0.15), 0 8px 24px rgba(0,0,0,0.05)',
-                        'premium-lg': '0 30px 80px rgba(11, 17, 32, 0.20), 0 12px 32px rgba(0,0,0,0.07)',
-                        'glow': '0 0 40px rgba(212, 168, 83, 0.15)',
-                        'inner-glow': 'inset 0 0 40px rgba(212, 168, 83, 0.05)',
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'gradient-premium': 'linear-gradient(145deg, #0b1120 0%, #1a2a4a 100%)',
-                        'gradient-gold': 'linear-gradient(135deg, #d4a853 0%, #f0d68a 50%, #d4a853 100%)',
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-        /* ── Reset & Base ── */
-        * {
+        /* ===== CSS Variables ===== */
+        :root {
+            --primary: #0f1724;
+            --primary-light: #1a293b;
+            --secondary: #1e293b;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --accent-glow: rgba(245, 158, 11, 0.25);
+            --bg: #faf8f6;
+            --surface: #ffffff;
+            --surface-raised: #f8f6f2;
+            --text-primary: #0f1724;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e8e5e0;
+            --shadow-sm: 0 1px 3px rgba(15, 23, 36, 0.06);
+            --shadow-md: 0 8px 30px rgba(15, 23, 36, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 36, 0.12);
+            --shadow-glow: 0 8px 40px rgba(245, 158, 11, 0.2);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
+            --nav-height: 72px;
+            --header-height: 60px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
+
         html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 16px);
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #faf6ef;
-            color: #0b1120;
-            overflow-x: hidden;
-        }
 
-        /* ── Custom Scrollbar ── */
+        /* ===== Scrollbar ===== */
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -88,123 +82,429 @@
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: #d4a853;
-            border-radius: 20px;
+            background: var(--accent);
+            border-radius: var(--radius-full);
         }
 
-        /* ── Glassmorphism ── */
-        .glass {
-            background: rgba(255, 255, 255, 0.70);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            border: 1px solid rgba(255, 255, 255, 0.30);
-        }
-        .glass-dark {
-            background: rgba(11, 17, 32, 0.75);
-            backdrop-filter: blur(24px) saturate(1.6);
-            -webkit-backdrop-filter: blur(24px) saturate(1.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* ===== Typography ===== */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
-        /* ── Gold Gradient Text ── */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #d4a853 0%, #f0d68a 40%, #d4a853 80%);
+        h1 {
+            font-size: 2rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        h3 {
+            font-size: 1.25rem;
+        }
+        h4 {
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: inherit;
+            color: inherit;
+        }
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            border: none;
+            background: none;
+            color: inherit;
+            width: 100%;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ===== Utility ===== */
+        .hidden {
+            display: none !important;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ===== App Shell ===== */
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px 16px;
+            position: relative;
+        }
+
+        /* ===== Header ===== */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0 10px;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 30;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(250, 248, 246, 0.85);
+            border-bottom: 1px solid rgba(232, 229, 224, 0.5);
+            margin: 0 -16px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+        .app-header .logo i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        .app-header .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* ── Button Premium ── */
-        .btn-premium {
-            background: linear-gradient(135deg, #d4a853 0%, #e8c97a 50%, #d4a853 100%);
-            background-size: 200% 200%;
-            animation: shimmer 3s ease-in-out infinite;
-            color: #0b1120;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-actions .icon-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-full);
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        .header-actions .icon-btn:active {
+            transform: scale(0.92);
+        }
+        .header-actions .avatar-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--accent);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 600;
-            border: none;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 20px rgba(212, 168, 83, 0.30);
-        }
-        .btn-premium:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 32px rgba(212, 168, 83, 0.45);
-        }
-        .btn-premium:active {
-            transform: scale(0.97);
-        }
-        @keyframes shimmer {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        /* ── Card Hover ── */
-        .restaurant-card {
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-        .restaurant-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 24px 64px rgba(11, 17, 32, 0.12);
-        }
-
-        /* ── Rating Stars ── */
-        .star-filled {
-            color: #d4a853;
-        }
-        .star-empty {
-            color: #d1d5db;
-        }
-
-        /* ── Featured Badge ── */
-        .badge-featured {
-            background: linear-gradient(135deg, #d4a853, #f0d68a);
-            color: #0b1120;
-            font-weight: 700;
-            font-size: 0.6rem;
-            letter-spacing: 0.08em;
-            padding: 0.2rem 0.7rem;
-            border-radius: 40px;
-            box-shadow: 0 2px 12px rgba(212, 168, 83, 0.35);
-            text-transform: uppercase;
-        }
-
-        /* ── Ad Card ── */
-        .ad-card {
-            background: linear-gradient(145deg, #1a2a4a, #0b1120);
-            border: 1px solid rgba(212, 168, 83, 0.15);
-            position: relative;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
             overflow: hidden;
         }
-        .ad-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(212, 168, 83, 0.06), transparent 70%);
-            pointer-events: none;
+        .header-actions .avatar-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        .ad-tag {
-            background: rgba(212, 168, 83, 0.15);
-            color: #d4a853;
-            font-size: 0.55rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            padding: 0.15rem 0.6rem;
-            border-radius: 40px;
-            border: 1px solid rgba(212, 168, 83, 0.15);
+        .header-actions .avatar-btn:active {
+            transform: scale(0.92);
         }
 
-        /* ── Modal Overlay ── */
+        /* ===== Page Container ===== */
+        .page {
+            display: none;
+            animation: fadeUp 0.4s ease forwards;
+            padding-top: 6px;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== Bottom Navigation ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(232, 229, 224, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 8px 8px calc(8px + var(--safe-bottom));
+            z-index: 100;
+            height: calc(var(--nav-height) + var(--safe-bottom));
+            box-shadow: 0 -4px 30px rgba(15, 23, 36, 0.06);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            min-width: 56px;
+            position: relative;
+        }
+        .nav-item i {
+            font-size: 1.35rem;
+            transition: var(--transition);
+        }
+        .nav-item span {
+            transition: var(--transition);
+        }
+        .nav-item.active {
+            color: var(--accent);
+        }
+        .nav-item.active i {
+            transform: translateY(-2px);
+        }
+        .nav-item:active {
+            transform: scale(0.92);
+        }
+        .nav-item .badge {
+            position: absolute;
+            top: 2px;
+            right: 6px;
+            background: #ef4444;
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== Category Pills ===== */
+        .category-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 8px 0 14px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-pill {
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            padding: 10px 22px;
+            border-radius: var(--radius-full);
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            box-shadow: var(--shadow-sm);
+        }
+        .category-pill i {
+            font-size: 1rem;
+        }
+        .category-pill.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        .category-pill:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== Listing Cards ===== */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            padding: 4px 0 20px;
+        }
+
+        .listing-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(232, 229, 224, 0.4);
+            cursor: pointer;
+        }
+        .listing-card:active {
+            transform: scale(0.97);
+            box-shadow: var(--shadow-md);
+        }
+
+        .listing-card .image-wrap {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background: var(--surface-raised);
+            overflow: hidden;
+        }
+        .listing-card .image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .listing-card:hover .image-wrap img {
+            transform: scale(1.03);
+        }
+
+        .listing-card .image-wrap .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f0ede8, #e8e5e0);
+            color: var(--text-muted);
+            font-size: 2.5rem;
+        }
+
+        .listing-card .badge-category {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(15, 23, 36, 0.8);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .listing-card .badge-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(245, 158, 11, 0.92);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .listing-card .card-body {
+            padding: 12px 14px 14px;
+        }
+        .listing-card .card-body .title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .listing-card .card-body .price {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+        .listing-card .card-body .meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .listing-card .card-body .meta i {
+            margin-right: 4px;
+        }
+
+        /* ===== Detail / Modal ===== */
         .modal-overlay {
-            background: rgba(11, 17, 32, 0.70);
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 36, 0.6);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            animation: fadeIn 0.25s ease-out;
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
+        .modal-overlay.open {
+            display: flex;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -213,1586 +513,1899 @@
                 opacity: 1;
             }
         }
-        .modal-slide {
-            animation: slideUp 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        .modal-sheet {
+            background: var(--surface);
+            border-radius: var(--radius) var(--radius) 0 0;
+            max-width: 480px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+            padding: 20px 20px calc(20px + var(--safe-bottom));
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 -20px 60px rgba(15, 23, 36, 0.2);
         }
+
         @keyframes slideUp {
             from {
+                transform: translateY(40px);
                 opacity: 0;
-                transform: translateY(30px) scale(0.97);
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-sheet .handle {
+            width: 40px;
+            height: 4px;
+            background: var(--border);
+            border-radius: var(--radius-full);
+            margin: 0 auto 16px;
+        }
+
+        .modal-sheet .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--surface-raised);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .modal-sheet .close-btn:active {
+            transform: scale(0.9);
+        }
+
+        .modal-sheet .detail-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--surface-raised);
+            margin-bottom: 16px;
+        }
+        .modal-sheet .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-sheet .detail-image .placeholder-detail {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, #f0ede8, #e8e5e0);
+        }
+
+        .modal-sheet .detail-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .modal-sheet .detail-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .modal-sheet .detail-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .modal-sheet .detail-meta i {
+            margin-right: 4px;
+            color: var(--accent);
+        }
+        .modal-sheet .detail-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            padding: 14px;
+            background: var(--surface-raised);
+            border-radius: var(--radius-sm);
+        }
+
+        .modal-sheet .action-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .modal-sheet .action-row .btn-primary {
+            flex: 1;
+        }
+
+        /* ===== Buttons ===== */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: none;
+        }
+        .btn-primary:active {
+            transform: scale(0.96);
+        }
+        .btn-primary.accent {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-primary.accent:active {
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-primary.outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--border);
+            box-shadow: none;
+        }
+        .btn-primary.outline:active {
+            background: var(--surface-raised);
+        }
+        .btn-primary.small {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ===== Auth Forms ===== */
+        .auth-container {
+            max-width: 380px;
+            margin: 20px auto;
+            padding: 28px 24px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(232, 229, 224, 0.4);
+        }
+
+        .auth-container .auth-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .auth-container .auth-sub {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .form-group .input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border);
+            transition: var(--transition);
+            background: var(--surface);
+        }
+        .form-group .input-wrap:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+        .form-group .input-wrap i {
+            color: var(--text-muted);
+            font-size: 1rem;
+            width: 18px;
+        }
+        .form-group .input-wrap input,
+        .form-group .input-wrap textarea,
+        .form-group .input-wrap select {
+            background: transparent;
+            padding: 0;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+        .form-group .input-wrap textarea {
+            resize: vertical;
+            min-height: 80px;
+            padding: 4px 0;
+        }
+        .form-group .input-wrap select {
+            appearance: none;
+            padding-right: 8px;
+        }
+
+        .auth-link {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+        }
+        .auth-link a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ===== Create Listing ===== */
+        .create-form {
+            padding: 4px 0 12px;
+        }
+        .create-form .form-group .input-wrap {
+            padding: 10px 14px;
+        }
+        .create-form .image-upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            padding: 28px 16px;
+            text-align: center;
+            color: var(--text-muted);
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--surface-raised);
+        }
+        .create-form .image-upload-zone:active {
+            transform: scale(0.98);
+        }
+        .create-form .image-upload-zone i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+        .create-form .image-upload-zone .hint {
+            font-size: 0.8rem;
+        }
+        .create-form .image-preview {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .create-form .image-preview .preview-item {
+            width: 72px;
+            height: 72px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--surface-raised);
+            border: 1.5px solid var(--border);
+            position: relative;
+        }
+        .create-form .image-preview .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .create-form .image-preview .preview-item .remove-img {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: var(--radius-full);
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== Chat ===== */
+        .chat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 4px 0 12px;
+        }
+
+        .chat-thread {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(232, 229, 224, 0.4);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .chat-thread:active {
+            transform: scale(0.98);
+        }
+        .chat-thread .thread-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .chat-thread .thread-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .chat-thread .thread-info .name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .chat-thread .thread-info .last-msg {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chat-thread .thread-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* Chat detail */
+        .chat-detail-wrap {
+            display: flex;
+            flex-direction: column;
+            height: 65vh;
+            max-height: 560px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid rgba(232, 229, 224, 0.4);
+            overflow: hidden;
+        }
+
+        .chat-detail-wrap .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            background: var(--surface);
+        }
+        .chat-detail-wrap .chat-header .back-btn {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+        .chat-detail-wrap .chat-header .back-btn:active {
+            transform: scale(0.9);
+        }
+        .chat-detail-wrap .chat-header .chat-partner {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .chat-detail-wrap .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 16px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: var(--bg);
+        }
+
+        .chat-detail-wrap .messages .msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            animation: fadeUp 0.25s ease;
+            word-wrap: break-word;
+        }
+        .chat-detail-wrap .messages .msg.sent {
+            align-self: flex-end;
+            background: var(--primary);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-detail-wrap .messages .msg.received {
+            align-self: flex-start;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-detail-wrap .messages .msg .time {
+            font-size: 0.6rem;
+            opacity: 0.6;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .chat-detail-wrap .chat-input {
+            display: flex;
+            gap: 10px;
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            flex-shrink: 0;
+        }
+        .chat-detail-wrap .chat-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: var(--radius-full);
+            border: 1.5px solid var(--border);
+            background: var(--bg);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .chat-detail-wrap .chat-input input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+        .chat-detail-wrap .chat-input .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            background: var(--accent);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .chat-detail-wrap .chat-input .send-btn:active {
+            transform: scale(0.9);
+        }
+        .chat-detail-wrap .chat-input .send-btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ===== Profile ===== */
+        .profile-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid rgba(232, 229, 224, 0.4);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            margin: 8px 0 20px;
+        }
+        .profile-card .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-full);
+            background: var(--accent);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #fff;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+        }
+        .profile-card .profile-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .profile-card .profile-email {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .profile-card .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 12px 0 16px;
+        }
+        .profile-card .profile-stats .stat {
+            text-align: center;
+        }
+        .profile-card .profile-stats .stat .num {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .profile-card .profile-stats .stat .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* ===== Empty State ===== */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .empty-state h3 {
+            margin-bottom: 4px;
+        }
+        .empty-state p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== Toast ===== */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            width: calc(100% - 32px);
+            max-width: 440px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .toast {
+            pointer-events: auto;
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            background: var(--primary);
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
+            animation: slideDown 0.4s ease forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toast.success {
+            background: #0b5e42;
+        }
+        .toast.error {
+            background: #b91c1c;
+        }
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
 
-        /* ── Skeleton ── */
-        .skeleton {
-            background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
-            background-size: 200% 100%;
-            animation: shimmer-skeleton 1.5s infinite;
-            border-radius: 0.75rem;
+        /* ===== Loading Spinner ===== */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
         }
-        @keyframes shimmer-skeleton {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        /* ── Search Bar Premium ── */
-        .search-premium {
-            background: rgba(255, 255, 255, 0.80);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.50);
-            box-shadow: 0 4px 24px rgba(11, 17, 32, 0.06);
-            transition: all 0.3s ease;
-        }
-        .search-premium:focus-within {
-            box-shadow: 0 8px 40px rgba(212, 168, 83, 0.15);
-            border-color: #d4a853;
-            background: rgba(255, 255, 255, 0.92);
-        }
-
-        /* ── Category Pills ── */
-        .cat-pill {
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            background: rgba(255, 255, 255, 0.60);
-            border: 1px solid rgba(255, 255, 255, 0.40);
-            color: #4b5563;
-            transition: all 0.25s ease;
-            white-space: nowrap;
-            cursor: pointer;
-            backdrop-filter: blur(4px);
-        }
-        .cat-pill.active {
-            background: #0b1120;
-            color: #fff;
-            border-color: #0b1120;
-            box-shadow: 0 4px 16px rgba(11, 17, 32, 0.15);
-        }
-        .cat-pill:active {
-            transform: scale(0.95);
-        }
-
-        /* ── Toast ── */
-        .toast {
-            background: #0b1120;
-            color: #fff;
-            border-radius: 1rem;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            box-shadow: 0 12px 40px rgba(11, 17, 32, 0.25);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        /* ── Responsive tweaks ── */
-        @media (max-width: 480px) {
-            .restaurant-card {
-                transform: none !important;
-            }
-            .restaurant-card:active {
-                transform: scale(0.98) !important;
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
 
-        /* ── Bottom nav safe area ── */
-        .bottom-nav {
-            padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+        .spinner-sm {
+            width: 16px;
+            height: 16px;
+            border-width: 2px;
+        }
+
+        /* ===== Responsive tweaks ===== */
+        @media (min-width: 480px) {
+            #app {
+                padding: 0 20px 20px;
+            }
+            .app-header {
+                padding-left: 20px;
+                padding-right: 20px;
+                margin: 0 -20px;
+            }
+            .bottom-nav {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .listings-grid {
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .listings-grid {
+                gap: 10px;
+            }
+            .listing-card .card-body .title {
+                font-size: 0.8rem;
+            }
+            .listing-card .card-body .price {
+                font-size: 0.9rem;
+            }
+            .modal-sheet {
+                padding: 16px 16px calc(16px + var(--safe-bottom));
+            }
+        }
+
+        /* ===== Misc ===== */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 6px 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .section-title .see-all {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 16px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* Chat unread indicator */
+        .unread-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block;
+            margin-left: 6px;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
 
-    <div id="root"></div>
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ─── CDN Scripts ─── -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js">
-    </script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js">
-    </script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js">
-    </script>
+    <!-- ===== APP ===== -->
+    <div id="app">
 
-    <!-- ─── APP ─── -->
-    <script type="text/babel">
-        const { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } = React;
+        <!-- ===== HEADER ===== -->
+        <header class="app-header" id="appHeader">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>Marketly</span>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="headerSearch" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="avatar-btn" id="headerAvatar" aria-label="Profile">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </header>
 
-        // ─── Supabase Client ───
-        const SUPABASE_URL = 'https://your-project.supabase.co';
-        const SUPABASE_ANON_KEY = 'your-anon-key';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        <!-- ===== PAGE: HOME ===== -->
+        <section class="page active" id="pageHome">
+            <!-- Category scroll -->
+            <div class="category-scroll" id="categoryScroll">
+                <button class="category-pill active" data-category="all">
+                    <i class="fas fa-th-large"></i> All
+                </button>
+                <button class="category-pill" data-category="phones">
+                    <i class="fas fa-mobile-alt"></i> Phones
+                </button>
+                <button class="category-pill" data-category="bikes">
+                    <i class="fas fa-bicycle"></i> Bikes
+                </button>
+                <button class="category-pill" data-category="furniture">
+                    <i class="fas fa-couch"></i> Furniture
+                </button>
+            </div>
 
-        // ─── Mock Data (fallback) ───
-        const MOCK_RESTAURANTS = [{
-            id: 'r1',
-            name: 'Krishnarpan',
-            cuisine: 'Newari • Traditional',
-            rating: 4.9,
-            reviews: 342,
-            price: '$$$',
-            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
-            featured: true,
-            sponsored: true,
-            description: 'Authentic Newari cuisine in a historic setting with live cultural performances.',
-            menu: [
-                { name: 'Samay Baji', price: 850, desc: 'Traditional Newari platter' },
-                { name: 'Choila', price: 650, desc: 'Spicy buffalo meat' },
-                { name: 'Yomari', price: 350, desc: 'Sweet dumpling with molasses' },
-            ],
-            offers: '20% off on lunch combos',
-            location: 'Patan Durbar Square',
-            tags: ['Newari', 'Cultural', 'Fine Dining'],
-        }, {
-            id: 'r2',
-            name: 'Thakali Bhancha',
-            cuisine: 'Thakali • Nepali',
-            rating: 4.7,
-            reviews: 218,
-            price: '$$',
-            image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
-            featured: true,
-            sponsored: false,
-            description: 'Home-style Thakali meals with organic ingredients from Mustang.',
-            menu: [
-                { name: 'Thakali Khana Set', price: 990, desc: 'Dal, bhat, tarkari, pickle' },
-                { name: 'Jhol Momo', price: 420, desc: 'Momo in spicy broth' },
-            ],
-            offers: 'Free dessert with combo',
-            location: 'Lazimpat, Kathmandu',
-            tags: ['Thakali', 'Organic', 'Set Meals'],
-        }, {
-            id: 'r3',
-            name: 'Garden of Dreams',
-            cuisine: 'Continental • Café',
-            rating: 4.6,
-            reviews: 156,
-            price: '$$',
-            image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=600&h=400&fit=crop',
-            featured: false,
-            sponsored: true,
-            description: 'Elegant garden café with European-inspired dishes and artisan coffee.',
-            menu: [
-                { name: 'Truffle Pasta', price: 1200, desc: 'Wild mushroom truffle pasta' },
-                { name: 'Flat White', price: 450, desc: 'Single origin espresso' },
-            ],
-            offers: 'Buy 1 get 1 free on coffee (2-4pm)',
-            location: 'Thamel, Kathmandu',
-            tags: ['Café', 'Continental', 'Garden'],
-        }, {
-            id: 'r4',
-            name: 'Bhojan Griha',
-            cuisine: 'Nepali • Fine Dining',
-            rating: 4.8,
-            reviews: 289,
-            price: '$$$',
-            image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
-            featured: true,
-            sponsored: false,
-            description: 'Royal Newari dining experience in a restored 19th-century mansion.',
-            menu: [
-                { name: 'Royal Thali', price: 1800, desc: 'Multi-course Nepali feast' },
-                { name: 'Mutton Sekuwa', price: 850, desc: 'Grilled spiced mutton' },
-            ],
-            offers: 'Complimentary welcome drink',
-            location: 'Dillibazar, Kathmandu',
-            tags: ['Royal', 'Newari', 'Heritage'],
-        }, {
-            id: 'r5',
-            name: 'Momo Magic',
-            cuisine: 'Street Food • Asian',
-            rating: 4.5,
-            reviews: 412,
-            price: '$',
-            image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&h=400&fit=crop',
-            featured: false,
-            sponsored: false,
-            description: 'The city\'s best momos with 12 varieties of dipping sauces.',
-            menu: [
-                { name: 'Steam Momo', price: 250, desc: 'Classic buffalo momo' },
-                { name: 'Kothey Momo', price: 300, desc: 'Pan-fried momo' },
-                { name: 'C Momo', price: 350, desc: 'Chilli garlic momo' },
-            ],
-            offers: '10% off on orders above 5 plates',
-            location: 'New Road, Kathmandu',
-            tags: ['Momo', 'Street Food', 'Budget'],
-        }, {
-            id: 'r6',
-            name: 'Himalayan Java',
-            cuisine: 'Café • Bakery',
-            rating: 4.4,
-            reviews: 178,
-            price: '$$',
-            image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
-            featured: false,
-            sponsored: false,
-            description: 'Specialty coffee roastery with Himalayan-inspired pastries.',
-            menu: [
-                { name: 'Pour Over', price: 550, desc: 'Single origin, light roast' },
-                { name: 'Apple Crumble', price: 390, desc: 'Warm spiced apple crumble' },
-            ],
-            offers: 'Free pastry with any coffee before 10am',
-            location: 'Jhamsikhel, Lalitpur',
-            tags: ['Coffee', 'Bakery', 'Work-friendly'],
-        }, ];
+            <!-- Listings -->
+            <div class="section-title">
+                <span>Recent Listings</span>
+                <span class="see-all" id="refreshListings" style="cursor:pointer;">
+                    <i class="fas fa-sync-alt"></i>
+                </span>
+            </div>
+            <div class="listings-grid" id="listingsGrid">
+                <!-- Rendered by JS -->
+                <div class="empty-state" style="grid-column:1/-1;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading listings…</p>
+                </div>
+            </div>
+        </section>
 
-        // ─── Context ───
-        const AppContext = createContext();
+        <!-- ===== PAGE: CREATE ===== -->
+        <section class="page" id="pageCreate">
+            <h2 style="margin: 4px 0 12px;">
+                <i class="fas fa-plus-circle" style="color:var(--accent);"></i> List an Item
+            </h2>
+            <form class="create-form" id="createForm">
+                <div class="form-group">
+                    <label for="listingTitle">Title</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-tag"></i>
+                        <input type="text" id="listingTitle" placeholder="e.g. iPhone 14 Pro Max" required />
+                    </div>
+                </div>
 
-        // ─── Main App ───
-        function App() {
-            const [user, setUser] = useState(null);
-            const [session, setSession] = useState(null);
-            const [loading, setLoading] = useState(true);
-            const [restaurants, setRestaurants] = useState(MOCK_RESTAURANTS);
-            const [filtered, setFiltered] = useState(MOCK_RESTAURANTS);
-            const [search, setSearch] = useState('');
-            const [category, setCategory] = useState('All');
-            const [favorites, setFavorites] = useState([]);
-            const [reviews, setReviews] = useState([]);
-            const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-            const [showAuth, setShowAuth] = useState(false);
-            const [authMode, setAuthMode] = useState('login');
-            const [authEmail, setAuthEmail] = useState('');
-            const [authPassword, setAuthPassword] = useState('');
-            const [authName, setAuthName] = useState('');
-            const [authLoading, setAuthLoading] = useState(false);
-            const [toast, setToast] = useState(null);
-            const [view, setView] = useState('home'); // home | detail | dashboard
-            const [dashboardTab, setDashboardTab] = useState('favorites');
+                <div class="form-group">
+                    <label for="listingPrice">Price ($)</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-dollar-sign"></i>
+                        <input type="number" id="listingPrice" placeholder="0.00" step="0.01" min="0" required />
+                    </div>
+                </div>
 
-            // ── Auth ──
-            useEffect(() => {
-                supabase.auth.getSession().then(({ data: { session } }) => {
-                    setSession(session);
-                    setUser(session?.user ?? null);
-                    setLoading(false);
-                });
+                <div class="form-group">
+                    <label for="listingCategory">Category</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-th-list"></i>
+                        <select id="listingCategory" required>
+                            <option value="">Select category</option>
+                            <option value="phones">Phones</option>
+                            <option value="bikes">Bikes</option>
+                            <option value="furniture">Furniture</option>
+                        </select>
+                    </div>
+                </div>
 
-                const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-                    setSession(session);
-                    setUser(session?.user ?? null);
-                    setLoading(false);
-                });
+                <div class="form-group">
+                    <label for="listingCondition">Condition</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-clipboard-check"></i>
+                        <select id="listingCondition" required>
+                            <option value="new">New</option>
+                            <option value="like-new">Like New</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                </div>
 
-                return () => listener?.subscription?.unsubscribe();
-            }, []);
+                <div class="form-group">
+                    <label for="listingDesc">Description</label>
+                    <div class="input-wrap">
+                        <i class="fas fa-align-left" style="align-self:flex-start;margin-top:4px;"></i>
+                        <textarea id="listingDesc" placeholder="Describe your item…" rows="3"></textarea>
+                    </div>
+                </div>
 
-            // ── Load favorites & reviews ──
-            useEffect(() => {
+                <div class="form-group">
+                    <label>Images</label>
+                    <div class="image-upload-zone" id="imageUploadZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <div class="hint">Tap to upload photos (max 4)</div>
+                        <input type="file" id="imageInput" accept="image/*" multiple style="display:none;" />
+                    </div>
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+
+                <button type="submit" class="btn-primary accent w-full" id="submitListingBtn">
+                    <i class="fas fa-check"></i> List Item
+                </button>
+                <div class="text-center mt-12" style="font-size:0.8rem;color:var(--text-muted);">
+                    You must be signed in to list items.
+                </div>
+            </form>
+        </section>
+
+        <!-- ===== PAGE: CHAT ===== -->
+        <section class="page" id="pageChat">
+            <h2 style="margin:4px 0 12px;">
+                <i class="fas fa-comment-dots" style="color:var(--accent);"></i> Messages
+            </h2>
+            <div id="chatListContainer">
+                <div class="chat-list" id="chatList">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <h3>No conversations</h3>
+                        <p>Start a chat from a listing detail.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat detail (hidden by default) -->
+            <div id="chatDetailWrap" class="hidden" style="margin-top:4px;">
+                <div class="chat-detail-wrap">
+                    <div class="chat-header">
+                        <button class="back-btn" id="chatBackBtn"><i class="fas fa-chevron-left"></i></button>
+                        <span class="chat-partner" id="chatPartnerName">User</span>
+                    </div>
+                    <div class="messages" id="chatMessages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type a message…" />
+                        <button class="send-btn" id="chatSendBtn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PAGE: PROFILE ===== -->
+        <section class="page" id="pageProfile">
+            <div id="profileContent">
+                <!-- Rendered by JS -->
+                <div class="text-center mt-20">
+                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--text-muted);"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-page="pageHome">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-page="pageCreate">
+                <i class="fas fa-plus-circle"></i>
+                <span>Sell</span>
+            </button>
+            <button class="nav-item" data-page="pageChat" id="navChat">
+                <i class="fas fa-comment-dots"></i>
+                <span>Chat</span>
+                <span class="badge hidden" id="chatBadge">0</span>
+            </button>
+            <button class="nav-item" data-page="pageProfile">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </button>
+        </nav>
+
+        <!-- ===== DETAIL MODAL ===== -->
+        <div class="modal-overlay" id="detailModal">
+            <div class="modal-sheet" style="position:relative;">
+                <div class="handle"></div>
+                <button class="close-btn" id="detailClose"><i class="fas fa-times"></i></button>
+                <div class="detail-image" id="detailImageWrap">
+                    <div class="placeholder-detail"><i class="fas fa-image"></i></div>
+                </div>
+                <div class="detail-title" id="detailTitle">Title</div>
+                <div class="detail-price" id="detailPrice">$0</div>
+                <div class="detail-meta" id="detailMeta">
+                    <span><i class="fas fa-tag"></i> <span id="detailCategory">Category</span></span>
+                    <span><i class="fas fa-clipboard-check"></i> <span id="detailCondition">Condition</span></span>
+                    <span><i class="fas fa-user"></i> <span id="detailSeller">Seller</span></span>
+                </div>
+                <div class="detail-desc" id="detailDesc">Description</div>
+                <div class="action-row">
+                    <button class="btn-primary accent" id="detailChatBtn">
+                        <i class="fas fa-comment"></i> Chat with Seller
+                    </button>
+                </div>
+                <div class="text-center mt-8" style="font-size:0.7rem;color:var(--text-muted);">
+                    Listing ID: <span id="detailId">—</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  SUPABASE CONFIG
+        // ============================================================
+        // ⚠️ Replace these with your own Supabase credentials.
+        const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
+        const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+
+        // ============================================================
+        //  STATE
+        // ============================================================
+        const state = {
+            user: null,
+            profile: null,
+            listings: [],
+            currentCategory: 'all',
+            selectedListingId: null,
+            chatThreads: [],
+            currentChatListingId: null,
+            currentChatOtherUserId: null,
+            chatSubscription: null,
+            uploadedImages: [], // File objects
+            imageUrls: [], // uploaded URLs
+        };
+
+        // ============================================================
+        //  SUPABASE CLIENT
+        // ============================================================
+        let supabase;
+        try {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (e) {
+            console.warn('Supabase not configured. Using mock mode.');
+            supabase = null;
+        }
+
+        // ============================================================
+        //  DOM REFS
+        // ============================================================
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        const pages = {
+            home: $('#pageHome'),
+            create: $('#pageCreate'),
+            chat: $('#pageChat'),
+            profile: $('#pageProfile'),
+        };
+
+        const navItems = $$('.nav-item');
+        const listingsGrid = $('#listingsGrid');
+        const categoryScroll = $('#categoryScroll');
+        const detailModal = $('#detailModal');
+        const toastContainer = $('#toastContainer');
+
+        // ============================================================
+        //  TOAST
+        // ============================================================
+        function toast(message, type = 'info') {
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            const icon = type === 'success' ? 'fa-check-circle' :
+                type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+            el.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+            toastContainer.appendChild(el);
+            setTimeout(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-10px)';
+                setTimeout(() => el.remove(), 400);
+            }, 3200);
+        }
+
+        // ============================================================
+        //  AUTH
+        // ============================================================
+        async function signUp(email, password, username) {
+            if (!supabase) { toast('Supabase not configured.', 'error'); return; }
+            try {
+                const { data, error } = await supabase.auth.signUp({ email, password });
+                if (error) throw error;
+                if (data.user) {
+                    // Create profile
+                    await supabase.from('profiles').upsert({
+                        id: data.user.id,
+                        username: username || email.split('@')[0],
+                        avatar_url: null,
+                    });
+                    toast('Account created! Please check your email to confirm.', 'success');
+                    await loadUser();
+                }
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        async function signIn(email, password) {
+            if (!supabase) { toast('Supabase not configured.', 'error'); return; }
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+                toast('Welcome back!', 'success');
+                await loadUser();
+                showPage('home');
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        async function signOut() {
+            if (!supabase) { toast('Supabase not configured.', 'error'); return; }
+            try {
+                await supabase.auth.signOut();
+                state.user = null;
+                state.profile = null;
+                renderProfile();
+                renderListings();
+                toast('Signed out.', 'info');
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        async function loadUser() {
+            if (!supabase) { state.user = null;
+                state.profile = null; return; }
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                state.user = user;
                 if (user) {
-                    loadFavorites();
-                    loadReviews();
-                } else {
-                    setFavorites([]);
-                    setReviews([]);
-                }
-            }, [user]);
-
-            async function loadFavorites() {
-                try {
-                    const { data, error } = await supabase
-                        .from('favorites')
-                        .select('restaurant_id')
-                        .eq('user_id', user.id);
-                    if (error) throw error;
-                    setFavorites(data.map(f => f.restaurant_id));
-                } catch (e) {
-                    console.warn('Favorites fallback', e);
-                    setFavorites(['r1', 'r3']);
-                }
-            }
-
-            async function loadReviews() {
-                try {
-                    const { data, error } = await supabase
-                        .from('reviews')
+                    const { data: profile } = await supabase
+                        .from('profiles')
                         .select('*')
-                        .eq('user_id', user.id);
-                    if (error) throw error;
-                    setReviews(data || []);
-                } catch (e) {
-                    console.warn('Reviews fallback', e);
-                    setReviews([{ id: 'rev1', restaurant_id: 'r1', rating: 5, comment: 'Amazing!', created_at: new Date()
-                            .toISOString() }]);
+                        .eq('id', user.id)
+                        .single();
+                    state.profile = profile;
+                } else {
+                    state.profile = null;
                 }
+                renderProfile();
+                renderListings();
+                renderChatList();
+                updateHeader();
+            } catch (e) {
+                state.user = null;
+                state.profile = null;
+                renderProfile();
+                updateHeader();
+            }
+        }
+
+        function updateHeader() {
+            const avatar = $('#headerAvatar');
+            if (state.user && state.profile) {
+                const name = state.profile.username || 'U';
+                avatar.innerHTML = name.charAt(0).toUpperCase();
+                avatar.style.background = 'var(--accent)';
+                avatar.style.color = '#fff';
+            } else {
+                avatar.innerHTML = '<i class="fas fa-user"></i>';
+                avatar.style.background = 'var(--surface)';
+                avatar.style.color = 'var(--text-secondary)';
+            }
+        }
+
+        // ============================================================
+        //  LISTINGS
+        // ============================================================
+        async function fetchListings(category = 'all') {
+            if (!supabase) {
+                // Mock data
+                const mock = [
+                    { id: '1', title: 'iPhone 14 Pro Max', price: 899, category: 'phones', condition: 'like-new',
+                        description: 'Excellent condition, 256GB, deep purple.', seller_id: 'mock', seller_name: 'Alex J.',
+                        images: [], created_at: new Date().toISOString() },
+                    { id: '2', title: 'Trek FX 3 Disc', price: 650, category: 'bikes', condition: 'good',
+                        description: 'Hybrid bike, size L, great for commuting.', seller_id: 'mock', seller_name: 'Sam R.',
+                        images: [], created_at: new Date().toISOString() },
+                    { id: '3', title: 'Mid-Century Sofa', price: 420, category: 'furniture', condition: 'good',
+                        description: 'Beautiful green velvet sofa, 80" wide.', seller_id: 'mock', seller_name: 'Mia T.',
+                        images: [], created_at: new Date().toISOString() },
+                ];
+                state.listings = mock;
+                renderListings();
+                return;
             }
 
-            async function toggleFavorite(restaurantId) {
-                if (!user) {
-                    setShowAuth(true);
+            try {
+                let query = supabase
+                    .from('listings')
+                    .select(`
+                *,
+                profiles: seller_id (username)
+              `)
+                    .eq('status', 'active')
+                    .order('created_at', { ascending: false });
+
+                if (category !== 'all') {
+                    query = query.eq('category', category);
+                }
+
+                const { data, error } = await query;
+                if (error) throw error;
+                state.listings = data || [];
+                renderListings();
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        function renderListings() {
+            const grid = listingsGrid;
+            const listings = state.listings;
+
+            if (!listings || listings.length === 0) {
+                grid.innerHTML = `
+              <div class="empty-state" style="grid-column:1/-1;">
+                <i class="fas fa-store"></i>
+                <h3>No listings yet</h3>
+                <p>Be the first to list an item!</p>
+                ${state.user ? '' : '<button class="btn-primary accent small mt-12" onclick="showPage(\'profile\')">Sign in to sell</button>'}
+              </div>
+            `;
+                return;
+            }
+
+            grid.innerHTML = listings.map(l => {
+                const imgUrl = l.images && l.images.length > 0 ? l.images[0] : null;
+                const sellerName = l.profiles?.username || l.seller_name || 'Seller';
+                const catIcon = getCategoryIcon(l.category);
+
+                return `
+              <div class="listing-card" data-id="${l.id}">
+                <div class="image-wrap">
+                  ${imgUrl ? `<img src="${imgUrl}" alt="${l.title}" loading="lazy" />` :
+                    `<div class="placeholder-img"><i class="fas ${catIcon}"></i></div>`}
+                  <span class="badge-category">${l.category || 'item'}</span>
+                  ${l.condition ? `<span class="badge-status">${l.condition}</span>` : ''}
+                </div>
+                <div class="card-body">
+                  <div class="title">${l.title}</div>
+                  <div class="price">$${Number(l.price).toFixed(0)}</div>
+                  <div class="meta">
+                    <span><i class="fas fa-user"></i> ${sellerName}</span>
+                    <span><i class="far fa-clock"></i> ${timeAgo(l.created_at)}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+            }).join('');
+
+            // Click to open detail
+            grid.querySelectorAll('.listing-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.id;
+                    const listing = state.listings.find(l => l.id === id);
+                    if (listing) openDetail(listing);
+                });
+            });
+        }
+
+        function getCategoryIcon(cat) {
+            const map = { phones: 'fa-mobile-alt', bikes: 'fa-bicycle', furniture: 'fa-couch' };
+            return map[cat] || 'fa-box';
+        }
+
+        // ============================================================
+        //  CREATE LISTING
+        // ============================================================
+        async function createListing(data) {
+            if (!supabase) { toast('Supabase not configured.', 'error'); return; }
+            if (!state.user) { toast('Please sign in to list an item.', 'error'); return; }
+
+            try {
+                const { data: listing, error } = await supabase
+                    .from('listings')
+                    .insert({
+                        title: data.title,
+                        price: parseFloat(data.price),
+                        category: data.category,
+                        condition: data.condition,
+                        description: data.description,
+                        seller_id: state.user.id,
+                        status: 'active',
+                        images: data.images || [],
+                    })
+                    .select()
+                    .single();
+
+                if (error) throw error;
+                toast('Listing created!', 'success');
+                await fetchListings(state.currentCategory);
+                showPage('home');
+                return listing;
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        // ============================================================
+        //  IMAGE UPLOAD
+        // ============================================================
+        async function uploadImages(files) {
+            if (!supabase) return files.map(f => URL.createObjectURL(f)); // mock
+            const urls = [];
+            for (const file of files) {
+                try {
+                    const ext = file.name.split('.').pop();
+                    const path = `${Date.now()}-${Math.random().toString(36).slice(2,6)}.${ext}`;
+                    const { data, error } = await supabase.storage
+                        .from('listing-images')
+                        .upload(path, file);
+                    if (error) throw error;
+                    const { data: { publicUrl } } = supabase.storage
+                        .from('listing-images')
+                        .getPublicUrl(path);
+                    urls.push(publicUrl);
+                } catch (e) {
+                    toast(`Image upload failed: ${e.message}`, 'error');
+                }
+            }
+            return urls;
+        }
+
+        // ============================================================
+        //  CHAT
+        // ============================================================
+        async function fetchChatThreads() {
+            if (!supabase || !state.user) {
+                state.chatThreads = [];
+                renderChatList();
+                return;
+            }
+
+            try {
+                // Get all messages where user is sender or receiver, grouped by listing and other user
+                const { data, error } = await supabase
+                    .from('messages')
+                    .select(`
+                *,
+                sender:sender_id (username),
+                receiver:receiver_id (username),
+                listing:listing_id (title)
+              `)
+                    .or(`sender_id.eq.${state.user.id},receiver_id.eq.${state.user.id}`)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                // Group by (listing_id, other_user_id)
+                const map = new Map();
+                (data || []).forEach(msg => {
+                    const otherId = msg.sender_id === state.user.id ? msg.receiver_id : msg.sender_id;
+                    const key = `${msg.listing_id}-${otherId}`;
+                    if (!map.has(key) || new Date(msg.created_at) > new Date(map.get(key).created_at)) {
+                        map.set(key, { ...msg, other_user_id: otherId });
+                    }
+                });
+
+                state.chatThreads = Array.from(map.values());
+                renderChatList();
+                updateChatBadge();
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        function renderChatList() {
+            const container = $('#chatList');
+            const threads = state.chatThreads;
+
+            if (!threads || threads.length === 0) {
+                container.innerHTML = `
+              <div class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <h3>No conversations</h3>
+                <p>Start a chat from a listing detail.</p>
+              </div>
+            `;
+                return;
+            }
+
+            container.innerHTML = threads.map(t => {
+                const otherName = t.sender?.username || t.receiver?.username || 'User';
+                const listingTitle = t.listing?.title || 'Listing';
+                const preview = t.content || '…';
+                return `
+              <div class="chat-thread" data-listing="${t.listing_id}" data-other="${t.other_user_id}">
+                <div class="thread-avatar">${otherName.charAt(0).toUpperCase()}</div>
+                <div class="thread-info">
+                  <div class="name">${otherName} <span style="font-weight:400;font-size:0.75rem;color:var(--text-muted);">· ${listingTitle}</span></div>
+                  <div class="last-msg">${preview}</div>
+                </div>
+                <div class="thread-time">${timeAgo(t.created_at)}</div>
+              </div>
+            `;
+            }).join('');
+
+            container.querySelectorAll('.chat-thread').forEach(el => {
+                el.addEventListener('click', () => {
+                    const listingId = el.dataset.listing;
+                    const otherId = el.dataset.other;
+                    openChat(listingId, otherId);
+                });
+            });
+        }
+
+        function updateChatBadge() {
+            const badge = $('#chatBadge');
+            // For simplicity, just show total threads count
+            const count = state.chatThreads.length;
+            if (count > 0) {
+                badge.textContent = count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // Open chat detail
+        async function openChat(listingId, otherUserId) {
+            if (!state.user) { toast('Please sign in to chat.', 'error'); return; }
+            state.currentChatListingId = listingId;
+            state.currentChatOtherUserId = otherUserId;
+
+            // Get listing title and other user name
+            const listing = state.listings.find(l => l.id === listingId);
+            const listingTitle = listing?.title || 'Listing';
+
+            let otherName = 'User';
+            if (supabase) {
+                try {
+                    const { data } = await supabase
+                        .from('profiles')
+                        .select('username')
+                        .eq('id', otherUserId)
+                        .single();
+                    if (data) otherName = data.username;
+                } catch (_) {}
+            }
+
+            $('#chatPartnerName').textContent = otherName;
+
+            // Show chat detail, hide list
+            $('#chatListContainer').classList.add('hidden');
+            $('#chatDetailWrap').classList.remove('hidden');
+
+            // Load messages
+            await loadChatMessages(listingId, otherUserId);
+
+            // Subscribe to new messages
+            subscribeToChat(listingId, otherUserId);
+
+            // Focus input
+            $('#chatInput').focus();
+        }
+
+        async function loadChatMessages(listingId, otherUserId) {
+            if (!supabase || !state.user) return;
+            const container = $('#chatMessages');
+
+            try {
+                const { data, error } = await supabase
+                    .from('messages')
+                    .select('*')
+                    .eq('listing_id', listingId)
+                    .or(`and(sender_id.eq.${state.user.id},receiver_id.eq.${otherUserId}),and(sender_id.eq.${otherUserId},receiver_id.eq.${state.user.id})`)
+                    .order('created_at', { ascending: true });
+
+                if (error) throw error;
+
+                container.innerHTML = (data || []).map(msg => {
+                    const isSent = msg.sender_id === state.user.id;
+                    return `
+                <div class="msg ${isSent ? 'sent' : 'received'}">
+                  ${msg.content}
+                  <span class="time">${timeAgo(msg.created_at)}</span>
+                </div>
+              `;
+                }).join('');
+
+                container.scrollTop = container.scrollHeight;
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        function subscribeToChat(listingId, otherUserId) {
+            if (!supabase || !state.user) return;
+            // Clean up old subscription
+            if (state.chatSubscription) {
+                state.chatSubscription.unsubscribe();
+            }
+
+            state.chatSubscription = supabase
+                .channel(`chat-${listingId}`)
+                .on(
+                    'postgres_changes', {
+                        event: 'INSERT',
+                        schema: 'public',
+                        table: 'messages',
+                        filter: `listing_id=eq.${listingId}`,
+                    },
+                    (payload) => {
+                        const msg = payload.new;
+                        // Only show if it's for this conversation
+                        if ((msg.sender_id === state.user.id && msg.receiver_id === otherUserId) ||
+                            (msg.sender_id === otherUserId && msg.receiver_id === state.user.id)) {
+                            appendChatMessage(msg);
+                        }
+                    }
+                )
+                .subscribe();
+        }
+
+        function appendChatMessage(msg) {
+            const container = $('#chatMessages');
+            const isSent = msg.sender_id === state.user.id;
+            const el = document.createElement('div');
+            el.className = `msg ${isSent ? 'sent' : 'received'}`;
+            el.innerHTML = `${msg.content}<span class="time">${timeAgo(msg.created_at)}</span>`;
+            container.appendChild(el);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function sendChatMessage() {
+            const input = $('#chatInput');
+            const content = input.value.trim();
+            if (!content || !state.currentChatListingId || !state.currentChatOtherUserId) return;
+            if (!state.user) { toast('Please sign in.', 'error'); return; }
+            if (!supabase) { toast('Supabase not configured.', 'error'); return; }
+
+            try {
+                const { error } = await supabase
+                    .from('messages')
+                    .insert({
+                        listing_id: state.currentChatListingId,
+                        sender_id: state.user.id,
+                        receiver_id: state.currentChatOtherUserId,
+                        content: content,
+                    });
+
+                if (error) throw error;
+                input.value = '';
+                // Optimistically add to UI (will also come via subscription)
+                // But we'll let the subscription handle it.
+                // However we need to show it immediately:
+                const msg = {
+                    content,
+                    sender_id: state.user.id,
+                    receiver_id: state.currentChatOtherUserId,
+                    listing_id: state.currentChatListingId,
+                    created_at: new Date().toISOString(),
+                };
+                appendChatMessage(msg);
+            } catch (e) {
+                toast(e.message, 'error');
+            }
+        }
+
+        function closeChatDetail() {
+            if (state.chatSubscription) {
+                state.chatSubscription.unsubscribe();
+                state.chatSubscription = null;
+            }
+            $('#chatListContainer').classList.remove('hidden');
+            $('#chatDetailWrap').classList.add('hidden');
+            state.currentChatListingId = null;
+            state.currentChatOtherUserId = null;
+            fetchChatThreads();
+        }
+
+        // ============================================================
+        //  DETAIL MODAL
+        // ============================================================
+        function openDetail(listing) {
+            state.selectedListingId = listing.id;
+
+            const imgWrap = $('#detailImageWrap');
+            const imgUrl = listing.images && listing.images.length > 0 ? listing.images[0] : null;
+            if (imgUrl) {
+                imgWrap.innerHTML = `<img src="${imgUrl}" alt="${listing.title}" />`;
+            } else {
+                const icon = getCategoryIcon(listing.category);
+                imgWrap.innerHTML =
+                    `<div class="placeholder-detail"><i class="fas ${icon}"></i></div>`;
+            }
+
+            $('#detailTitle').textContent = listing.title;
+            $('#detailPrice').textContent = `$${Number(listing.price).toFixed(0)}`;
+            $('#detailCategory').textContent = listing.category || '—';
+            $('#detailCondition').textContent = listing.condition || '—';
+            const sellerName = listing.profiles?.username || listing.seller_name || 'Seller';
+            $('#detailSeller').textContent = sellerName;
+            $('#detailDesc').textContent = listing.description || 'No description provided.';
+            $('#detailId').textContent = listing.id;
+
+            // Chat button
+            const chatBtn = $('#detailChatBtn');
+            if (state.user && listing.seller_id !== state.user.id) {
+                chatBtn.style.display = 'flex';
+                chatBtn.onclick = () => {
+                    detailModal.classList.remove('open');
+                    const otherId = listing.seller_id;
+                    openChat(listing.id, otherId);
+                    showPage('chat');
+                };
+            } else if (state.user && listing.seller_id === state.user.id) {
+                chatBtn.style.display = 'flex';
+                chatBtn.textContent = 'Your Listing';
+                chatBtn.disabled = true;
+                chatBtn.style.opacity = '0.5';
+                chatBtn.style.cursor = 'default';
+                chatBtn.onclick = null;
+            } else {
+                chatBtn.style.display = 'flex';
+                chatBtn.textContent = 'Sign in to Chat';
+                chatBtn.onclick = () => {
+                    toast('Please sign in to chat.', 'info');
+                    showPage('profile');
+                    detailModal.classList.remove('open');
+                };
+            }
+
+            detailModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            detailModal.classList.remove('open');
+            document.body.style.overflow = '';
+            // Reset chat button
+            const btn = $('#detailChatBtn');
+            btn.textContent = 'Chat with Seller';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        }
+
+        // ============================================================
+        //  PROFILE
+        // ============================================================
+        function renderProfile() {
+            const container = $('#profileContent');
+            const user = state.user;
+            const profile = state.profile;
+
+            if (!user) {
+                container.innerHTML = `
+              <div class="auth-container">
+                <div class="auth-title">Welcome</div>
+                <div class="auth-sub">Sign in to access your account and start selling.</div>
+                <form id="signinForm">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="signinEmail" placeholder="you@email.com" required /></div>
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="signinPassword" placeholder="••••••••" required /></div>
+                  </div>
+                  <button type="submit" class="btn-primary accent w-full">Sign In</button>
+                </form>
+                <div class="auth-link">Don't have an account? <a href="#" id="showSignup">Sign Up</a></div>
+                <div id="signupForm" class="hidden mt-16" style="border-top:1px solid var(--border);padding-top:16px;">
+                  <form id="signupFormInner">
+                    <div class="form-group">
+                      <label>Username</label>
+                      <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="signupUsername" placeholder="Your name" /></div>
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="signupEmail" placeholder="you@email.com" required /></div>
+                    </div>
+                    <div class="form-group">
+                      <label>Password</label>
+                      <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="signupPassword" placeholder="••••••••" required /></div>
+                    </div>
+                    <button type="submit" class="btn-primary w-full">Create Account</button>
+                  </form>
+                  <div class="auth-link mt-12"><a href="#" id="showSignin">← Back to Sign In</a></div>
+                </div>
+              </div>
+            `;
+
+                // Sign in handler
+                $('#signinForm').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = $('#signinEmail').value;
+                    const password = $('#signinPassword').value;
+                    await signIn(email, password);
+                });
+
+                // Toggle signup
+                $('#showSignup').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    $('#signinForm').classList.add('hidden');
+                    $('#signupForm').classList.remove('hidden');
+                });
+                $('#showSignin').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    $('#signinForm').classList.remove('hidden');
+                    $('#signupForm').classList.add('hidden');
+                });
+
+                // Signup handler
+                $('#signupFormInner').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const username = $('#signupUsername').value || 'User';
+                    const email = $('#signupEmail').value;
+                    const password = $('#signupPassword').value;
+                    await signUp(email, password, username);
+                });
+
+                return;
+            }
+
+            // Signed in
+            const name = profile?.username || user.email?.split('@')[0] || 'User';
+            const email = user.email || '';
+            const listingCount = state.listings.filter(l => l.seller_id === user.id).length;
+
+            container.innerHTML = `
+            <div class="profile-card">
+              <div class="profile-avatar">${name.charAt(0).toUpperCase()}</div>
+              <div class="profile-name">${name}</div>
+              <div class="profile-email">${email}</div>
+              <div class="profile-stats">
+                <div class="stat"><div class="num">${listingCount}</div><div class="label">Listings</div></div>
+                <div class="stat"><div class="num">${state.chatThreads.length}</div><div class="label">Chats</div></div>
+              </div>
+              <button class="btn-primary outline w-full" id="signOutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+            </div>
+            <div style="text-align:center;font-size:0.75rem;color:var(--text-muted);padding:8px 0;">
+              <i class="fas fa-shield-alt"></i> Your data is secure with Supabase
+            </div>
+          `;
+
+            $('#signOutBtn').addEventListener('click', signOut);
+        }
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+        function showPage(pageId) {
+            // Hide all pages
+            Object.values(pages).forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+
+            // Update nav
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.page === pageId);
+            });
+
+            // If chat page, refresh threads
+            if (pageId === 'pageChat') {
+                fetchChatThreads();
+            }
+            if (pageId === 'pageProfile') {
+                renderProfile();
+            }
+            if (pageId === 'pageHome') {
+                fetchListings(state.currentCategory);
+            }
+        }
+
+        // ============================================================
+        //  TIME HELPERS
+        // ============================================================
+        function timeAgo(date) {
+            if (!date) return 'recent';
+            const diff = Date.now() - new Date(date).getTime();
+            const mins = Math.floor(diff / 60000);
+            if (mins < 1) return 'now';
+            if (mins < 60) return `${mins}m`;
+            const hrs = Math.floor(mins / 60);
+            if (hrs < 24) return `${hrs}h`;
+            const days = Math.floor(hrs / 24);
+            if (days < 7) return `${days}d`;
+            return new Date(date).toLocaleDateString();
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        async function init() {
+            // Load user
+            await loadUser();
+
+            // Fetch initial listings
+            await fetchListings('all');
+
+            // Fetch chat threads
+            await fetchChatThreads();
+
+            // ---- EVENT BINDING ----
+
+            // Category filter
+            categoryScroll.addEventListener('click', async (e) => {
+                const pill = e.target.closest('.category-pill');
+                if (!pill) return;
+                categoryScroll.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                state.currentCategory = pill.dataset.category;
+                await fetchListings(state.currentCategory);
+            });
+
+            // Nav
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const pageId = item.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            // Header avatar -> profile
+            $('#headerAvatar').addEventListener('click', () => showPage('pageProfile'));
+
+            // Refresh listings
+            $('#refreshListings').addEventListener('click', () => fetchListings(state.currentCategory));
+
+            // Detail modal close
+            $('#detailClose').addEventListener('click', closeDetail);
+            detailModal.addEventListener('click', (e) => {
+                if (e.target === detailModal) closeDetail();
+            });
+
+            // ---- CREATE FORM ----
+            const createForm = $('#createForm');
+            createForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!state.user) {
+                    toast('Please sign in to list an item.', 'error');
+                    showPage('profile');
                     return;
                 }
-                const isFav = favorites.includes(restaurantId);
-                try {
-                    if (isFav) {
-                        await supabase.from('favorites').delete().eq('user_id', user.id).eq('restaurant_id',
-                        restaurantId);
-                        setFavorites(favorites.filter(id => id !== restaurantId));
-                        showToast('Removed from favorites');
-                    } else {
-                        await supabase.from('favorites').insert({ user_id: user.id, restaurant_id: restaurantId });
-                        setFavorites([...favorites, restaurantId]);
-                        showToast('Added to favorites ✨');
-                    }
-                } catch (e) {
-                    // Fallback: local toggle
-                    if (isFav) {
-                        setFavorites(favorites.filter(id => id !== restaurantId));
-                    } else {
-                        setFavorites([...favorites, restaurantId]);
-                    }
-                    showToast(isFav ? 'Removed' : 'Added ✨');
-                }
-            }
 
-            async function submitReview(restaurantId, rating, comment) {
-                if (!user) { setShowAuth(true); return false; }
-                try {
-                    const { data, error } = await supabase.from('reviews').insert({
-                        user_id: user.id,
-                        restaurant_id: restaurantId,
-                        rating,
-                        comment,
-                        created_at: new Date().toISOString(),
+                const title = $('#listingTitle').value.trim();
+                const price = $('#listingPrice').value;
+                const category = $('#listingCategory').value;
+                const condition = $('#listingCondition').value;
+                const description = $('#listingDesc').value.trim();
+
+                if (!title || !price || !category) {
+                    toast('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                const btn = $('#submitListingBtn');
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner spinner-sm"></span> Creating…';
+
+                let imageUrls = [];
+                if (state.uploadedImages.length > 0) {
+                    imageUrls = await uploadImages(state.uploadedImages);
+                }
+
+                const result = await createListing({
+                    title,
+                    price,
+                    category,
+                    condition,
+                    description: description || 'No description provided.',
+                    images: imageUrls,
+                });
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check"></i> List Item';
+
+                if (result) {
+                    // Reset form
+                    createForm.reset();
+                    state.uploadedImages = [];
+                    state.imageUrls = [];
+                    $('#imagePreview').innerHTML = '';
+                }
+            });
+
+            // Image upload
+            const uploadZone = $('#imageUploadZone');
+            const fileInput = $('#imageInput');
+            uploadZone.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                const remaining = 4 - state.uploadedImages.length;
+                const toAdd = files.slice(0, remaining);
+                state.uploadedImages.push(...toAdd);
+                renderImagePreviews();
+                fileInput.value = '';
+            });
+
+            function renderImagePreviews() {
+                const container = $('#imagePreview');
+                container.innerHTML = state.uploadedImages.map((file, i) => `
+              <div class="preview-item">
+                <img src="${URL.createObjectURL(file)}" alt="preview" />
+                <button class="remove-img" data-index="${i}"><i class="fas fa-times"></i></button>
+              </div>
+            `).join('');
+
+                container.querySelectorAll('.remove-img').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const idx = parseInt(btn.dataset.index);
+                        state.uploadedImages.splice(idx, 1);
+                        renderImagePreviews();
                     });
-                    if (error) throw error;
-                    const newReview = { id: data?.[0]?.id || 'rev_' + Date.now(), restaurant_id: restaurantId, rating,
-                        comment, created_at: new Date().toISOString() };
-                    setReviews([...reviews, newReview]);
-                    showToast('Review posted! 🌟');
-                    return true;
-                } catch (e) {
-                    // Fallback: local
-                    const newReview = { id: 'rev_' + Date.now(), restaurant_id: restaurantId, rating, comment,
-                        created_at: new Date().toISOString() };
-                    setReviews([...reviews, newReview]);
-                    showToast('Review posted! 🌟');
-                    return true;
-                }
+                });
             }
 
-            function getRestaurantReviews(restaurantId) {
-                return reviews.filter(r => r.restaurant_id === restaurantId);
-            }
+            // ---- CHAT ----
+            $('#chatSendBtn').addEventListener('click', sendChatMessage);
+            $('#chatInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') sendChatMessage();
+            });
+            $('#chatBackBtn').addEventListener('click', closeChatDetail);
 
-            function isFavorite(id) { return favorites.includes(id); }
-
-            // ── Filtering ──
-            useEffect(() => {
-                let result = restaurants;
-                if (category !== 'All') {
-                    result = result.filter(r => r.cuisine.includes(category) || r.tags?.includes(category));
-                }
-                if (search.trim()) {
-                    const q = search.trim().toLowerCase();
-                    result = result.filter(r =>
-                        r.name.toLowerCase().includes(q) ||
-                        r.cuisine.toLowerCase().includes(q) ||
-                        r.location?.toLowerCase().includes(q)
-                    );
-                }
-                // Featured first
-                result = [...result].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-                setFiltered(result);
-            }, [search, category, restaurants]);
-
-            // ── Toast ──
-            function showToast(msg) {
-                setToast(msg);
-                clearTimeout(window.toastTimer);
-                window.toastTimer = setTimeout(() => setToast(null), 2800);
-            }
-
-            // ── Auth Handlers ──
-            async function handleAuthSubmit(e) {
-                e.preventDefault();
-                setAuthLoading(true);
-                try {
-                    if (authMode === 'login') {
-                        const { data, error } = await supabase.auth.signInWithPassword({
-                            email: authEmail,
-                            password: authPassword,
-                        });
-                        if (error) throw error;
-                        setShowAuth(false);
-                        showToast('Welcome back! 👋');
-                    } else {
-                        const { data, error } = await supabase.auth.signUp({
-                            email: authEmail,
-                            password: authPassword,
-                            options: { data: { full_name: authName } },
-                        });
-                        if (error) throw error;
-                        setShowAuth(false);
-                        showToast('Account created! 🎉');
+            // ---- KEYBOARD SHORTCUTS ----
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (detailModal.classList.contains('open')) closeDetail();
+                    if (!$('#chatListContainer').classList.contains('hidden') && $('#chatDetailWrap').classList
+                        .contains('hidden') === false) {
+                        closeChatDetail();
                     }
-                } catch (e) {
-                    showToast(e.message || 'Auth error');
-                } finally {
-                    setAuthLoading(false);
                 }
-            }
+            });
 
-            async function handleLogout() {
-                await supabase.auth.signOut();
-                setView('home');
-                showToast('Signed out');
-            }
+            // ---- AUTO-REFRESH every 60s ----
+            setInterval(() => {
+                if (document.getElementById('pageHome').classList.contains('active')) {
+                    fetchListings(state.currentCategory);
+                }
+            }, 60000);
 
-            // ── Categories ──
-            const categories = ['All', 'Newari', 'Thakali', 'Continental', 'Nepali', 'Café', 'Street Food', 'Asian'];
-
-            // ── Featured & Sponsored ──
-            const featuredRestaurants = restaurants.filter(r => r.featured);
-            const sponsoredRestaurants = restaurants.filter(r => r.sponsored);
-
-            // ── Context value ──
-            const ctx = {
-                user,
-                session,
-                loading,
-                restaurants,
-                filtered,
-                search,
-                setSearch,
-                category,
-                setCategory,
-                categories,
-                favorites,
-                isFavorite,
-                toggleFavorite,
-                reviews,
-                submitReview,
-                getRestaurantReviews,
-                selectedRestaurant,
-                setSelectedRestaurant,
-                showAuth,
-                setShowAuth,
-                authMode,
-                setAuthMode,
-                authEmail,
-                setAuthEmail,
-                authPassword,
-                setAuthPassword,
-                authName,
-                setAuthName,
-                authLoading,
-                handleAuthSubmit,
-                handleLogout,
-                toast,
-                showToast,
-                view,
-                setView,
-                dashboardTab,
-                setDashboardTab,
-                featuredRestaurants,
-                sponsoredRestaurants,
-                MOCK_RESTAURANTS,
-            };
-
-            return ( <
-                AppContext.Provider value = { ctx } >
-                <
-                RouterView / >
-                <
-                ToastManager / >
-                <
-                AuthModal / >
-                <
-                /AppContext.Provider>
-            );
+            console.log('🚀 Marketly initialized');
+            console.log(`👤 User: ${state.user?.email || 'not signed in'}`);
+            console.log(`📦 Listings: ${state.listings.length}`);
+            console.log(`💬 Chats: ${state.chatThreads.length}`);
         }
 
-        // ─── Router View ───
-        function RouterView() {
-            const { view, setView, selectedRestaurant } = useContext(AppContext);
-
-            if (view === 'detail' && selectedRestaurant) {
-                return <RestaurantDetailView / > ;
-            }
-            if (view === 'dashboard') {
-                return <DashboardView / > ;
-            }
-            return <HomeView / > ;
-        }
-
-        // ─── Home View ───
-        function HomeView() {
-            const {
-                user,
-                filtered,
-                search,
-                setSearch,
-                category,
-                setCategory,
-                categories,
-                toggleFavorite,
-                isFavorite,
-                setSelectedRestaurant,
-                setView,
-                showToast,
-                featuredRestaurants,
-                sponsoredRestaurants,
-                restaurants,
-                loading,
-            } = useContext(AppContext);
-
-            const [showSearch, setShowSearch] = useState(false);
-
-            // Ad spots
-            const adSlots = [
-                { id: 'ad1', title: 'Sponsor Your Restaurant', desc: 'Reach 10k+ foodies daily', cta: 'Advertise',
-                    bg: 'from-amber-700 to-amber-900' },
-                { id: 'ad2', title: 'Featured Listing', desc: 'Get premium visibility on top', cta: 'Learn More',
-                    bg: 'from-indigo-800 to-indigo-950' },
-            ];
-
-            return ( <
-                    div className = "min-h-screen bg-[#faf6ef] pb-24" >
-
-                    { /* ─── Header ─── */ } <
-                    header className = "sticky top-0 z-40 glass border-b border-white/30" >
-                    <
-                    div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
-                    <
-                    div className = "flex items-center gap-2" >
-                    <
-                    div className = "w-9 h-9 rounded-xl bg-gradient-gold flex items-center justify-center shadow-glow" >
-                    <
-                    i className = "fas fa-utensils text-[#0b1120] text-sm" > < /i> <
-                    /div> <
-                    div >
-                    <
-                    h1 className = "font-display text-lg font-bold leading-tight tracking-tight" >
-                    Blue < span className = "text-gold-gradient" > Bite < /span> <
-                    /h1> <
-                    p className = "text-[0.5rem] font-medium text-brand-slate tracking-[0.15em] uppercase" >
-                    Nepal < /p> <
-                    /div> <
-                    /div>
-
-                    <
-                    div className = "flex items-center gap-2" >
-                    <
-                    button onClick = {
-                        () => setShowSearch(!showSearch) }
-                    className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-slate hover:bg-white/80 transition-all" >
-                    <
-                    i className = "fas fa-search text-sm" > < /i> <
-                    /button> {
-                        user ? ( <
-                            button onClick = {
-                                () => setView('dashboard') }
-                            className = "w-9 h-9 rounded-full bg-brand-navy flex items-center justify-center text-white shadow-md hover:scale-105 transition-all" >
-                            <
-                            i className = "fas fa-user text-sm" > < /i> <
-                            /button>
-                        ) : ( <
-                            button onClick = {
-                                () => setShowAuth(true) }
-                            className = "btn-premium px-4 py-1.5 rounded-full text-xs font-semibold" >
-                            Sign In <
-                            /button>
-                        )
-                    } <
-                    /div> <
-                    /div>
-
-                    { /* Search Bar */ } {
-                        showSearch && ( <
-                            div className = "px-4 pb-3 max-w-lg mx-auto" >
-                            <
-                            div className = "search-premium rounded-2xl px-4 py-3 flex items-center gap-3" >
-                            <
-                            i className = "fas fa-search text-brand-slate/60 text-sm" > < /i> <
-                            input type = "text"
-                            placeholder = "Search restaurants, cuisines..."
-                            value = { search }
-                            onChange = {
-                                (e) => setSearch(e.target.value) }
-                            className = "flex-1 bg-transparent border-0 outline-none text-sm font-medium text-brand-navy placeholder:text-brand-slate/50" /
-                            >
-                            {
-                                search && ( <
-                                    button onClick = {
-                                        () => setSearch('') }
-                                    className = "text-brand-slate/50 hover:text-brand-navy transition-colors" >
-                                    <
-                                    i className = "fas fa-times-circle" > < /i> <
-                                    /button>
-                                )
-                            } <
-                            /div> <
-                            /div>
-                        )
-                    } <
-                    /header>
-
-                    { /* ─── Hero ─── */ } <
-                    section className = "px-4 pt-6 pb-2 max-w-lg mx-auto" >
-                    <
-                    div className = "relative rounded-3xl overflow-hidden bg-gradient-premium p-6 shadow-premium" >
-                    <
-                    div className = "absolute inset-0 bg-gradient-radial from-gold/10 via-transparent to-transparent pointer-events-none" >
-                    < /div> <
-                    div className = "relative z-10" >
-                    <
-                    span className = "badge-featured inline-block mb-3" >
-                    <
-                    i className = "fas fa-crown mr-1.5 text-[0.5rem]" > < /i> Discover Nepal’s Finest <
-                    /span> <
-                    h2 className = "font-display text-2xl font-bold text-white leading-tight" >
-                    Taste the < br / >
-                    < span className = "text-gold-gradient" > Himalaya < /span> <
-                    /h2> <
-                    p className = "text-sm text-white/70 mt-2 font-light leading-relaxed max-w-xs" >
-                    Curated restaurants, authentic flavors, and exclusive offers — all in one place. <
-                    /p> <
-                    div className = "mt-4 flex gap-2" >
-                    <
-                    button onClick = {
-                        () => setShowSearch(!showSearch) }
-                    className = "btn-premium px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-2" >
-                    <
-                    i className = "fas fa-compass" > < /i> Explore <
-                    /button> <
-                    button className = "glass-dark px-5 py-2 rounded-full text-xs font-medium text-white/90 border border-white/10 hover:bg-white/10 transition-all" >
-                    <
-                    i className = "fas fa-star mr-1.5 text-gold" > < /i> { restaurants.length } + spots <
-                    /button> <
-                    /div> <
-                    /div> <
-                    /div> <
-                    /section>
-
-                    { /* ─── Categories ─── */ } <
-                    section className = "px-4 py-4 max-w-lg mx-auto" >
-                    <
-                    div className = "flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar" style = { { scrollbarWidth: 'none',
-                            msOverflowStyle: 'none' } } >
-                    {
-                        categories.map(c => ( <
-                            button key = { c }
-                            onClick = {
-                                () => setCategory(c) }
-                            className = { `cat-pill ${category === c ? 'active' : ''}` } >
-                            { c } <
-                            /button>
-                        ))
-                    } <
-                    /div> <
-                    /section>
-
-                    { /* ─── Featured Banner ─── */ } {
-                        featuredRestaurants.length > 0 && ( <
-                            section className = "px-4 pb-2 max-w-lg mx-auto" >
-                            <
-                            div className = "flex items-center justify-between mb-2" >
-                            <
-                            span className = "text-xs font-semibold text-brand-navy/60 tracking-wider uppercase" >
-                            <
-                            i className = "fas fa-crown text-gold mr-1.5" > < /i> Featured <
-                            /span> <
-                            span className = "text-[0.55rem] font-medium text-brand-slate/50" > Sponsored < /span> <
-                            /div> <
-                            div className = "grid grid-cols-2 gap-3" > {
-                                featuredRestaurants.slice(0, 2).map(r => ( <
-                                    RestaurantCard key = { r.id }
-                                    restaurant = { r }
-                                    compact = { true }
-                                    />
-                                ))
-                            } <
-                            /div> <
-                            /section>
-                        )
-                    }
-
-                    { /* ─── Restaurant Grid ─── */ } <
-                    section className = "px-4 py-3 max-w-lg mx-auto" >
-                    <
-                    div className = "flex items-center justify-between mb-3" >
-                    <
-                    h3 className = "font-display text-lg font-bold text-brand-navy" >
-                    All Restaurants <
-                    /h3> <
-                    span className = "text-xs text-brand-slate/60 font-medium" > { filtered.length } found < /span> <
-                    /div>
-
-                    {
-                        loading ? ( <
-                            div className = "grid grid-cols-2 gap-3" > {
-                                [1, 2, 3, 4].map(i => ( <
-                                    div key = { i }
-                                    className = "rounded-2xl bg-white/40 p-3" >
-                                    <
-                                    div className = "skeleton h-32 w-full rounded-xl" > < /div> <
-                                    div className = "skeleton h-4 w-3/4 mt-3" > < /div> <
-                                    div className = "skeleton h-3 w-1/2 mt-2" > < /div> <
-                                    /div>
-                                ))
-                            } <
-                            /div>
-                        ) : filtered.length === 0 ? ( <
-                            div className = "text-center py-12" >
-                            <
-                            i className = "fas fa-search text-3xl text-brand-slate/20 mb-3" > < /i> <
-                            p className = "text-sm text-brand-slate/60" > No restaurants found < /p> <
-                            button onClick = {
-                                () => { setSearch('');
-                                setCategory('All') } }
-                            className = "text-gold text-xs font-medium mt-2 hover:underline" >
-                            Clear filters <
-                            /button> <
-                            /div>
-                        ) : ( <
-                            div className = "grid grid-cols-2 gap-3" > {
-                                filtered.map(r => ( <
-                                    RestaurantCard key = { r.id }
-                                    restaurant = { r }
-                                    />
-                                ))
-                            } <
-                            /div>
-                        )
-                    } <
-                    /section>
-
-                    { /* ─── Ad Banner ─── */ } <
-                    section className = "px-4 py-2 max-w-lg mx-auto" >
-                    <
-                    div className = "ad-card rounded-2xl p-4 shadow-premium" >
-                    <
-                    div className = "flex items-start gap-3 relative z-10" >
-                    <
-                    div className = "w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0" >
-                    <
-                    i className = "fas fa-bullhorn text-gold text-xl" > < /i> <
-                    /div> <
-                    div className = "flex-1" >
-                    <
-                    span className = "ad-tag" > < i className = "fas fa-sparkle mr-1" > < /i> Ad < /span> <
-                    h4 className = "text-white font-semibold text-sm mt-1" > Get Featured on BlueBite < /h4> <
-                    p className = "text-white/50 text-xs mt-0.5" > Boost visibility, attract more customers. < /p> <
-                    button className = "mt-2 text-xs font-semibold text-gold hover:text-goldLight transition-colors" >
-                    Learn More → <
-                    /button> <
-                    /div> <
-                    /div> <
-                    /div> <
-                    /section>
-
-                    { /* ─── Sponsored Grid ─── */ } {
-                        sponsoredRestaurants.length > 0 && ( <
-                            section className = "px-4 py-2 pb-6 max-w-lg mx-auto" >
-                            <
-                            div className = "flex items-center gap-2 mb-2" >
-                            <
-                            i className = "fas fa-bolt text-gold text-xs" > < /i> <
-                            span className = "text-xs font-semibold text-brand-navy/60 tracking-wider uppercase" >
-                            Sponsored <
-                            /span> <
-                            /div> <
-                            div className = "grid grid-cols-2 gap-3" > {
-                                sponsoredRestaurants.slice(0, 2).map(r => ( <
-                                    RestaurantCard key = { r.id }
-                                    restaurant = { r }
-                                    compact = { true }
-                                    />
-                                ))
-                            } <
-                            /div> <
-                            /section>
-                        )
-                    }
-
-                    { /* ─── Bottom Navigation ─── */ } <
-                    BottomNav / >
-
-                    <
-                    /div>
-                );
-            }
-
-            // ─── Restaurant Card ───
-            function RestaurantCard({ restaurant, compact = false }) {
-                const { toggleFavorite, isFavorite, setSelectedRestaurant, setView } = useContext(AppContext);
-                const fav = isFavorite(restaurant.id);
-
-                return ( <
-                        div className = { `restaurant-card bg-white/70 rounded-2xl overflow-hidden shadow-sm border border-white/40 cursor-pointer transition-all ${compact ? 'p-2' : 'p-3'}` }
-                        onClick = {
-                            () => { setSelectedRestaurant(restaurant);
-                                setView('detail'); } } >
-                        <
-                        div className = "relative" >
-                        <
-                        img src = { restaurant.image }
-                        alt = { restaurant.name }
-                        className = { `w-full object-cover rounded-xl ${compact ? 'h-28' : 'h-40'}` }
-                        loading = "lazy" /
-                        >
-                        {
-                            restaurant.featured && ( <
-                                span className = "absolute top-2 left-2 badge-featured text-[0.5rem] flex items-center gap-1" >
-                                <
-                                i className = "fas fa-crown text-[0.45rem]" > < /i> Featured <
-                                /span>
-                            )
-                        } {
-                            restaurant.sponsored && !restaurant.featured && ( <
-                                span className = "absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[0.5rem] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/10" >
-                                <
-                                i className = "fas fa-bolt text-gold text-[0.4rem]" > < /i> Sponsored <
-                                /span>
-                            )
-                        } <
-                        button onClick = {
-                            (e) => { e.stopPropagation();
-                                toggleFavorite(restaurant.id); } }
-                        className = { `absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center backdrop-blur-md transition-all ${fav ? 'bg-gold/90 text-brand-navy shadow-glow' : 'bg-white/40 text-white/70 hover:bg-white/60'}` } >
-                        <
-                        i className = { `fas fa-heart text-[0.7rem] ${fav ? 'text-brand-navy' : ''}` } > < /i> <
-                        /button> <
-                        /div>
-
-                        <
-                        div className = { `mt-2 ${compact ? 'space-y-0.5' : 'space-y-1'}` } >
-                        <
-                        div className = "flex items-start justify-between gap-1" >
-                        <
-                        h4 className = { `font-semibold text-brand-navy truncate ${compact ? 'text-sm' : 'text-base'}` } >
-                        { restaurant.name } <
-                        /h4> <
-                        span className = "text-[0.6rem] font-bold text-brand-slate/60 shrink-0" >
-                        { restaurant.price } <
-                        /span> <
-                        /div> <
-                        p className = "text-[0.6rem] text-brand-slate/70 truncate" >
-                        { restaurant.cuisine } <
-                        /p> <
-                        div className = "flex items-center gap-2 mt-0.5" >
-                        <
-                        div className = "flex items-center gap-0.5" >
-                        {
-                            [1, 2, 3, 4, 5].map(i => ( <
-                                i key = { i }
-                                className = { `fa-solid fa-star text-[0.5rem] ${i <= Math.round(restaurant.rating) ? 'text-gold' : 'text-gray-300'}` } >
-                                < /i>
-                            ))
-                        } <
-                        span className = "text-[0.55rem] font-bold text-brand-navy ml-0.5" >
-                        { restaurant.rating } < /span> <
-                        /div> <
-                        span className = "text-[0.5rem] text-brand-slate/50" >
-                        ({ restaurant.reviews }) < /span> <
-                        /div> {
-                            restaurant.offers && !compact && ( <
-                                div className = "mt-1.5 flex items-center gap-1.5 bg-gold/10 rounded-full px-2 py-0.5 border border-gold/15" >
-                                <
-                                i className = "fas fa-tag text-gold text-[0.45rem]" > < /i> <
-                                span className = "text-[0.55rem] font-medium text-brand-navy/80 truncate" >
-                                { restaurant.offers } < /span> <
-                                /div>
-                            )
-                        } <
-                        /div> <
-                        /div>
-                    );
-                }
-
-                // ─── Restaurant Detail View ───
-                function RestaurantDetailView() {
-                    const { selectedRestaurant, setView, toggleFavorite, isFavorite, user, submitReview, getRestaurantReviews,
-                        showToast } =
-                        useContext(AppContext);
-                    const r = selectedRestaurant;
-                    const [reviewRating, setReviewRating] = useState(5);
-                    const [reviewComment, setReviewComment] = useState('');
-                    const [submitting, setSubmitting] = useState(false);
-                    const [activeTab, setActiveTab] = useState('menu');
-
-                    if (!r) return null;
-
-                    const fav = isFavorite(r.id);
-                    const reviewsList = getRestaurantReviews(r.id);
-
-                    async function handleReviewSubmit(e) {
-                        e.preventDefault();
-                        if (!user) { showToast('Please sign in to review'); return; }
-                        if (!reviewComment.trim()) { showToast('Please write a comment'); return; }
-                        setSubmitting(true);
-                        const ok = await submitReview(r.id, reviewRating, reviewComment);
-                        setSubmitting(false);
-                        if (ok) { setReviewComment('');
-                            setReviewRating(5); }
-                    }
-
-                    return ( <
-                            div className = "min-h-screen bg-[#faf6ef] pb-28" >
-                            { /* Header */ } <
-                            header className = "sticky top-0 z-40 glass border-b border-white/30" >
-                            <
-                            div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
-                            <
-                            button onClick = {
-                                () => setView('home') }
-                            className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-navy hover:bg-white/80 transition-all" >
-                            <
-                            i className = "fas fa-arrow-left" > < /i> <
-                            /button> <
-                            span className = "font-display text-sm font-bold text-brand-navy" > Details < /span> <
-                            button onClick = {
-                                () => toggleFavorite(r.id) }
-                            className = { `w-9 h-9 rounded-full flex items-center justify-center transition-all ${fav ? 'bg-gold/90 text-brand-navy shadow-glow' : 'bg-white/50 text-brand-slate'}` } >
-                            <
-                            i className = { `fas fa-heart ${fav ? 'text-brand-navy' : ''}` } > < /i> <
-                            /button> <
-                            /div> <
-                            /header>
-
-                            { /* Hero Image */ } <
-                            div className = "relative w-full h-64 overflow-hidden" >
-                            <
-                            img src = { r.image }
-                            alt = { r.name }
-                            className = "w-full h-full object-cover" / >
-                            <
-                            div className = "absolute inset-0 bg-gradient-to-t from-[#faf6ef] via-transparent to-transparent" >
-                            < /div> {
-                                r.featured && ( <
-                                    span className = "absolute top-4 left-4 badge-featured text-xs flex items-center gap-1.5" >
-                                    <
-                                    i className = "fas fa-crown" > < /i> Featured <
-                                    /span>
-                                )
-                            } {
-                                r.sponsored && !r.featured && ( <
-                                    span className = "absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 border border-white/10" >
-                                    <
-                                    i className = "fas fa-bolt text-gold" > < /i> Sponsored <
-                                    /span>
-                                )
-                            } <
-                            /div>
-
-                            { /* Info */ } <
-                            div className = "px-4 -mt-6 relative z-10 max-w-lg mx-auto" >
-                            <
-                            div className = "bg-white/80 backdrop-blur-xl rounded-3xl p-5 shadow-premium border border-white/50" >
-                            <
-                            div className = "flex items-start justify-between" >
-                            <
-                            div >
-                            <
-                            h2 className = "font-display text-2xl font-bold text-brand-navy" > { r.name } < /h2> <
-                            p className = "text-sm text-brand-slate/70 mt-0.5" > { r.cuisisine } • { r.location } < /p> <
-                            /div> <
-                            span className = "text-lg font-bold text-brand-navy" > { r.price } < /span> <
-                            /div>
-
-                            <
-                            div className = "flex items-center gap-4 mt-3" >
-                            <
-                            div className = "flex items-center gap-1" >
-                            {
-                                [1, 2, 3, 4, 5].map(i => ( <
-                                    i key = { i }
-                                    className = { `fa-solid fa-star ${i <= Math.round(r.rating) ? 'text-gold' : 'text-gray-300'}` } >
-                                    < /i>
-                                ))
-                            } <
-                            span className = "ml-1 font-bold text-brand-navy" > { r.rating } < /span> <
-                            span className = "text-sm text-brand-slate/50" > ({ r.reviews }) < /span> <
-                            /div> <
-                            /div>
-
-                            <
-                            p className = "text-sm text-brand-slate/80 mt-3 leading-relaxed" > { r.description } < /p>
-
-                            {
-                                r.offers && ( <
-                                    div className = "mt-3 bg-gold/10 rounded-xl px-3 py-2 border border-gold/20 flex items-center gap-2" >
-                                    <
-                                    i className = "fas fa-gift text-gold" > < /i> <
-                                    span className = "text-sm font-medium text-brand-navy" > { r.offers } < /span> <
-                                    /div>
-                                )
-                            }
-
-                            {
-                                r.tags && ( <
-                                    div className = "flex flex-wrap gap-1.5 mt-3" > {
-                                        r.tags.map(t => ( <
-                                            span key = { t }
-                                            className = "text-[0.6rem] font-medium bg-brand-navy/5 text-brand-slate/70 px-2.5 py-1 rounded-full" >
-                                            { t } <
-                                            /span>
-                                        ))
-                                    } <
-                                    /div>
-                                )
-                            } <
-                            /div> <
-                            /div>
-
-                            { /* Tabs */ } <
-                            div className = "px-4 mt-5 max-w-lg mx-auto" >
-                            <
-                            div className = "flex gap-1 bg-white/60 rounded-2xl p-1 border border-white/40" >
-                            <
-                            button onClick = {
-                                () => setActiveTab('menu') }
-                            className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'menu' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
-                            <
-                            i className = "fas fa-utensils mr-1.5" > < /i> Menu <
-                            /button> <
-                            button onClick = {
-                                () => setActiveTab('reviews') }
-                            className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'reviews' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
-                            <
-                            i className = "fas fa-star mr-1.5" > < /i> Reviews <
-                            span className = "ml-1 text-xs" > ({ reviewsList.length }) < /span> <
-                            /button> <
-                            /div> <
-                            /div>
-
-                            { /* Content */ } <
-                            div className = "px-4 mt-4 pb-8 max-w-lg mx-auto" >
-                            {
-                                activeTab === 'menu' ? ( <
-                                    div className = "space-y-3" > {
-                                        r.menu && r.menu.map((item, idx) => ( <
-                                            div key = { idx }
-                                            className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50 flex items-start justify-between gap-3" >
-                                            <
-                                            div >
-                                            <
-                                            h5 className = "font-semibold text-brand-navy text-sm" > { item.name } < /h5> <
-                                            p className = "text-xs text-brand-slate/60 mt-0.5" > { item.desc } < /p> <
-                                            /div> <
-                                            span className = "font-bold text-brand-navy text-sm shrink-0" >
-                                            Rs. { item.price } < /span> <
-                                            /div>
-                                        ))
-                                    } <
-                                    /div>
-                                ) : ( <
-                                    div className = "space-y-4" >
-                                    <
-                                    div className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50" >
-                                    <
-                                    h5 className = "font-semibold text-brand-navy text-sm mb-1" >
-                                    Write a Review <
-                                    /h5> <
-                                    form onSubmit = { handleReviewSubmit }
-                                    className = "space-y-3" >
-                                    <
-                                    div className = "flex items-center gap-2" >
-                                    <
-                                    span className = "text-xs text-brand-slate/60" > Rate: < /span> {
-                                        [1, 2, 3, 4, 5].map(i => ( <
-                                            button key = { i }
-                                            type = "button"
-                                            onClick = {
-                                                () => setReviewRating(i) }
-                                            className = { `text-xl transition-all ${i <= reviewRating ? 'text-gold scale-110' : 'text-gray-300'}` } >
-                                            <
-                                            i className = "fa-solid fa-star" > < /i> <
-                                            /button>
-                                        ))
-                                    } <
-                                    /div> <
-                                    textarea value = { reviewComment }
-                                    onChange = {
-                                        (e) => setReviewComment(e.target.value) }
-                                    placeholder = "Share your experience..."
-                                    className = "w-full bg-white/70 rounded-xl px-3 py-2 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all resize-none h-16" /
-                                    >
-                                    <
-                                    button type = "submit"
-                                    disabled = { submitting }
-                                    className = "btn-premium w-full py-2.5 rounded-xl text-sm font-semibold disabled:opacity-50" >
-                                    { submitting ? 'Posting...' : 'Post Review' } <
-                                    /button> <
-                                    /form> <
-                                    /div>
-
-                                    <
-                                    div className = "space-y-3" > {
-                                        reviewsList.length === 0 ? ( <
-                                            p className = "text-center text-sm text-brand-slate/50 py-6" >
-                                            No reviews yet. Be the first! <
-                                            /p>
-                                        ) : (
-                                            reviewsList.map(rev => ( <
-                                                div key = { rev.id }
-                                                className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50" >
-                                                <
-                                                div className = "flex items-center gap-2" >
-                                                <
-                                                div className = "flex items-center gap-0.5" > {
-                                                    [1, 2, 3, 4, 5].map(i => ( <
-                                                        i key = { i }
-                                                        className = { `fa-solid fa-star text-xs ${i <= rev.rating ? 'text-gold' : 'text-gray-300'}` } >
-                                                        < /i>
-                                                    ))
-                                                } <
-                                                /div> <
-                                                span className = "text-xs text-brand-slate/50" >
-                                                { new Date(rev.created_at).toLocaleDateString() } < /span> <
-                                                /div> <
-                                                p className = "text-sm text-brand-navy/80 mt-1" > { rev.comment } < /p> <
-                                                /div>
-                                            ))
-                                        )
-                                    } <
-                                    /div> <
-                                    /div>
-                                )
-                            } <
-                            /div>
-
-                            { /* Bottom Nav */ } <
-                            BottomNav / >
-
-                            <
-                            /div>
-                        );
-                    }
-
-                    // ─── Dashboard View ───
-                    function DashboardView() {
-                        const { user, setView, favorites, restaurants, reviews, handleLogout, dashboardTab, setDashboardTab,
-                            showToast } =
-                            useContext(AppContext);
-                        const [activeTab, setActiveTab] = useState(dashboardTab || 'favorites');
-
-                        useEffect(() => {
-                            setDashboardTab(activeTab);
-                        }, [activeTab]);
-
-                        const favRestaurants = restaurants.filter(r => favorites.includes(r.id));
-                        const userReviews = reviews;
-
-                        if (!user) {
-                            return ( <
-                                div className = "min-h-screen flex items-center justify-center p-6 bg-[#faf6ef]" >
-                                <
-                                div className = "text-center" >
-                                <
-                                i className = "fas fa-lock text-3xl text-brand-slate/30 mb-4" > < /i> <
-                                p className = "text-brand-navy font-medium" > Please sign in to view your dashboard < /p> <
-                                button onClick = {
-                                    () => setView('home') }
-                                className = "mt-4 btn-premium px-6 py-2 rounded-full text-sm" >
-                                Go Home <
-                                /button> <
-                                /div> <
-                                /div>
-                            );
-                        }
-
-                        return ( <
-                                div className = "min-h-screen bg-[#faf6ef] pb-28" >
-                                { /* Header */ } <
-                                header className = "sticky top-0 z-40 glass border-b border-white/30" >
-                                <
-                                div className = "px-4 py-3 flex items-center justify-between max-w-lg mx-auto" >
-                                <
-                                button onClick = {
-                                    () => setView('home') }
-                                className = "w-9 h-9 rounded-full bg-white/50 flex items-center justify-center text-brand-navy hover:bg-white/80 transition-all" >
-                                <
-                                i className = "fas fa-arrow-left" > < /i> <
-                                /button> <
-                                span className = "font-display text-sm font-bold text-brand-navy" > Dashboard < /span> <
-                                button onClick = { handleLogout }
-                                className = "text-xs font-medium text-brand-slate/60 hover:text-brand-navy transition-colors" >
-                                <
-                                i className = "fas fa-sign-out-alt mr-1" > < /i> Sign Out <
-                                /button> <
-                                /div> <
-                                /header>
-
-                                { /* User Info */ } <
-                                div className = "px-4 pt-4 max-w-lg mx-auto" >
-                                <
-                                div className = "bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white/50 shadow-premium" >
-                                <
-                                div className = "flex items-center gap-4" >
-                                <
-                                div className = "w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-glow" >
-                                <
-                                i className = "fas fa-user text-2xl text-brand-navy" > < /i> <
-                                /div> <
-                                div >
-                                <
-                                h3 className = "font-display text-lg font-bold text-brand-navy" >
-                                { user.user_metadata?.full_name || user.email?.split('@')[0] || 'Foodie' } <
-                                /h3> <
-                                p className = "text-xs text-brand-slate/60" > { user.email } < /p> <
-                                /div> <
-                                /div> <
-                                div className = "flex gap-4 mt-4 pt-4 border-t border-white/40" >
-                                <
-                                div >
-                                <
-                                span className = "block text-xl font-bold text-brand-navy" > { favorites.length } < /span> <
-                                span className = "text-[0.6rem] text-brand-slate/50 uppercase tracking-wider" >
-                                Favorites < /span> <
-                                /div> <
-                                div >
-                                <
-                                span className = "block text-xl font-bold text-brand-navy" > { userReviews.length } < /span> <
-                                span className = "text-[0.6rem] text-brand-slate/50 uppercase tracking-wider" >
-                                Reviews < /span> <
-                                /div> <
-                                /div> <
-                                /div> <
-                                /div>
-
-                                { /* Tabs */ } <
-                                div className = "px-4 mt-4 max-w-lg mx-auto" >
-                                <
-                                div className = "flex gap-1 bg-white/60 rounded-2xl p-1 border border-white/40" >
-                                <
-                                button onClick = {
-                                    () => setActiveTab('favorites') }
-                                className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'favorites' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
-                                <
-                                i className = "fas fa-heart mr-1.5" > < /i> Favorites <
-                                /button> <
-                                button onClick = {
-                                    () => setActiveTab('reviews') }
-                                className = { `flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all ${activeTab === 'reviews' ? 'bg-brand-navy text-white shadow-md' : 'text-brand-slate/60 hover:text-brand-navy'}` } >
-                                <
-                                i className = "fas fa-star mr-1.5" > < /i> My Reviews <
-                                /button> <
-                                /div> <
-                                /div>
-
-                                { /* Content */ } <
-                                div className = "px-4 mt-4 pb-8 max-w-lg mx-auto" >
-                                {
-                                    activeTab === 'favorites' ? ( <
-                                        div >
-                                        {
-                                            favRestaurants.length === 0 ? ( <
-                                                div className = "text-center py-12 bg-white/40 rounded-2xl border border-white/40" >
-                                                <
-                                                i className = "fas fa-heart text-3xl text-brand-slate/20 mb-3" > < /i> <
-                                                p className = "text-sm text-brand-slate/60" > No favorites yet < /p> <
-                                                button onClick = {
-                                                    () => setView('home') }
-                                                className = "mt-2 text-gold text-xs font-medium hover:underline" >
-                                                Explore restaurants →
-                                                <
-                                                /button> <
-                                                /div>
-                                            ) : ( <
-                                                div className = "grid grid-cols-2 gap-3" > {
-                                                    favRestaurants.map(r => ( <
-                                                        RestaurantCard key = { r.id }
-                                                        restaurant = { r }
-                                                        compact = { true }
-                                                        />
-                                                    ))
-                                                } <
-                                                /div>
-                                            )
-                                        } <
-                                        /div>
-                                    ) : ( <
-                                        div className = "space-y-3" >
-                                        {
-                                            userReviews.length === 0 ? ( <
-                                                div className = "text-center py-12 bg-white/40 rounded-2xl border border-white/40" >
-                                                <
-                                                i className = "fas fa-pen text-3xl text-brand-slate/20 mb-3" > < /i> <
-                                                p className = "text-sm text-brand-slate/60" > You haven't reviewed any restaurants yet < /p> <
-                                                button onClick = {
-                                                    () => setView('home') }
-                                                className = "mt-2 text-gold text-xs font-medium hover:underline" >
-                                                Write a review →
-                                                <
-                                                /button> <
-                                                /div>
-                                            ) : (
-                                                userReviews.map(rev => {
-                                                    const r = restaurants.find(rt => rt.id === rev
-                                                    .restaurant_id);
-                                                    return ( <
-                                                        div key = { rev.id }
-                                                        className = "bg-white/60 backdrop-blur-sm rounded-2xl p-4 border border-white/50 flex items-start gap-3" >
-                                                        <
-                                                        div className = "w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-brand-slate/10" >
-                                                        {
-                                                            r ? ( <
-                                                                img src = { r.image }
-                                                                alt = { r.name }
-                                                                className = "w-full h-full object-cover" /
-                                                                >
-                                                            ) : ( <
-                                                                div className = "w-full h-full flex items-center justify-center text-brand-slate/30" >
-                                                                <
-                                                                i className = "fas fa-utensils" > < /i> <
-                                                                /div>
-                                                            )
-                                                        } <
-                                                        /div> <
-                                                        div className = "flex-1 min-w-0" >
-                                                        <
-                                                        h5 className = "font-semibold text-brand-navy text-sm truncate" >
-                                                        { r ? r.name : 'Restaurant' } < /h5> <
-                                                        div className = "flex items-center gap-1 mt-0.5" > {
-                                                            [1, 2, 3, 4, 5].map(i => ( <
-                                                                i key = { i }
-                                                                className = { `fa-solid fa-star text-[0.6rem] ${i <= rev.rating ? 'text-gold' : 'text-gray-300'}` } >
-                                                                < /i>
-                                                            ))
-                                                        } <
-                                                        /div> <
-                                                        p className = "text-xs text-brand-slate/60 mt-1 line-clamp-2" >
-                                                        { rev.comment } < /p> <
-                                                        /div> <
-                                                        /div>
-                                                    );
-                                                })
-                                            )
-                                        } <
-                                        /div>
-                                    )
-                                } <
-                                /div>
-
-                                { /* Ad */ } <
-                                div className = "px-4 pb-4 max-w-lg mx-auto" >
-                                <
-                                div className = "ad-card rounded-2xl p-4 shadow-premium" >
-                                <
-                                div className = "flex items-center gap-3 relative z-10" >
-                                <
-                                div className = "w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0" >
-                                <
-                                i className = "fas fa-chart-line text-gold" > < /i> <
-                                /div> <
-                                div className = "flex-1" >
-                                <
-                                h5 className = "text-white font-semibold text-sm" > Own a Restaurant? < /h5> <
-                                p className = "text-white/40 text-xs" > List your spot on BlueBite. < /p> <
-                                /div> <
-                                button className = "text-xs font-semibold text-gold hover:text-goldLight transition-colors" >
-                                Get Started → <
-                                /button> <
-                                /div> <
-                                /div> <
-                                /div>
-
-                                <
-                                BottomNav / >
-                                <
-                                /div>
-                            );
-                        }
-
-                        // ─── Bottom Navigation ───
-                        function BottomNav() {
-                            const { view, setView, user } = useContext(AppContext);
-                            return ( <
-                                    nav className = "fixed bottom-0 left-0 right-0 z-50 bottom-nav" >
-                                    <
-                                    div className = "max-w-lg mx-auto px-3" >
-                                    <
-                                    div className = "glass-dark rounded-2xl px-2 py-1.5 flex items-center justify-between shadow-premium-lg border border-white/10" >
-                                    <
-                                    button onClick = {
-                                        () => setView('home') }
-                                    className = { `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${view === 'home' ? 'text-gold' : 'text-white/40 hover:text-white/70'}` } >
-                                    <
-                                    i className = { `fas fa-home text-base ${view === 'home' ? 'text-gold' : ''}` } >
-                                    < /i> <
-                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Home < /span> <
-                                    /button>
-
-                                    <
-                                    button onClick = {
-                                        () => user ? setView('dashboard') : setShowAuth(true) }
-                                    className = { `flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${view === 'dashboard' ? 'text-gold' : 'text-white/40 hover:text-white/70'}` } >
-                                    <
-                                    i className = { `fas fa-user text-base ${view === 'dashboard' ? 'text-gold' : ''}` } >
-                                    < /i> <
-                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" >
-                                    { user ? 'Profile' : 'Sign In' } < /span> <
-                                    /button>
-
-                                    <
-                                    button className = "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-white/40 hover:text-white/70 transition-all" >
-                                    <
-                                    i className = "fas fa-search text-base" > < /i> <
-                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Explore < /span> <
-                                    /button>
-
-                                    <
-                                    button className = "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-white/40 hover:text-white/70 transition-all" >
-                                    <
-                                    i className = "fas fa-bell text-base" > < /i> <
-                                    span className = "text-[0.45rem] font-medium uppercase tracking-wider" > Alerts < /span> <
-                                    /button> <
-                                    /div> <
-                                    /div> <
-                                    /nav>
-                                );
-                            }
-
-                            // ─── Auth Modal ───
-                            function AuthModal() {
-                                const {
-                                    showAuth,
-                                    setShowAuth,
-                                    authMode,
-                                    setAuthMode,
-                                    authEmail,
-                                    setAuthEmail,
-                                    authPassword,
-                                    setAuthPassword,
-                                    authName,
-                                    setAuthName,
-                                    authLoading,
-                                    handleAuthSubmit,
-                                } = useContext(AppContext);
-
-                                if (!showAuth) return null;
-
-                                return ( <
-                                        div className = "fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4" >
-                                        <
-                                        div className = "w-full max-w-sm modal-slide" >
-                                        <
-                                        div className = "bg-white/95 backdrop-blur-2xl rounded-3xl p-6 shadow-premium-lg border border-white/40" >
-                                        <
-                                        div className = "flex items-center justify-between mb-4" >
-                                        <
-                                        h3 className = "font-display text-xl font-bold text-brand-navy" >
-                                        { authMode === 'login' ? 'Welcome Back' : 'Join BlueBite' } <
-                                        /h3> <
-                                        button onClick = {
-                                            () => setShowAuth(false) }
-                                        className = "w-8 h-8 rounded-full bg-white/60 flex items-center justify-center text-brand-slate hover:bg-white transition-all" >
-                                        <
-                                        i className = "fas fa-times" > < /i> <
-                                        /button> <
-                                        /div>
-
-                                        <
-                                        p className = "text-sm text-brand-slate/60 mb-5" >
-                                        { authMode === 'login' ?
-                                            'Sign in to save favorites and review restaurants.' :
-                                            'Create your account and start discovering.' } <
-                                        /p>
-
-                                        <
-                                        form onSubmit = { handleAuthSubmit }
-                                        className = "space-y-4" >
-                                        {
-                                            authMode === 'signup' && ( <
-                                                div >
-                                                <
-                                                label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
-                                                Full Name <
-                                                /label> <
-                                                input type = "text"
-                                                value = { authName }
-                                                onChange = {
-                                                    (e) => setAuthName(e.target.value) }
-                                                className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
-                                                >
-                                                <
-                                                /div>
-                                            )
-                                        } <
-                                        div >
-                                        <
-                                        label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
-                                        Email <
-                                        /label> <
-                                        input type = "email"
-                                        value = { authEmail }
-                                        onChange = {
-                                            (e) => setAuthEmail(e.target.value) }
-                                        className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
-                                        >
-                                        <
-                                        /div> <
-                                        div >
-                                        <
-                                        label className = "text-xs font-medium text-brand-slate/70 block mb-1" >
-                                        Password <
-                                        /label> <
-                                        input type = "password"
-                                        value = { authPassword }
-                                        onChange = {
-                                            (e) => setAuthPassword(e.target.value) }
-                                        className = "w-full bg-white/70 rounded-xl px-4 py-3 text-sm border border-white/50 outline-none focus:border-gold/50 transition-all" /
-                                        >
-                                        <
-                                        /div>
-
-                                        <
-                                        button type = "submit"
-                                        disabled = { authLoading }
-                                        className = "btn-premium w-full py-3.5 rounded-xl text-sm font-semibold disabled:opacity-50" >
-                                        { authLoading ? 'Processing...' : (authMode === 'login' ? 'Sign In' : 'Create
-                                            Account') } <
-                                        /button> <
-                                        /form>
-
-                                        <
-                                        div className = "mt-4 text-center" >
-                                        <
-                                        button onClick = {
-                                            () => setAuthMode(authMode === 'login' ? 'signup' : 'login') }
-                                        className = "text-xs font-medium text-brand-slate/50 hover:text-gold transition-colors" >
-                                        { authMode === 'login' ?
-                                            'Don\'t have an account? Sign up →' :
-                                            'Already have an account? Sign in →' } <
-                                        /button> <
-                                        /div> <
-                                        /div> <
-                                        /div> <
-                                        /div>
-                                    );
-                                }
-
-                                // ─── Toast Manager ───
-                                function ToastManager() {
-                                    const { toast } = useContext(AppContext);
-                                    if (!toast) return null;
-                                    return ( <
-                                            div className = "fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none" >
-                                            <
-                                            div className = "toast pointer-events-auto text-sm flex items-center gap-2.5" >
-                                            <
-                                            i className = "fas fa-check-circle text-gold" > < /i> { toast } <
-                                            /div> <
-                                            /div>
-                                        );
-                                    }
-
-                                    // ─── Render ───
-                                    const root = ReactDOM.createRoot(document.getElementById('root'));
-                                    root.render( < App / > );
+        // ============================================================
+        //  START
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
